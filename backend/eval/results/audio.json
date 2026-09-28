@@ -1,0 +1,497 @@
+{
+  "label": "Synthetic demo data for synthetic clips only",
+  "route": "POST /api/v1/cases/voice via FastAPI TestClient and live Gemini",
+  "limitations": [
+    "Gemini TTS is cleaner than real patient speech",
+    "Character similarity >=0.6 is only a transcript sanity proxy",
+    "Attempted date scores the UTC date, not exact time",
+    "Product schema has no refill outcome or facility field"
+  ],
+  "synthetic": {
+    "summary": {
+      "clips": 12,
+      "live_gemini_ok": 12,
+      "fallback": 0,
+      "failed_http": 0,
+      "models_answered": {
+        "gemini-3.1-flash-lite": 12
+      },
+      "mean_latency_ms": 5958.2,
+      "field_accuracy_all_clips": {
+        "patient_id": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "drug_id": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "requested_qty": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "household_supply_days": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "attempted_date": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        }
+      },
+      "field_accuracy_live_gemini": {
+        "patient_id": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "drug_id": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "requested_qty": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "household_supply_days": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "attempted_date": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        }
+      },
+      "transcript_sane": 12,
+      "transcript_sane_live_gemini": 12,
+      "refill_outcome_correct": 12
+    },
+    "clips": [
+      {
+        "id": "s01",
+        "file": "s01.wav",
+        "http_status": 200,
+        "latency_ms": 4559.2,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "मेरी मेटफॉर्मिन की दवा खत्म हो गई। कल 28 सितंबर को सुंदरपुर पीएससी गया था। 30 गोलियां मांगी, दवा नहीं मिली। घर में दो दिन की बची है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-003",
+          "drug_id": "metformin",
+          "requested_qty": 30,
+          "household_supply_days": 2,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.933,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s02",
+        "file": "s02.wav",
+        "http_status": 200,
+        "latency_ms": 2956.3,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "परसों 27 सितंबर को सुंदरपुर पीएचसी में ग्लिमेपिराइड की 20 गोलियां मांगी थी। दवा नहीं मिली। घर में एक भी दिन की दवा नहीं है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-003",
+          "drug_id": "glimepiride",
+          "requested_qty": 20,
+          "household_supply_days": 0,
+          "attempted_at": "2026-09-27T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.933,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s03",
+        "file": "s03.wav",
+        "http_status": 200,
+        "latency_ms": 12531.2,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "हां, सोमवार 28 सितंबर को उदयपुर PHC गई थी। एमलोडीपिन की 15 गोलियां मांगी, मिली नहीं। घर पे 3 दिन की दवा बची है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-006",
+          "drug_id": "amlodipine",
+          "requested_qty": 15,
+          "household_supply_days": 3,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.81,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s04",
+        "file": "s04.wav",
+        "http_status": 200,
+        "latency_ms": 4617.3,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "कल 28 सितंबर को उदयपुर पीएचसी से टेलमीसार्टन की 10 गोलियां मांगी थीं। नहीं मिलीं। मेरे पास एक ही दिन की दवा है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-006",
+          "drug_id": "telmisartan",
+          "requested_qty": 10,
+          "household_supply_days": 1,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.907,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s05",
+        "file": "s05.wav",
+        "http_status": 200,
+        "latency_ms": 7230.5,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "परसों 27 सितंबर को मेटफॉर्मिन लेने सुंदरपुर पीएचसी गया। 25 गोलियां चाहिए थीं, मगर नहीं मिलीं। घर में चार दिन की बची हैं।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-003",
+          "drug_id": "metformin",
+          "requested_qty": 25,
+          "household_supply_days": 4,
+          "attempted_at": "2026-09-27T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.924,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s06",
+        "file": "s06.wav",
+        "http_status": 200,
+        "latency_ms": 2895.8,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "सोमवार 28 सितंबर को ग्लिमेपिराइड लेने गया था। सुंदरपुर पीएचसी में 30 गोलियां मांगी। नहीं मिली। घर पर बस एक दिन की हैं।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-003",
+          "drug_id": "glimepiride",
+          "requested_qty": 30,
+          "household_supply_days": 1,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.922,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s07",
+        "file": "s07.wav",
+        "http_status": 200,
+        "latency_ms": 5985.7,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "कल 28 सितंबर को उदयपुर PHC में अमलोडीपिन की 12 गोलियां मांगी थीं। दवा नहीं मिली और घर पे दवा खत्म है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-006",
+          "drug_id": "amlodipine",
+          "requested_qty": 12,
+          "household_supply_days": 0,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.856,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s08",
+        "file": "s08.wav",
+        "http_status": 200,
+        "latency_ms": 6501.7,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "परसों 27 सितंबर को टेलमिसार्टन लेने उदयपुर पीएचसी गया था। 24 गोलियां मांगी, दवा नहीं मिली। दो दिन की घर पर बची है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-006",
+          "drug_id": "telmisartan",
+          "requested_qty": 24,
+          "household_supply_days": 2,
+          "attempted_at": "2026-09-27T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.916,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s09",
+        "file": "s09.wav",
+        "http_status": 200,
+        "latency_ms": 4156.3,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "सोमवार 28 सितंबर को सुंदरपुर पीएचसी से मेटफॉर्मिन की 20 गोलियां मांगी थीं। दवा मिल गई थी। अब घर में चार दिन की बची है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-003",
+          "drug_id": "metformin",
+          "requested_qty": 20,
+          "household_supply_days": 4,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.934,
+        "transcript_sane": true,
+        "refill_received_from_transcript": true,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s10",
+        "file": "s10.wav",
+        "http_status": 200,
+        "latency_ms": 9322.2,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "सोमवार 28 सितंबर को उदयपुर पीएचसी में अमलोडीपिन की 18 गोलियां मांगी थी। दवा मिल गई थी। घर में 3 दिन की बची है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-006",
+          "drug_id": "amlodipine",
+          "requested_qty": 18,
+          "household_supply_days": 3,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.889,
+        "transcript_sane": true,
+        "refill_received_from_transcript": true,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s11",
+        "file": "s11.wav",
+        "http_status": 200,
+        "latency_ms": 5368.0,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "कल 28 सितंबर को सुंदरपुर PHC गई थी। ग्लिमेपिराइड की 16 टैबलेट्स मांगी। स्टॉक नहीं था। घर पर दो दिन की दवा बची है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-003",
+          "drug_id": "glimepiride",
+          "requested_qty": 16,
+          "household_supply_days": 2,
+          "attempted_at": "2026-09-28T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.622,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      },
+      {
+        "id": "s12",
+        "file": "s12.wav",
+        "http_status": 200,
+        "latency_ms": 5374.4,
+        "ai_source": "gemini",
+        "ai_model": "gemini-3.1-flash-lite",
+        "transcript": "परसों 27 सितंबर को उदयपुर PHC गया। Telmisartan की 30 टेबलेट्स चाहिए थी। मेडिसिन नहीं मिली। घर पर 5 दिन की बची है।",
+        "transcript_devanagari": true,
+        "fields": {
+          "patient_id": "patient-006",
+          "drug_id": "telmisartan",
+          "requested_qty": 30,
+          "household_supply_days": 5,
+          "attempted_at": "2026-09-27T00:00:00Z"
+        },
+        "missing": [],
+        "not_a_refill_report": false,
+        "error": null,
+        "field_correct": {
+          "patient_id": true,
+          "drug_id": true,
+          "requested_qty": true,
+          "household_supply_days": true,
+          "attempted_date": true
+        },
+        "wrong_fields": {},
+        "transcript_similarity": 0.705,
+        "transcript_sane": true,
+        "refill_received_from_transcript": false,
+        "refill_received_correct": true
+      }
+    ]
+  },
+  "real": {
+    "count": 1,
+    "clips": [
+      {
+        "id": "r01",
+        "file": "r01.opus",
+        "http_status": 200,
+        "latency_ms": 9530.5,
+        "ai_source": "fallback",
+        "ai_model": null,
+        "transcript": "",
+        "transcript_devanagari": false,
+        "fields": {
+          "patient_id": "patient-003",
+          "drug_id": null,
+          "requested_qty": null,
+          "household_supply_days": null,
+          "attempted_at": null
+        },
+        "missing": [
+          "drug_id",
+          "requested_qty",
+          "household_supply_days",
+          "attempted_at"
+        ],
+        "not_a_refill_report": false,
+        "error": null,
+        "not_a_refill_report_correct": false,
+        "wrong_fields": {}
+      }
+    ]
+  }
+}

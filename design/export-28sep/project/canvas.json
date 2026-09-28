@@ -1,0 +1,264 @@
+{
+ "v": 3,
+ "attachments": {},
+ "boards": {
+  "Landing-Mobile.dc.html": {
+   "h": 6200,
+   "is_interactive": true,
+   "title": "1.2 Landing · app 360",
+   "w": 360,
+   "x": 1520,
+   "y": 0
+  },
+  "M-DemoUser.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "2.4 Demo person · app",
+   "w": 360,
+   "x": 1320,
+   "y": 6580
+  },
+  "M-Language.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "2.2 Language · app",
+   "w": 360,
+   "x": 440,
+   "y": 6580
+  },
+  "M-Logout.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "2.5 Log out confirm · app",
+   "w": 360,
+   "x": 1760,
+   "y": 6580
+  },
+  "M-Notifications.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "4.3 Notifications · app",
+   "w": 360,
+   "x": 880,
+   "y": 9040
+  },
+  "M-Profile.dc.html": {
+   "h": 1100,
+   "is_interactive": true,
+   "title": "4.4 Profile · app",
+   "w": 360,
+   "x": 1320,
+   "y": 9040
+  },
+  "M-Role.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "2.3 Role picker · app",
+   "w": 360,
+   "x": 880,
+   "y": 6580
+  },
+  "M-SessionEnded.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "2.6 Session ended · app",
+   "w": 360,
+   "x": 2200,
+   "y": 6580
+  },
+  "M-Settings.dc.html": {
+   "h": 1340,
+   "is_interactive": true,
+   "title": "4.5 Settings · app",
+   "w": 360,
+   "x": 1760,
+   "y": 9040
+  },
+  "M-Shell-Patient.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "4.1 App shell · patient",
+   "w": 360,
+   "x": 0,
+   "y": 9040
+  },
+  "M-Shell-Pharmacist.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "4.2 App shell · pharmacist",
+   "w": 360,
+   "x": 440,
+   "y": 9040
+  },
+  "M-Welcome.dc.html": {
+   "h": 800,
+   "is_interactive": true,
+   "title": "2.1 Welcome · app",
+   "w": 360,
+   "x": 0,
+   "y": 6580
+  },
+  "Main.dc.html": {
+   "h": 4860,
+   "is_interactive": true,
+   "title": "1.1 Landing · web 1440",
+   "w": 1440,
+   "x": 0,
+   "y": 0
+  },
+  "W-DemoUser.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "title": "3.3 Demo person · web",
+   "w": 1440,
+   "x": 3040,
+   "y": 7760
+  },
+  "W-Logout.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "title": "3.4 Log out confirm · web",
+   "w": 1440,
+   "x": 4560,
+   "y": 7760
+  },
+  "W-Profile.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "title": "5.2 Profile · web",
+   "w": 1440,
+   "x": 1520,
+   "y": 10760
+  },
+  "W-Role.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "title": "3.2 Role picker · web",
+   "w": 1440,
+   "x": 1520,
+   "y": 7760
+  },
+  "W-SessionEnded.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "title": "3.5 Session ended · web",
+   "w": 1440,
+   "x": 6080,
+   "y": 7760
+  },
+  "W-Settings.dc.html": {
+   "h": 1000,
+   "is_interactive": true,
+   "title": "5.3 Settings · web",
+   "w": 1440,
+   "x": 3040,
+   "y": 10760
+  },
+  "W-Shell.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "title": "5.1 Web shell · district",
+   "w": 1440,
+   "x": 0,
+   "y": 10760
+  },
+  "W-Welcome.dc.html": {
+   "h": 900,
+   "is_interactive": true,
+   "title": "3.1 Welcome + language · web",
+   "w": 1440,
+   "x": 0,
+   "y": 7760
+  }
+ },
+ "createdOnFiles": {
+  "at": "2026-09-28T16:10:00Z",
+  "v": 1
+ },
+ "designSystems": [
+  {
+   "artifact": "https://claude.ai/artifact/AgpfcxB8kANgHLVvvDUPGK",
+   "copiedAt": "2026-09-28T16:10:00Z",
+   "namespace": "saathi",
+   "title": "Saathi",
+   "version": "1790607621-a3aa"
+  }
+ ],
+ "launch": {
+  "view": "canvas"
+ },
+ "notes": {
+  "flow": {
+   "color": "orange",
+   "text": "Play the flow: Landing ‘Open demo’ → Welcome → Language → Role → Demo person → Shell. Avatar → Profile → Settings → Log out → confirm → Welcome. हिं / EN toggle on every screen swaps which language leads.",
+   "w": 360,
+   "x": 1960,
+   "y": 0
+  },
+  "t1": {
+   "kind": "title1",
+   "maxW": 1880,
+   "text": "1 · Landing — web 1440 & app 360",
+   "w": 240,
+   "x": 0,
+   "y": -300
+  },
+  "t2": {
+   "kind": "title1",
+   "maxW": 2560,
+   "text": "2 · Auth — app 360 (Hindi first)",
+   "w": 240,
+   "x": 0,
+   "y": 6320
+  },
+  "t3": {
+   "kind": "title1",
+   "maxW": 7520,
+   "text": "3 · Auth — web 1440 (English first)",
+   "w": 240,
+   "x": 0,
+   "y": 7500
+  },
+  "t4": {
+   "kind": "title1",
+   "maxW": 2120,
+   "text": "4 · Shell — app 360",
+   "w": 240,
+   "x": 0,
+   "y": 8780
+  },
+  "t5": {
+   "kind": "title1",
+   "maxW": 4480,
+   "text": "5 · Shell — web 1440",
+   "w": 240,
+   "x": 0,
+   "y": 10500
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Landing-Mobile.dc.html",
+  "M-Welcome.dc.html",
+  "M-Language.dc.html",
+  "M-Role.dc.html",
+  "M-DemoUser.dc.html",
+  "M-Logout.dc.html",
+  "M-SessionEnded.dc.html",
+  "W-Welcome.dc.html",
+  "W-Role.dc.html",
+  "W-DemoUser.dc.html",
+  "W-Logout.dc.html",
+  "W-SessionEnded.dc.html",
+  "M-Shell-Patient.dc.html",
+  "M-Shell-Pharmacist.dc.html",
+  "M-Notifications.dc.html",
+  "M-Profile.dc.html",
+  "M-Settings.dc.html",
+  "W-Shell.dc.html",
+  "W-Profile.dc.html",
+  "W-Settings.dc.html"
+ ],
+ "pages": [],
+ "title": "Saathi · साथी — Product design"
+}

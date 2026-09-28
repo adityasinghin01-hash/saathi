@@ -1,0 +1,22 @@
+{
+  "id": "s01",
+  "synthetic_label": "Synthetic demo data",
+  "recording_kind": "Gemini TTS, not a real patient or ASHA recording",
+  "tts_model": "gemini-3.8-flash-tts",
+  "tts_voice": "Kore",
+  "tts_latency_seconds": 5.897,
+  "duration_seconds": 11.8,
+  "script": "मेरी मेटफॉर्मिन की दवा खत्म हो गई। कल अट्ठाईस सितंबर को सुंदरपुर पी एच सी गया था। तीस गोलियां मांगी, दवा नहीं मिली। घर में दो दिन की बची है।",
+  "patient_id": "patient-003",
+  "user_id": "patient-user-003",
+  "expected_fields": {
+    "patient_id": "patient-003",
+    "drug_id": "metformin",
+    "requested_qty": 30,
+    "household_supply_days": 2,
+    "attempted_date": "2026-09-28"
+  },
+  "expected_refill_received": false,
+  "hinglish": false,
+  "audio_mime_type": "audio/wav"
+}

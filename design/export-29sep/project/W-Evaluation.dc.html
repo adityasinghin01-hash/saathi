@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How well does the warning work — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.hero-n{font:600 56px/64px var(--font-sans);font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.01em}
+.lbl{font:600 12px/18px var(--font-sans);letter-spacing:.04em;color:var(--ink-muted)}
+.hb{display:grid;grid-template-columns:150px minmax(0,1fr) 48px;align-items:center;gap:12px;font:500 14px/20px var(--font-sans)}
+.hb-track{height:20px;border-radius:6px;background:var(--paper-sunk);position:relative}
+.hb-fill{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--chart-stock)}
+.run{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px;border-radius:var(--radius-md);background:var(--paper);text-align:center;font:500 13px/18px var(--font-sans)}
+.run .ri{width:44px;height:44px;border-radius:14px;display:grid;place-items:center}
+.simbadge{display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:6px 14px;border-radius:var(--radius-sm);color:var(--ink);font:600 14px/20px var(--font-sans);background:repeating-linear-gradient(-45deg,var(--paper-sunk) 0 6px,var(--paper-raised) 6px 12px);box-shadow:inset 0 0 0 1.5px var(--line-strong)}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 920px; background: var(--paper); color: var(--ink); display: flex; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.00 3.00 L13.76 3.17 L14.68 5.53 L15.89 6.18 L18.36 5.64 L19.48 7.00 L18.47 9.32 L18.87 10.63 L21.00 12.00 L20.83 13.76 L18.47 14.68 L17.82 15.89 L18.36 18.36 L17.00 19.48 L14.68 18.47 L13.37 18.87 L12.00 21.00 L10.24 20.83 L9.32 18.47 L8.11 17.82 L5.64 18.36 L4.52 17.00 L5.53 14.68 L5.13 13.37 L3.00 12.00 L3.17 10.24 L5.53 9.32 L6.18 8.11 L5.64 5.64 L7.00 4.52 L9.32 5.53 L10.63 5.13Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7"></path><path d="M10.5 12h9M16.5 8.5 20 12l-3.5 3.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-out-of-stock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M6 6l12 12"></path></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-user-group" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"></circle><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"></path><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5.8M17.5 14.8c1.8.6 3.1 2.1 3.5 4.7"></path></symbol>
+</defs></svg>
+
+<aside class="sa-sidebar" style="flex: none; height: 920px">
+<img class="sa-sidebar-logo" src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi">
+<a class="sa-nav" href="W-Shell.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg><span class="sa-bi"><span lang="hi">अवलोकन</span><span lang="en">Overview</span></span></a>
+<a class="sa-nav" href="W-Evaluation.dc.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="hi">चेतावनी</span><span lang="en">Early warnings</span></span><span class="sa-nav-count">5</span></a>
+<a class="sa-nav" href="W-Cases.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></a>
+<a class="sa-nav" href="W-Transfers.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-transfer"></use></svg><span class="sa-bi"><span lang="hi">स्थानांतरण</span><span lang="en">Transfers</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi"><span lang="hi">नक्शा</span><span lang="en">Map</span></span></a>
+<div class="sa-sidebar-foot">
+<a class="sa-nav" href="W-Settings.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">मदद</span><span lang="en">Help</span></span></button>
+<a class="sa-nav" href="W-Logout.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-logout"></use></svg><span class="sa-bi"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></a>
+</div>
+</aside>
+
+<div class="web-main">
+<header class="sa-topbar sa-topbar--web" style="flex: none">
+<div class="sa-topbar-title" style="flex: 1 0 auto"><span class="sa-bi"><span lang="hi">चेतावनी · सूर्यनगर</span><span lang="en">Early warnings · Suryanagar</span></span></div>
+<span class="sa-demo">SYNTHETIC DEMO DATA</span>
+<label class="sa-input sa-input--web" style="width: 220px"><span class="sa-adorn"><svg class="ic ic-20" aria-hidden="true"><use href="#i-search"></use></svg></span><input placeholder="Search centre or medicine · खोजें" aria-label="Search · खोजें"></label>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="W-Shell.dc.html" aria-label="Notifications · सूचनाएँ"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+<a class="sa-avbtn" href="W-Profile.dc.html" aria-label="Dr. Mehra — profile · प्रोफ़ाइल"><span class="sa-avatar">DM</span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></a>
+</header>
+
+<main style="flex-grow: 1; padding: 28px 40px 32px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 24px; align-content: start">
+<div style="grid-column: span 12; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 class="d-h1 hd" style="--bi-2nd: 18px"><span class="sa-bi"><span lang="hi">चेतावनी कितनी काम की है?</span><span lang="en">How well does the warning work?</span></span></h1>
+<p class="d-body muted" style="--bi-2nd: 14px"><span class="sa-bi"><span lang="en">Our honest test: the same district run twice — once waiting for centres to run out, once with the early warning and approved transfers.</span><span lang="hi">एक ही ज़िला दो बार चलाया — एक बार बिना चेतावनी, एक बार चेतावनी के साथ।</span></span></p>
+</div>
+<span class="simbadge"><svg class="ic ic-20" aria-hidden="true"><use href="#i-user-group"></use></svg><span class="sa-bi"><span lang="en">Synthetic simulation — not real patients</span><span lang="hi">नमूना सिमुलेशन — असली मरीज़ नहीं</span></span></span>
+</div>
+
+<!-- benefit -->
+<section class="sa-card sa-card--web" style="grid-column: span 6; padding: 28px; gap: 18px">
+<span class="lbl">WHAT IT SAVES · फ़ायदा</span>
+<h2 class="d-h3"><span class="sa-bi"><span lang="en">Patient-days without medicine</span><span lang="hi">बिना दवा के मरीज़-दिन</span></span></h2>
+<div style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap">
+<span class="hero-n">228 <span style="color: var(--ink-muted); font-weight: 500">→</span> 3</span>
+<span class="sa-status sa-status--ok sa-status--lg"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">−99%</span><span lang="hi">99% कम</span></span></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px" role="img" aria-label="Bar comparison: 228 patient-days without the warning, 3 with it">
+<div class="hb"><span><span class="sa-bi"><span lang="en">Without the warning</span><span lang="hi">चेतावनी के बिना</span></span></span><span class="hb-track"><span class="hb-fill" style="width: 100%"></span></span><span style="text-align: right; font-weight: 600">228</span></div>
+<div class="hb"><span><span class="sa-bi"><span lang="en">With the warning</span><span lang="hi">चेतावनी के साथ</span></span></span><span class="hb-track"><span class="hb-fill" style="width: 1.3%; min-width: 4px"></span></span><span style="text-align: right; font-weight: 600">3</span></div>
+</div>
+<p class="d-body" style="--bi-2nd: 14px"><span class="sa-bi"><span lang="en">In plain words: patients went 228 days in total without their medicine when centres waited to run out; with early warning and approved transfers, only 3.</span><span lang="hi" style="margin-top: 4px">सीधी बात: बिना चेतावनी मरीज़ कुल 228 दिन दवा के बिना रहे; चेतावनी के साथ सिर्फ़ 3 दिन।</span></span></p>
+</section>
+
+<!-- cost -->
+<section class="sa-card sa-card--web" style="grid-column: span 6; padding: 28px; gap: 18px">
+<span class="lbl">WHAT IT COSTS · क़ीमत</span>
+<h2 class="d-h3"><span class="sa-bi"><span lang="en">It over-orders</span><span lang="hi">यह ज़्यादा मँगवाता है</span></span></h2>
+<div style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap">
+<span class="hero-n">1 <span style="font-size: 28px; font-weight: 500; color: var(--ink-muted)">in</span> 3</span>
+<span class="d-body muted"><span class="sa-bi"><span lang="en">test runs had a false alarm</span><span lang="hi">टेस्ट में झूठी चेतावनी</span></span></span>
+</div>
+<div style="display: flex; gap: 12px" role="img" aria-label="Three test runs: one false alarm, two correct">
+<div class="run"><span class="ri" style="background: var(--status-low-bg); color: var(--status-low)"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg></span><span class="sa-bi" style="align-items: center"><span lang="en">False alarm</span><span lang="hi">झूठी चेतावनी</span></span></div>
+<div class="run"><span class="ri" style="background: var(--status-ok-bg); color: var(--status-ok)"><svg class="ic" aria-hidden="true"><use href="#i-check-circle"></use></svg></span><span class="sa-bi" style="align-items: center"><span lang="en">Warning was right</span><span lang="hi">सही चेतावनी</span></span></div>
+<div class="run"><span class="ri" style="background: var(--status-ok-bg); color: var(--status-ok)"><svg class="ic" aria-hidden="true"><use href="#i-check-circle"></use></svg></span><span class="sa-bi" style="align-items: center"><span lang="en">Warning was right</span><span lang="hi">सही चेतावनी</span></span></div>
+</div>
+<p class="d-body" style="--bi-2nd: 14px"><span class="sa-bi"><span lang="en">In plain words: the warning is cautious. Sometimes it moves stock that wasn’t needed, and extra tablets sit on a shelf.</span><span lang="hi" style="margin-top: 4px">सीधी बात: चेतावनी सावधान है — कभी बेवजह स्टॉक भेजती है और गोलियाँ अलमारी में पड़ी रहती हैं।</span></span></p>
+</section>
+
+<!-- method & limits -->
+<section class="sa-card sa-card--web" style="grid-column: span 12; flex-direction: row; gap: 32px; padding: 24px 28px">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<span class="lbl">HOW WE TESTED · कैसे जाँचा</span>
+<ul class="ticks">
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="en">Same 6 PHCs, district store and 4 medicines as this demo</span><span lang="hi">इसी डेमो के 6 PHC और 4 दवाएँ</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="en">Patients and prescriptions are generated, not real</span><span lang="hi">मरीज़ और पर्चियाँ नमूना हैं</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="en">Every transfer in the test still needed an approval step</span><span lang="hi">हर स्थानांतरण पर मंज़ूरी का कदम</span></span></li>
+</ul>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<span class="lbl">WHAT THIS DOES NOT PROVE · यह क्या साबित नहीं करता</span>
+<ul class="ticks">
+<li><svg class="ic ic-20" aria-hidden="true" style="color: var(--status-out)"><use href="#i-out-of-stock"></use></svg><span class="sa-bi"><span lang="en">It is not a result from real patients or real centres</span><span lang="hi">यह असली मरीज़ों का नतीजा नहीं है</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true" style="color: var(--status-out)"><use href="#i-out-of-stock"></use></svg><span class="sa-bi"><span lang="en">Real numbers will be different — check them in a pilot</span><span lang="hi">असली आँकड़े अलग होंगे — पायलट में देखें</span></span></li>
+</ul>
+<a class="lnk" href="W-Overview.dc.html" style="font-size: 14px; margin-top: 4px">Back to the stock table · स्टॉक तालिका</a>
+</div>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":920}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'en';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

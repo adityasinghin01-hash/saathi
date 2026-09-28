@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Phone states — empty, loading, offline, error</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.lab{height:48px;display:flex;align-items:center;gap:10px;font:600 16px/22px var(--font-sans)}
+.lab .sa-bi{--bi-2nd:13px}
+.phone main{flex-grow:1}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1560px; height: 860px; background: var(--paper-sunk); color: var(--ink); display: flex; gap: 40px; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-medicines" viewBox="0 0 24 24"><g transform="rotate(-45 12 12)"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5"></rect><path d="M12 8.5v7"></path></g></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M7 18.5h9.5a4 4 0 0 0 1.4-7.7A6 6 0 0 0 7.2 9 4.8 4.8 0 0 0 7 18.5z"></path><path d="M4 4l16 16"></path></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 11A7.5 7.5 0 0 0 6 7.2L4.5 9"></path><path d="M4.5 4.5V9H9"></path><path d="M4.5 13A7.5 7.5 0 0 0 18 16.8l1.5-1.8"></path><path d="M19.5 19.5V15H15"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11z"></path><path d="M13.5 9.5h4l3 3.5v3.5h-7"></path><circle cx="6.5" cy="17.5" r="1.8"></circle><circle cx="17" cy="17.5" r="1.8"></circle></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+</defs></svg>
+
+<!-- EMPTY -->
+<div style="display: flex; flex-direction: column">
+<div class="lab"><span class="sa-bi sa-bi--inline"><span lang="en">Empty</span><span lang="hi">खाली</span></span></div>
+<div class="phone">
+<header class="sa-topbar" style="flex: none; padding-left: 16px"><div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरी शिकायतें</span><span lang="en">My reports</span></span></div><div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div><span class="sa-iconbtn"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg></span></header>
+<main style="display: grid; place-items: center; padding: 16px">
+<div class="sa-state">
+<img src="/_blob/583792078e9f13de2bd11ff11486580f" alt="">
+<h2 class="sa-state-title"><span class="sa-bi"><span lang="hi">अभी कोई शिकायत नहीं</span><span lang="en">No reports yet</span></span></h2>
+<p class="sa-state-body"><span class="sa-bi" style="align-items: center"><span lang="hi">दवा न मिले तो बस बोलकर बताइए।</span><span lang="en">If a refill is missed, just tell us by voice.</span></span></p>
+<a class="sa-btn" href="M-Voice.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-mic"></use></svg><span class="sa-bi"><span lang="hi">बोलकर बताएँ</span><span lang="en">Report by voice</span></span></a>
+</div>
+</main>
+<nav class="sa-tabbar" style="flex: none"><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></span><span class="sa-tab" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">शिकायतें</span><span lang="en">Reports</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-bi"><span lang="hi">दवाइयाँ</span><span lang="en">Medicines</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></span></nav>
+</div>
+</div>
+
+<!-- LOADING -->
+<div style="display: flex; flex-direction: column">
+<div class="lab"><span class="sa-bi sa-bi--inline"><span lang="en">Loading</span><span lang="hi">लोड हो रहा</span></span></div>
+<div class="phone">
+<header class="sa-topbar" style="flex: none; padding-left: 16px"><div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरी शिकायतें</span><span lang="en">My reports</span></span></div><div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div><span class="sa-iconbtn"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg></span></header>
+<main style="padding: 16px; display: flex; flex-direction: column; gap: 14px" aria-busy="true">
+<div class="sa-card" style="gap: 12px"><div style="display: flex; gap: 12px; align-items: center"><div class="sa-skel" style="width: 44px; height: 44px; border-radius: 14px"></div><div class="sa-skel" style="height: 20px; flex: 1"></div></div><div class="sa-skel" style="height: 32px; width: 45%; border-radius: 10px"></div></div>
+<div class="sa-skel" style="height: 84px; border-radius: 22px"></div>
+<div style="display: flex; flex-direction: column; gap: 18px; padding: 4px">
+<div style="display: flex; gap: 12px"><div class="sa-skel" style="width: 40px; height: 40px; border-radius: 50%"></div><div style="flex: 1; display: flex; flex-direction: column; gap: 8px"><div class="sa-skel" style="height: 16px; width: 70%"></div><div class="sa-skel" style="height: 14px; width: 50%"></div></div></div>
+<div style="display: flex; gap: 12px"><div class="sa-skel" style="width: 40px; height: 40px; border-radius: 50%"></div><div style="flex: 1; display: flex; flex-direction: column; gap: 8px"><div class="sa-skel" style="height: 16px; width: 60%"></div><div class="sa-skel" style="height: 14px; width: 40%"></div></div></div>
+<div style="display: flex; gap: 12px"><div class="sa-skel" style="width: 40px; height: 40px; border-radius: 50%"></div><div style="flex: 1; display: flex; flex-direction: column; gap: 8px"><div class="sa-skel" style="height: 16px; width: 65%"></div><div class="sa-skel" style="height: 14px; width: 45%"></div></div></div>
+</div>
+<p class="sa-help" style="justify-content: center"><span class="sa-bi sa-bi--inline"><span lang="hi">आपकी शिकायतें आ रही हैं…</span><span lang="en">Loading your reports…</span></span></p>
+</main>
+<nav class="sa-tabbar" style="flex: none"><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></span><span class="sa-tab" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">शिकायतें</span><span lang="en">Reports</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-bi"><span lang="hi">दवाइयाँ</span><span lang="en">Medicines</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></span></nav>
+</div>
+</div>
+
+<!-- OFFLINE -->
+<div style="display: flex; flex-direction: column">
+<div class="lab"><span class="sa-bi sa-bi--inline"><span lang="en">Offline</span><span lang="hi">नेट नहीं</span></span></div>
+<div class="phone">
+<header class="sa-topbar" style="flex: none; padding-left: 16px"><div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरी शिकायतें</span><span lang="en">My reports</span></span></div><div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div><span class="sa-iconbtn"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg></span></header>
+<main style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<div class="sa-banner sa-banner--offline" role="status"><span class="sa-banner-ic"><svg class="ic" aria-hidden="true"><use href="#i-cloud-off"></use></svg></span><span class="sa-bi"><span lang="hi">नेट नहीं है — सुबह 9:40 की जानकारी दिख रही है</span><span lang="en">You’re offline — showing what we had at 9:40 am</span></span></div>
+<section class="sa-card" style="gap: 10px">
+<div class="sa-card-head"><span style="font: 600 18px/26px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="hi">मेटफॉर्मिन 500 mg</span><span lang="en">Metformin 500 mg</span></span></span><span class="sa-age is-stale"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">कल का</span><span lang="en">from yesterday</span></span></span></div>
+<span class="sa-status sa-status--wait" style="align-self: flex-start"><svg class="ic ic-16" aria-hidden="true"><use href="#i-truck"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">दवा रास्ते में</span><span lang="en">On the way</span></span></span>
+<span class="m-caption">सुंदरपुर PHC · Sundarpur PHC</span>
+</section>
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: var(--radius-md); background: var(--marigold-100)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-clock"></use></svg><span class="sa-bi" style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span lang="hi">1 रिपोर्ट फ़ोन में सेव — नेट आते ही जाएगी</span><span lang="en">1 report saved on this phone — sends when online</span></span></div>
+<button type="button" class="sa-btn sa-btn--secondary sa-btn--block"><svg class="ic" aria-hidden="true"><use href="#i-refresh"></use></svg><span class="sa-bi"><span lang="hi">फिर से देखें</span><span lang="en">Try again</span></span></button>
+</main>
+<nav class="sa-tabbar" style="flex: none"><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></span><span class="sa-tab" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">शिकायतें</span><span lang="en">Reports</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-bi"><span lang="hi">दवाइयाँ</span><span lang="en">Medicines</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></span></nav>
+</div>
+</div>
+
+<!-- ERROR -->
+<div style="display: flex; flex-direction: column">
+<div class="lab"><span class="sa-bi sa-bi--inline"><span lang="en">Error</span><span lang="hi">गड़बड़</span></span></div>
+<div class="phone">
+<header class="sa-topbar" style="flex: none; padding-left: 16px"><div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरी शिकायतें</span><span lang="en">My reports</span></span></div><div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div><span class="sa-iconbtn"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg></span></header>
+<main style="display: grid; place-items: center; padding: 16px">
+<div class="sa-state">
+<span class="sa-state-ic"><svg class="ic ic-32" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+<h2 class="sa-state-title"><span class="sa-bi"><span lang="hi">कुछ गड़बड़ हो गई</span><span lang="en">Something went wrong</span></span></h2>
+<p class="sa-state-body"><span class="sa-bi" style="align-items: center"><span lang="hi">आपकी जानकारी सुरक्षित है। थोड़ी देर में फिर से कोशिश करें।</span><span lang="en">Your information is safe. Please try again in a moment.</span></span></p>
+<button type="button" class="sa-btn sa-btn--secondary"><svg class="ic" aria-hidden="true"><use href="#i-refresh"></use></svg><span class="sa-bi"><span lang="hi">फिर से कोशिश करें</span><span lang="en">Try again</span></span></button>
+<button type="button" class="sa-btn sa-btn--ghost"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi"><span lang="hi">आशा दीदी को कॉल</span><span lang="en">Call my ASHA</span></span></button>
+</div>
+</main>
+<nav class="sa-tabbar" style="flex: none"><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></span><span class="sa-tab" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">शिकायतें</span><span lang="en">Reports</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-bi"><span lang="hi">दवाइयाँ</span><span lang="en">Medicines</span></span></span><span class="sa-tab"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></span></nav>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1560,"height":860}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'hi';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

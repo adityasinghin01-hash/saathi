@@ -1,0 +1,22 @@
+{
+  "id": "s03",
+  "synthetic_label": "Synthetic demo data",
+  "recording_kind": "Gemini TTS, not a real patient or ASHA recording",
+  "tts_model": "gemini-3.8-flash-tts",
+  "tts_voice": "Kore",
+  "tts_latency_seconds": 6.115,
+  "duration_seconds": 12.2,
+  "script": "सोमवार अट्ठाईस सितंबर को उदयपुर पी एच सी गई थी। अम्लोडिपिन की पंद्रह गोलियां मांगीं, मिली नहीं। घर पर तीन दिन की दवा बची है।",
+  "patient_id": "patient-006",
+  "user_id": "patient-user-006",
+  "expected_fields": {
+    "patient_id": "patient-006",
+    "drug_id": "amlodipine",
+    "requested_qty": 15,
+    "household_supply_days": 3,
+    "attempted_date": "2026-09-28"
+  },
+  "expected_refill_received": false,
+  "hinglish": false,
+  "audio_mime_type": "audio/wav"
+}

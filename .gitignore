@@ -1,0 +1,33 @@
+# secrets
+.env
+**/.env
+**/.env.*
+!**/.env.example
+# agent logs (contain raw tool output — one held the API key)
+docs/log-*.txt
+# personal recordings
+backend/eval/audio/real/*
+!backend/eval/audio/real/README.md
+# deps / builds / local state
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+.venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.sqlite
+*.sqlite3
+*.db
+frontend/test-results/
+frontend/playwright-report/
+frontend/e2e/screenshots/
+frontend/e2e/zz-*.spec.ts
+# large design scratch
+design/old-frontend-f2/
+design/blobs/
+.DS_Store

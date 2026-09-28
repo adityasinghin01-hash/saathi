@@ -1,0 +1,22 @@
+{
+  "id": "s08",
+  "synthetic_label": "Synthetic demo data",
+  "recording_kind": "Gemini TTS, not a real patient or ASHA recording",
+  "tts_model": "gemini-3.8-flash-lite-tts",
+  "tts_voice": "Kore",
+  "tts_latency_seconds": 5.106,
+  "duration_seconds": 10.88,
+  "script": "परसों सत्ताईस सितंबर को टेल्मिसार्टन लेने उदयपुर पी एच सी गया था। चौबीस गोलियां मांगीं, दवा नहीं मिली। दो दिन की घर पर बची है।",
+  "patient_id": "patient-006",
+  "user_id": "patient-user-006",
+  "expected_fields": {
+    "patient_id": "patient-006",
+    "drug_id": "telmisartan",
+    "requested_qty": 24,
+    "household_supply_days": 2,
+    "attempted_date": "2026-09-27"
+  },
+  "expected_refill_received": false,
+  "hinglish": false,
+  "audio_mime_type": "audio/wav"
+}

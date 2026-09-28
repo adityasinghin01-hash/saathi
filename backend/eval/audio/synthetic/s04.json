@@ -1,0 +1,22 @@
+{
+  "id": "s04",
+  "synthetic_label": "Synthetic demo data",
+  "recording_kind": "Gemini TTS, not a real patient or ASHA recording",
+  "tts_model": "gemini-3.8-flash-tts",
+  "tts_voice": "Kore",
+  "tts_latency_seconds": 5.173,
+  "duration_seconds": 8.84,
+  "script": "कल अट्ठाईस सितंबर को उदयपुर पी एच सी से टेल्मिसार्टन की दस गोलियां मांगी थीं। नहीं मिलीं। मेरे पास एक दिन की दवा है।",
+  "patient_id": "patient-006",
+  "user_id": "patient-user-006",
+  "expected_fields": {
+    "patient_id": "patient-006",
+    "drug_id": "telmisartan",
+    "requested_qty": 10,
+    "household_supply_days": 1,
+    "attempted_date": "2026-09-28"
+  },
+  "expected_refill_received": false,
+  "hinglish": false,
+  "audio_mime_type": "audio/wav"
+}

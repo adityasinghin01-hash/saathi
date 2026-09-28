@@ -1,0 +1,4 @@
+Continue as backend engineer. Two issues Claude found running the real browser against your backend:
+1. GET /district/overview?district=Suryanagar now takes ~3.1 s every call (curl, local). The district screens call it on every visit; target < 300 ms. Cache the computed rows and invalidate on any write that changes them (stock snapshot, dispensing, case/transfer transitions, demo reset). Add a test that a second call is served from cache and that a POST /stock invalidates it. Report before/after timings.
+2. POST /cases/voice returned 415 for a real Chrome recording. Browsers label recordings with codec parameters, e.g. "audio/webm;codecs=opus" (and Safari "audio/mp4"). Accept the media type ignoring parameters; accept audio/webm, audio/ogg, audio/mp4, audio/mpeg, audio/wav, audio/x-wav. Add tests.
+Rules: edit only backend/ and notes-codex.md. Do NOT touch frontend/. ruff clean; full pytest green (paste the real final line). No commit, push, deploy.

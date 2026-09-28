@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Choose demo person — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 900px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-health-centre" viewBox="0 0 24 24"><path d="M3.5 20.5h17M5.5 20.5V9l6.5-4.5L18.5 9v11.5"></path><path d="M12 10v5M9.5 12.5h5"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+</defs></svg>
+<header style="height: 80px; flex: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 0 80px">
+<img src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi" style="height: 40px; width: auto; justify-self: start">
+<div style="justify-self: center; display: flex; gap: 12px; align-items: center"><div class="dots"><i></i><i></i><i class="on"></i></div><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">कदम 3 / 3</span><span lang="en">Step 3 of 3</span></span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा" style="justify-self: end"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</header>
+<main style="flex-grow: 1; padding: 32px 80px 48px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: start">
+<!-- chosen role -->
+<aside class="sa-card sa-card--web" style="grid-column: span 4; padding: 0; overflow: hidden; gap: 0">
+<div class="g-clay" style="height: 240px; display: grid; place-items: center"><img src="/_blob/a6525a3b924284bc4c89308e7bb333a3" alt="" style="width: 220px; height: 220px; object-fit: contain"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">आपने चुना</span><span lang="en">You chose</span></span></span>
+<h2 class="d-h2 hd" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">ज़िला अधिकारी</span><span lang="en">District officer</span></span></h2>
+<ul class="ticks">
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">नक्शे पर हर केंद्र का स्टॉक</span><span lang="en">Every centre’s stock on a map</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">AI सुझाव मंज़ूर या रद्द करें</span><span lang="en">Approve or reject AI transfers</span></span></li>
+</ul>
+<a class="sa-btn sa-btn--outline sa-btn--web" href="W-Role.dc.html" style="align-self: flex-start"><svg class="ic ic-20" aria-hidden="true"><use href="#i-arrow-left"></use></svg><span class="sa-bi"><span lang="hi">भूमिका बदलें</span><span lang="en">Change role</span></span></a>
+</div>
+</aside>
+<!-- people -->
+<section style="grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">किसके रूप में देखें?</span><span lang="en">Continue as…</span></span></h1>
+<div style="display: flex; gap: 10px; align-items: center"><span class="sa-demo">SYNTHETIC DEMO DATA</span><span class="d-body-sm muted"><span class="sa-bi sa-bi--inline"><span lang="hi">नमूना लोग, असली नहीं</span><span lang="en">Synthetic people — not real officers or patients</span></span></span></div>
+</div>
+<div role="radiogroup" aria-label="Demo person · डेमो व्यक्ति" style="display: flex; flex-direction: column; gap: 16px">
+<button type="button" role="radio" aria-checked="{{r0}}" class="pick {{c0}}" onClick="{{p0}}" style="padding: 20px 24px">
+<span class="sa-avatar" style="--s: 56px">AM</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px; align-items: flex-start">
+<span style="display: flex; gap: 10px; align-items: center"><span style="font: 600 18px/28px var(--font-sans)">Dr. Anil Mehra · डॉ. अनिल मेहरा</span><span style="display: inline-flex; padding: 2px 10px; border-radius: var(--radius-full); background: var(--marigold-100); font: 600 13px/20px var(--font-sans)"><span class="sa-bi sa-bi--inline"><span lang="hi">कहानी</span><span lang="en">Story demo</span></span></span></span>
+<span class="d-body-sm muted"><span class="sa-bi sa-bi--inline"><span lang="hi">ज़िला NCD अधिकारी, मेरठ</span><span lang="en">District NCD officer · Meerut · 42 centres</span></span></span>
+</span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+<button type="button" role="radio" aria-checked="{{r1}}" class="pick {{c1}}" onClick="{{p1}}" style="padding: 20px 24px">
+<span class="sa-avatar" style="--s: 56px">KR</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px; align-items: flex-start">
+<span style="font: 600 18px/28px var(--font-sans)">Dr. Kavita Rana · डॉ. कविता राणा</span>
+<span class="d-body-sm muted"><span class="sa-bi sa-bi--inline"><span lang="hi">उप मुख्य चिकित्सा अधिकारी, मेरठ</span><span lang="en">Deputy CMO · Meerut</span></span></span>
+</span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+<button type="button" role="radio" aria-checked="{{r2}}" class="pick {{c2}}" onClick="{{p2}}" style="padding: 20px 24px">
+<span class="sa-avatar sa-avatar--leaf" style="--s: 56px">RT</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px; align-items: flex-start">
+<span style="font: 600 18px/28px var(--font-sans)">Rajeev Tyagi · राजीव त्यागी</span>
+<span class="d-body-sm muted"><span class="sa-bi sa-bi--inline"><span lang="hi">ज़िला औषधि भंडार प्रभारी</span><span lang="en">District drug store in-charge · Meerut</span></span></span>
+</span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px">
+<p class="d-caption" style="display: flex; gap: 6px; align-items: center"><svg class="ic ic-16" aria-hidden="true" style="color: var(--status-ok)"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">पासवर्ड की ज़रूरत नहीं — यह डेमो है</span><span lang="en">No password needed — this is a demo</span></span></p>
+<a class="sa-btn" href="W-Shell.dc.html" style="min-width: 280px"><span class="sa-bi"><span lang="hi">{{ctaHi}}</span><span lang="en">{{ctaEn}}</span></span><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const who = s.who == null ? 0 : s.who;
+    const hi = ['डॉ. मेहरा के रूप में आगे बढ़ें', 'डॉ. राणा के रूप में आगे बढ़ें', 'राजीव के रूप में आगे बढ़ें'];
+    const en = ['Continue as Dr. Mehra', 'Continue as Dr. Rana', 'Continue as Rajeev'];
+    const v = { aud: lang === 'hi' ? 'field' : 'desk', hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }), setEn: () => this.setState({ lang: 'en' }),
+      ctaHi: hi[who], ctaEn: en[who] };
+    [0, 1, 2].forEach((i) => {
+      v['r' + i] = who === i;
+      v['c' + i] = who === i ? 'is-on' : '';
+      v['p' + i] = () => this.setState({ who: i });
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

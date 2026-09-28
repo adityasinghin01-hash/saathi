@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Saathi — Landing (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 4860px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-medicines" viewBox="0 0 24 24"><g transform="rotate(-45 12 12)"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5"></rect><path d="M12 8.5v7"></path></g></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-out-of-stock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M6 6l12 12"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11z"></path><path d="M13.5 9.5h4l3 3.5v3.5h-7"></path><circle cx="6.5" cy="17.5" r="1.8"></circle><circle cx="17" cy="17.5" r="1.8"></circle></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M7 18.5h9.5a4 4 0 0 0 1.4-7.7A6 6 0 0 0 7.2 9 4.8 4.8 0 0 0 7 18.5z"></path><path d="M4 4l16 16"></path></symbol>
+<symbol id="i-suggest" viewBox="0 0 24 24"><path d="M9 17.5h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.6 10.8c.4.3.6.8.6 1.3v.9h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3z"></path></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 11A7.5 7.5 0 0 0 6 7.2L4.5 9"></path><path d="M4.5 4.5V9H9"></path><path d="M4.5 13A7.5 7.5 0 0 0 18 16.8l1.5-1.8"></path><path d="M19.5 19.5V15H15"></path></symbol>
+<symbol id="i-hand-over" viewBox="0 0 24 24"><path d="M3 14.5h3.5l3.5 1.5h4a1.5 1.5 0 0 1 0 3H9.5"></path><path d="M13.5 18.5l5-2.3a1.6 1.6 0 0 1 1.5 2.8L14 21.5H3"></path><g transform="rotate(-45 14 8)"><rect x="9" y="5.5" width="10" height="5" rx="2.5"></rect><path d="M14 5.5v5"></path></g></symbol>
+<symbol id="i-health-centre" viewBox="0 0 24 24"><path d="M3.5 20.5h17M5.5 20.5V9l6.5-4.5L18.5 9v11.5"></path><path d="M12 10v5M9.5 12.5h5"></path></symbol>
+<symbol id="i-user-group" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"></circle><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"></path><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5.8M17.5 14.8c1.8.6 3.1 2.1 3.5 4.7"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+</defs></svg>
+
+<!-- HEADER -->
+<header style="height: 88px; flex: none; display: flex; align-items: center; gap: 24px; padding: 0 80px; background: var(--paper)">
+<img src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi" style="height: 40px; width: auto; display: block">
+<nav aria-label="Main" style="display: flex; gap: 4px; margin-left: 24px; flex-grow: 1">
+<a class="sa-btn sa-btn--ghost sa-btn--web" href="#how"><span class="sa-bi"><span lang="hi">कैसे काम करता है</span><span lang="en">How it works</span></span></a>
+<a class="sa-btn sa-btn--ghost sa-btn--web" href="#roles"><span class="sa-bi"><span lang="hi">किसके लिए</span><span lang="en">Who it’s for</span></span></a>
+<a class="sa-btn sa-btn--ghost sa-btn--web" href="#trust"><span class="sa-bi"><span lang="hi">भरोसा</span><span lang="en">Trust</span></span></a>
+</nav>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-btn sa-btn--web" href="W-Welcome.dc.html"><span class="sa-bi"><span lang="hi">डेमो खोलें</span><span lang="en">Open demo</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</header>
+
+<!-- HERO -->
+<section style="flex: none; padding: 56px 80px 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: center">
+<div style="grid-column: span 6; display: flex; flex-direction: column; gap: 28px; padding-right: 24px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 8px; border-radius: var(--radius-full); background: var(--leaf-100); color: var(--ink); font: 600 14px/20px var(--font-sans)"><span style="width: 28px; height: 28px; border-radius: 50%; background: var(--paper-raised); display: grid; place-items: center; color: var(--status-ok)"><svg class="ic ic-16" aria-hidden="true"><use href="#i-health-centre"></use></svg></span><span class="sa-bi sa-bi--inline"><span lang="hi">सरकारी स्वास्थ्य केंद्रों के लिए</span><span lang="en">For government health centres</span></span></span>
+<h1 class="d-display hd" style="--bi-2nd: 28px"><span class="sa-bi"><span lang="hi">दवा समय पर, घर तक</span><span lang="en">Every refill, reaching home</span></span></h1>
+<p class="d-body" style="font-size: 18px; line-height: 30px; --bi-2nd: 16px"><span class="sa-bi"><span lang="hi">डायबिटीज़ और बीपी के किसी मरीज़ को दवा के बिना घर न लौटना पड़े — साथी मरीज़, आशा, फ़ार्मासिस्ट और ज़िला अधिकारी को एक चक्र में जोड़ता है।</span><span lang="en" style="line-height: 26px; margin-top: 6px">So no diabetes or blood-pressure patient goes home without their medicine — Saathi joins patients, ASHAs, pharmacists and district officers in one caring loop.</span></span></p>
+<div style="display: flex; gap: 16px; align-items: center">
+<a class="sa-btn" href="W-Welcome.dc.html"><span class="sa-bi"><span lang="hi">डेमो खोलें</span><span lang="en">Open demo</span></span><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+<a class="sa-btn sa-btn--outline" href="#how"><span class="sa-bi"><span lang="hi">कैसे काम करता है</span><span lang="en">How it works</span></span></a>
+</div>
+<div style="display: flex; gap: 24px; flex-wrap: wrap; padding-top: 8px">
+<span style="display: flex; gap: 8px; align-items: center; font: 500 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true" style="color: var(--status-ok)"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="hi">डॉक्टरी सलाह नहीं</span><span lang="en">No medical advice</span></span></span>
+<span style="display: flex; gap: 8px; align-items: center; font: 500 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true" style="color: var(--status-ok)"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="hi">हर AI सुझाव पर इंसानी मंज़ूरी</span><span lang="en">A person approves every AI idea</span></span></span>
+<span style="display: flex; gap: 8px; align-items: center; font: 500 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true" style="color: var(--status-ok)"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="hi">नेट के बिना भी</span><span lang="en">Works offline</span></span></span>
+</div>
+</div>
+
+<!-- 3D clay scene: medicine travels from a stocked centre to Ramesh's home -->
+<div role="img" aria-label="मिट्टी जैसे 3D दृश्य में दवा स्वास्थ्य केंद्र से गाड़ी में मरीज़ के घर तक जाती है · A clay scene: medicine travels by van from a stocked health centre to a patient’s home" style="grid-column: span 6; position: relative; height: 560px; border-radius: var(--radius-xl); background: var(--paper-sunk); overflow: hidden; box-shadow: var(--inset-well)">
+<div style="position: absolute; left: -60px; top: -70px; width: 360px; height: 360px; border-radius: 50%; background: var(--marigold-100)"></div>
+<div style="position: absolute; left: 290px; top: 220px; width: 420px; height: 420px; border-radius: 50%; background: var(--leaf-100)"></div>
+<svg width="628" height="560" viewBox="0 0 628 560" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+<path class="road" d="M150 300 C 250 310, 250 470, 440 462"></path>
+<path class="road-dots" d="M150 300 C 250 310, 250 470, 440 462"></path>
+<g transform="rotate(-40 318 236)"><rect x="296" y="226" width="22" height="20" rx="10" style="fill: var(--paper-raised)"></rect><rect x="318" y="226" width="22" height="20" rx="10" style="fill: var(--marigold-400)"></rect></g>
+<g transform="rotate(-40 560 120)"><rect x="534" y="110" width="26" height="22" rx="11" style="fill: var(--clay-600)"></rect><rect x="560" y="110" width="26" height="22" rx="11" style="fill: var(--marigold-400)"></rect></g>
+<g transform="rotate(-40 90 500)"><rect x="66" y="490" width="24" height="20" rx="10" style="fill: var(--paper-raised)"></rect><rect x="90" y="490" width="24" height="20" rx="10" style="fill: var(--marigold-400)"></rect></g>
+</svg>
+<img src="/_blob/a6525a3b924284bc4c89308e7bb333a3" alt="" style="position: absolute; left: 8px; top: 40px; width: 290px; height: 290px; object-fit: contain">
+<img src="/_blob/2d1741c84be3e18556864a5c66b5f945" alt="" style="position: absolute; left: 236px; top: 150px; width: 112px; height: 112px; object-fit: contain">
+<img src="/_blob/aed83e5dcc43aa4fc266df1fedad29ec" alt="" style="position: absolute; left: 196px; top: 318px; width: 190px; height: 190px; object-fit: contain">
+<img src="/_blob/583792078e9f13de2bd11ff11486580f" alt="" style="position: absolute; left: 350px; top: 262px; width: 280px; height: 280px; object-fit: contain">
+<div class="sa-card" style="position: absolute; left: 360px; top: 36px; width: 236px; padding: 14px 16px; gap: 8px; box-shadow: var(--elev-2)">
+<div style="display: flex; gap: 10px; align-items: center"><span style="width: 36px; height: 36px; border-radius: 12px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center"><svg class="ic ic-20" aria-hidden="true"><use href="#i-health-centre"></use></svg></span><span class="sa-bi" style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span lang="hi">CHC सरधना से</span><span lang="en">From CHC Sardhana</span></span></div>
+<span class="sa-status sa-status--ok" style="align-self: flex-start"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">स्टॉक है</span><span lang="en">In stock</span></span></span>
+</div>
+<div class="sa-card" style="position: absolute; left: 24px; top: 440px; width: 250px; padding: 12px 14px; gap: 6px; box-shadow: var(--elev-2)">
+<div style="display: flex; gap: 10px; align-items: center"><span style="width: 36px; height: 36px; border-radius: 12px; background: var(--marigold-100); color: var(--ink); display: grid; place-items: center; flex: none"><svg class="ic ic-20" aria-hidden="true"><use href="#i-truck"></use></svg></span><span class="sa-bi" style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span lang="hi">मेटफॉर्मिन 500 mg रास्ते में</span><span lang="en">Metformin 500 mg on the way</span></span></div>
+</div>
+<span style="position: absolute; left: 444px; top: 520px; padding: 4px 12px; border-radius: var(--radius-full); background: var(--paper-raised); box-shadow: var(--elev-1); font: 600 13px/20px var(--font-sans)"><span class="sa-bi sa-bi--inline"><span lang="hi">रमेश जी का घर</span><span lang="en">Ramesh’s home</span></span></span>
+</div>
+</section>
+
+<!-- PROBLEM -->
+<section style="flex: none; padding: 80px; background: var(--paper-raised); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 40px">
+<div style="grid-column: span 8; display: flex; flex-direction: column; gap: 12px">
+<span class="d-label" style="color: var(--clay-ink)"><span class="sa-bi sa-bi--inline"><span lang="hi">समस्या</span><span lang="en">The problem</span></span></span>
+<h2 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">दवा है, पर हमेशा पहुँचती नहीं</span><span lang="en">The medicine exists. It doesn’t always reach.</span></span></h2>
+</div>
+<div class="sa-card sa-card--web" style="grid-column: span 4; background: var(--paper); gap: 20px">
+<span style="width: 56px; height: 56px; border-radius: 18px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center"><svg class="ic ic-32" aria-hidden="true"><use href="#i-medicines"></use></svg></span>
+<div style="display: flex; align-items: baseline; gap: 10px"><span class="d-kpi" style="font-size: 36px">10.1</span><span class="d-h3"><span class="sa-bi sa-bi--inline"><span lang="hi">करोड़</span><span lang="en">crore</span></span></span></div>
+<p class="d-body" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">लोगों को डायबिटीज़ है</span><span lang="en">people live with diabetes</span></span></p>
+<p class="d-caption">ICMR–INDIAB study, 2023</p>
+</div>
+<div class="sa-card sa-card--web" style="grid-column: span 4; background: var(--paper); gap: 20px">
+<span style="width: 56px; height: 56px; border-radius: 18px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center"><svg class="ic ic-32" aria-hidden="true"><use href="#i-user-group"></use></svg></span>
+<div style="display: flex; align-items: baseline; gap: 10px"><span class="d-kpi">31.5</span><span class="d-h3"><span class="sa-bi sa-bi--inline"><span lang="hi">करोड़</span><span lang="en">crore</span></span></span></div>
+<p class="d-body" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">लोगों को हाई बीपी है</span><span lang="en">people live with high blood pressure</span></span></p>
+<p class="d-caption">ICMR–INDIAB study, 2023</p>
+</div>
+<div class="sa-card sa-card--web" style="grid-column: span 4; background: var(--paper); gap: 20px">
+<span style="width: 56px; height: 56px; border-radius: 18px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center"><svg class="ic ic-32" aria-hidden="true"><use href="#i-health-centre"></use></svg></span>
+<div style="display: flex; align-items: baseline; gap: 10px"><span class="d-kpi">8.64</span><span class="d-h3"><span class="sa-bi sa-bi--inline"><span lang="hi">करोड़</span><span lang="en">crore</span></span></span></div>
+<p class="d-body" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">राष्ट्रीय NCD कार्यक्रम में इलाज पा रहे हैं</span><span lang="en">are under treatment in the national NCD programme</span></span></p>
+<p class="d-caption">National NCD programme (NP-NCD)</p>
+</div>
+<div class="sa-banner" style="grid-column: span 12; background: var(--clay-100); color: var(--ink); padding: 16px 20px; align-items: center">
+<span class="sa-banner-ic" style="background: var(--paper-raised); color: var(--clay-ink)"><svg class="ic" aria-hidden="true"><use href="#i-mic"></use></svg></span>
+<span class="sa-bi" style="font: 600 17px/26px var(--font-sans)"><span lang="hi">हर छूटी दवा एक ख़ामोश ख़तरा है — साथी उसे आवाज़ देता है।</span><span lang="en">Every missed refill is a silent risk. Saathi gives it a voice — and someone who acts on it.</span></span>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="flex: none; padding: 96px 80px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center" class="bi-c">
+<span class="d-label" style="color: var(--clay-ink)"><span class="sa-bi sa-bi--inline"><span lang="hi">कैसे काम करता है</span><span lang="en">How it works</span></span></span>
+<h2 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">पाँच कदम, एक भरोसे का चक्र</span><span lang="en">Five steps, one caring loop</span></span></h2>
+</div>
+<div style="position: relative">
+<svg width="1280" height="200" viewBox="0 0 1280 200" aria-hidden="true" style="position: absolute; left: 0; top: 0"><path class="loop-line" d="M118 92 Q 249 30 379 92 T 640 92 T 901 92 T 1162 92"></path></svg>
+<ol style="list-style: none; margin: 0; padding: 0; position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 24px">
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px" class="bi-c">
+<div style="position: relative; width: 184px; height: 184px; border-radius: 50%; background: var(--paper-raised); box-shadow: var(--elev-2); display: grid; place-items: center"><img src="/_blob/583792078e9f13de2bd11ff11486580f" alt="" style="width: 156px; height: 156px; object-fit: contain"><span style="position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 50%; background: var(--clay-600); color: var(--on-clay); display: grid; place-items: center; font: 600 18px/1 var(--font-sans); box-shadow: 0 3px 0 var(--clay-800)">1</span></div>
+<h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 15px"><span class="sa-bi"><span lang="hi">बताएँ</span><span lang="en">Report</span></span></h3>
+<p class="d-body-sm" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">दवा नहीं मिली? मरीज़ या आशा बोलकर बता दें।</span><span lang="en">Refill missed? The patient or ASHA just says it by voice.</span></span></p>
+<span class="sa-age" style="background: var(--marigold-100); color: var(--ink)"><svg class="ic ic-16" aria-hidden="true"><use href="#i-mic"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मरीज़ · आशा</span><span lang="en">Patient · ASHA</span></span></span>
+</li>
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px" class="bi-c">
+<div style="position: relative; width: 184px; height: 184px; border-radius: 50%; background: var(--paper-raised); box-shadow: var(--elev-2); display: grid; place-items: center"><img src="/_blob/97632bfdcd20b386611835efbc1c4df4" alt="" style="width: 156px; height: 156px; object-fit: contain"><span style="position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 50%; background: var(--clay-600); color: var(--on-clay); display: grid; place-items: center; font: 600 18px/1 var(--font-sans); box-shadow: 0 3px 0 var(--clay-800)">2</span></div>
+<h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 15px"><span class="sa-bi"><span lang="hi">जाँचें</span><span lang="en">Verify</span></span></h3>
+<p class="d-body-sm" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">फ़ार्मासिस्ट अलमारी देखकर पक्का करते हैं।</span><span lang="en">The pharmacist checks the shelf and confirms it.</span></span></p>
+<span class="sa-age" style="background: var(--leaf-100); color: var(--ink)"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">फ़ार्मासिस्ट</span><span lang="en">Pharmacist</span></span></span>
+</li>
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px" class="bi-c">
+<div style="position: relative; width: 184px; height: 184px; border-radius: 50%; background: var(--paper-raised); box-shadow: var(--elev-2); display: grid; place-items: center"><img src="/_blob/a6525a3b924284bc4c89308e7bb333a3" alt="" style="width: 156px; height: 156px; object-fit: contain"><span style="position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 50%; background: var(--clay-600); color: var(--on-clay); display: grid; place-items: center; font: 600 18px/1 var(--font-sans); box-shadow: 0 3px 0 var(--clay-800)">3</span></div>
+<h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 15px"><span class="sa-bi"><span lang="hi">अनुमान और चेतावनी</span><span lang="en">Forecast &amp; warn</span></span></h3>
+<p class="d-body-sm" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">ज़रूरत बनाम स्टॉक — ख़त्म होने से पहले चेतावनी।</span><span lang="en">Patients’ need vs stock — a warning before it runs out.</span></span></p>
+<span class="sa-age" style="background: var(--clay-100); color: var(--ink)"><svg class="ic ic-16" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">ज़िला अधिकारी</span><span lang="en">District officer</span></span></span>
+</li>
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px" class="bi-c">
+<div style="position: relative; width: 184px; height: 184px; border-radius: 50%; background: var(--paper-raised); box-shadow: var(--elev-2); display: grid; place-items: center"><img src="/_blob/aed83e5dcc43aa4fc266df1fedad29ec" alt="" style="width: 156px; height: 156px; object-fit: contain"><span style="position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 50%; background: var(--clay-600); color: var(--on-clay); display: grid; place-items: center; font: 600 18px/1 var(--font-sans); box-shadow: 0 3px 0 var(--clay-800)">4</span></div>
+<h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 15px"><span class="sa-bi"><span lang="hi">AI भेजने का सुझाव दे</span><span lang="en">AI suggests a transfer</span></span></h3>
+<p class="d-body-sm" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">पास के केंद्र से दवा भेजने का सुझाव — इंसान मंज़ूर करता है।</span><span lang="en">Move stock from a nearby centre — a person approves it.</span></span></p>
+<span class="sa-ai"><span class="sa-ai-ic"><svg class="ic ic-16" aria-hidden="true"><use href="#i-suggest"></use></svg></span><span class="sa-bi sa-bi--inline"><span lang="hi">AI + अधिकारी</span><span lang="en">AI + officer</span></span></span>
+</li>
+<li style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px" class="bi-c">
+<div style="position: relative; width: 184px; height: 184px; border-radius: 50%; background: var(--paper-raised); box-shadow: var(--elev-2); display: grid; place-items: center"><img src="/_blob/2d1741c84be3e18556864a5c66b5f945" alt="" style="width: 156px; height: 156px; object-fit: contain"><span style="position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 50%; background: var(--clay-600); color: var(--on-clay); display: grid; place-items: center; font: 600 18px/1 var(--font-sans); box-shadow: 0 3px 0 var(--clay-800)">5</span></div>
+<h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 15px"><span class="sa-bi"><span lang="hi">दवा मरीज़ तक</span><span lang="en">Medicine reaches the patient</span></span></h3>
+<p class="d-body-sm" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">दवा पहुँची, मरीज़ को सौंपी, मामला बंद।</span><span lang="en">It arrives, is handed over, and the case closes.</span></span></p>
+<span class="sa-age" style="background: var(--status-ok-bg); color: var(--status-ok)"><svg class="ic ic-16" aria-hidden="true"><use href="#i-hand-over"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">फ़ार्मासिस्ट → मरीज़</span><span lang="en">Pharmacist → patient</span></span></span>
+</li>
+</ol>
+</div>
+<div style="position: relative; height: 96px">
+<svg width="1280" height="96" viewBox="0 0 1280 96" aria-hidden="true" style="position: absolute; left: 0; top: 0"><path class="loop-line" d="M1162 4 C 1162 44, 1130 56, 1080 56 L 200 56 C 150 56, 118 44, 118 12"></path><path d="M108 22 L118 8 L128 22" style="fill: none; stroke: var(--line-strong); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round"></path></svg>
+<div style="position: absolute; left: 50%; top: 34px; transform: translateX(-50%); display: flex; gap: 10px; align-items: center; padding: 8px 18px 8px 10px; border-radius: var(--radius-full); background: var(--paper-raised); box-shadow: var(--elev-1); white-space: nowrap">
+<span style="width: 32px; height: 32px; border-radius: 50%; background: var(--status-ok-bg); color: var(--status-ok); display: grid; place-items: center"><svg class="ic ic-20" aria-hidden="true"><use href="#i-refresh"></use></svg></span>
+<span class="sa-bi sa-bi--inline" style="font: 600 15px/22px var(--font-sans)"><span lang="hi">मामला बंद — और साथी आगे भी नज़र रखता है</span><span lang="en">Case closed — and Saathi keeps watching the next refill</span></span>
+</div>
+</div>
+</section>
+
+<!-- ROLES -->
+<section id="roles" style="flex: none; padding: 80px; background: var(--paper-raised); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 40px">
+<div style="grid-column: span 8; display: flex; flex-direction: column; gap: 12px">
+<span class="d-label" style="color: var(--clay-ink)"><span class="sa-bi sa-bi--inline"><span lang="hi">किसके लिए</span><span lang="en">Who it’s for</span></span></span>
+<h2 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">चार लोग, एक ही मक़सद</span><span lang="en">Four people, one purpose</span></span></h2>
+</div>
+<article class="sa-card" style="grid-column: span 3; padding: 0; overflow: hidden; background: var(--paper); gap: 0">
+<div class="g-sunk" style="height: 200px; display: grid; place-items: center"><img src="/_blob/583792078e9f13de2bd11ff11486580f" alt="" style="width: 184px; height: 184px; object-fit: contain"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; gap: 12px; align-items: center"><span class="sa-avatar sa-avatar--sunk">RK</span><div><h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">मरीज़</span><span lang="en">Patient</span></span></h3></div></div>
+<p class="d-caption">Ramesh Kumar, 54 · PHC Rohta</p>
+<ul class="ticks">
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">बोलकर बताएँ कि दवा नहीं मिली</span><span lang="en">Report a missed refill by voice</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">देखें आपकी शिकायत कहाँ तक पहुँची</span><span lang="en">See where your case is</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">दवा आते ही ख़बर</span><span lang="en">Hear when it’s ready</span></span></li>
+</ul>
+<span class="sa-age"><svg class="ic ic-16" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मोबाइल ऐप</span><span lang="en">Mobile app</span></span></span>
+<a class="sa-btn sa-btn--secondary sa-btn--web" href="M-Welcome.dc.html"><span class="sa-bi"><span lang="hi">रमेश बनकर देखें</span><span lang="en">Try as Ramesh</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</article>
+<article class="sa-card" style="grid-column: span 3; padding: 0; overflow: hidden; background: var(--paper); gap: 0">
+<div class="g-mari" style="height: 200px; display: grid; place-items: center"><img src="/_blob/2d1741c84be3e18556864a5c66b5f945" alt="" style="width: 184px; height: 184px; object-fit: contain"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; gap: 12px; align-items: center"><span class="sa-avatar sa-avatar--mari">RD</span><h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">आशा</span><span lang="en">ASHA worker</span></span></h3></div>
+<p class="d-caption">Rekha Devi · Rasulpur village</p>
+<ul class="ticks">
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">मरीज़ की ओर से शिकायत</span><span lang="en">Report on a patient’s behalf</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">अपने सभी मरीज़ों की दवा एक जगह</span><span lang="en">All your patients’ refills in one list</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">गाँव में नेट न हो तब भी</span><span lang="en">Works without network in the village</span></span></li>
+</ul>
+<span class="sa-age"><svg class="ic ic-16" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मोबाइल ऐप</span><span lang="en">Mobile app</span></span></span>
+<a class="sa-btn sa-btn--secondary sa-btn--web" href="M-Welcome.dc.html"><span class="sa-bi"><span lang="hi">रेखा बनकर देखें</span><span lang="en">Try as Rekha</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</article>
+<article class="sa-card" style="grid-column: span 3; padding: 0; overflow: hidden; background: var(--paper); gap: 0">
+<div class="g-leaf" style="height: 200px; display: grid; place-items: center"><img src="/_blob/97632bfdcd20b386611835efbc1c4df4" alt="" style="width: 184px; height: 184px; object-fit: contain"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; gap: 12px; align-items: center"><span class="sa-avatar sa-avatar--leaf">SS</span><h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">फ़ार्मासिस्ट</span><span lang="en">Pharmacist</span></span></h3></div>
+<p class="d-caption">Sunita Sharma · PHC Rohta</p>
+<ul class="ticks">
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">एक टैप में शिकायत जाँचें</span><span lang="en">Verify a report in one tap</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">भेजा गया स्टॉक लें</span><span lang="en">Receive stock transfers</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">दवा सौंपें — आधी भी चलेगी</span><span lang="en">Hand over medicine, even partly</span></span></li>
+</ul>
+<span class="sa-age"><svg class="ic ic-16" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मोबाइल ऐप</span><span lang="en">Mobile app</span></span></span>
+<a class="sa-btn sa-btn--secondary sa-btn--web" href="M-Welcome.dc.html"><span class="sa-bi"><span lang="hi">सुनीता बनकर देखें</span><span lang="en">Try as Sunita</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</article>
+<article class="sa-card" style="grid-column: span 3; padding: 0; overflow: hidden; background: var(--paper); gap: 0">
+<div class="g-clay" style="height: 200px; display: grid; place-items: center"><img src="/_blob/a6525a3b924284bc4c89308e7bb333a3" alt="" style="width: 184px; height: 184px; object-fit: contain"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; gap: 12px; align-items: center"><span class="sa-avatar">AM</span><h3 class="d-h3 hd" style="font-size: 20px; line-height: 30px; --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">ज़िला अधिकारी</span><span lang="en">District officer</span></span></h3></div>
+<p class="d-caption">Dr. Anil Mehra · Meerut district</p>
+<ul class="ticks">
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">हर केंद्र की शुरुआती चेतावनी</span><span lang="en">Early warnings for every centre</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">AI सुझाव जाँचें, मंज़ूर करें</span><span lang="en">Review and approve AI transfers</span></span></li>
+<li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">हर कदम का पूरा रिकॉर्ड</span><span lang="en">A full audit trail of every step</span></span></li>
+</ul>
+<span class="sa-age"><svg class="ic ic-16" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">वेब ऐप</span><span lang="en">Web app</span></span></span>
+<a class="sa-btn sa-btn--secondary sa-btn--web" href="W-Welcome.dc.html"><span class="sa-bi"><span lang="hi">अधिकारी बनकर देखें</span><span lang="en">Try as the officer</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</article>
+</section>
+
+<!-- TRUST -->
+<section id="trust" style="flex: none; padding: 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 24px">
+<div style="grid-column: span 8; display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px">
+<span class="d-label" style="color: var(--clay-ink)"><span class="sa-bi sa-bi--inline"><span lang="hi">भरोसा</span><span lang="en">Trust</span></span></span>
+<h2 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">दो वादे जो हम कभी नहीं तोड़ते</span><span lang="en">Two promises we never break</span></span></h2>
+</div>
+<div class="sa-card sa-card--web" style="grid-column: span 6; padding: 32px; gap: 20px">
+<span style="width: 64px; height: 64px; border-radius: 20px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center"><svg class="ic ic-32" aria-hidden="true"><use href="#i-medicines"></use></svg></span>
+<h3 class="d-h2 hd" style="--bi-2nd: 17px"><span class="sa-bi"><span lang="hi">साथी कभी डॉक्टरी सलाह नहीं देता</span><span lang="en">Saathi never gives medical advice</span></span></h3>
+<p class="d-body" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">साथी सिर्फ़ यह देखता है कि दवा आप तक पहुँची या नहीं। खुराक और दवा का फ़ैसला हमेशा आपके डॉक्टर का।</span><span lang="en" style="margin-top: 4px">Saathi only tracks whether your medicine reached you. Doses and prescriptions always stay with your doctor.</span></span></p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: var(--radius-md); background: var(--status-ok-bg); color: var(--status-ok); font: 600 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="hi">बताता है दवा कहाँ है</span><span lang="en">Tells you where your medicine is</span></span></div>
+<div style="display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: var(--radius-md); background: var(--status-out-bg); color: var(--status-out); font: 600 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-out-of-stock"></use></svg><span class="sa-bi"><span lang="hi">खुराक कभी नहीं बदलता</span><span lang="en">Never changes a dose</span></span></div>
+</div>
+</div>
+<div class="sa-card sa-card--web" style="grid-column: span 6; padding: 32px; gap: 20px">
+<span class="sa-ai" style="align-self: flex-start"><span class="sa-ai-ic"><svg class="ic ic-16" aria-hidden="true"><use href="#i-suggest"></use></svg></span><span class="sa-bi sa-bi--inline"><span lang="hi">AI का सुझाव — आपकी मंज़ूरी ज़रूरी</span><span lang="en">Suggested by AI — needs your approval</span></span></span>
+<h3 class="d-h2 hd" style="--bi-2nd: 17px"><span class="sa-bi"><span lang="hi">हर AI सुझाव पर इंसान की मंज़ूरी</span><span lang="en">Every AI suggestion needs a human’s approval</span></span></h3>
+<p class="d-body" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">AI सिर्फ़ सुझाव देता है। जब तक ज़िला अधिकारी “मंज़ूर” न दबाएँ, कुछ नहीं हिलता — और हर कदम रिकॉर्ड में लिखा जाता है।</span><span lang="en" style="margin-top: 4px">The AI only suggests. Nothing moves until a district officer presses Approve — and every step is written to the audit trail.</span></span></p>
+<div class="sa-card sa-card--suggest" style="padding: 14px 16px; flex-direction: row; align-items: center; gap: 12px">
+<svg class="ic" aria-hidden="true" style="color: var(--clay-ink)"><use href="#i-transfer"></use></svg>
+<span class="sa-bi" style="flex-grow: 1; font: 600 14px/20px var(--font-sans); --bi-2nd: 12px"><span lang="hi">सरधना → रोहटा · मेटफॉर्मिन 500 mg · 600 गोलियाँ</span><span lang="en">Sardhana → Rohta · Metformin 500 mg · 600 tablets</span></span>
+<button type="button" class="sa-btn sa-btn--web" style="font-size: 14px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मंज़ूर</span><span lang="en">Approve</span></span></button>
+</div>
+</div>
+<div style="grid-column: span 4; display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: var(--radius-lg); background: var(--paper-raised); box-shadow: var(--elev-1)"><span style="width: 44px; height: 44px; border-radius: 14px; background: var(--status-wait-bg); display: grid; place-items: center; flex: none"><svg class="ic" aria-hidden="true"><use href="#i-cloud-off"></use></svg></span><span class="sa-bi" style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span lang="hi">नेट नहीं? फ़ोन में सेव, बाद में भेजेंगे</span><span lang="en">No network? Saved on the phone, sent later</span></span></div>
+<div style="grid-column: span 4; display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: var(--radius-lg); background: var(--paper-raised); box-shadow: var(--elev-1)"><span style="width: 44px; height: 44px; border-radius: 14px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center; flex: none"><svg class="ic" aria-hidden="true"><use href="#i-user-group"></use></svg></span><span class="sa-bi" style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span lang="hi">नाम से पहचान, नंबर से नहीं</span><span lang="en">Real names on every step, not IDs</span></span></div>
+<div style="grid-column: span 4; display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: var(--radius-lg); background: var(--paper-raised); box-shadow: var(--elev-1)"><span class="sa-demo" style="flex: none">DEMO</span><span class="sa-bi" style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span lang="hi">डेमो में सब नमूना डेटा है</span><span lang="en">The demo uses synthetic data only</span></span></div>
+</section>
+
+<!-- CTA -->
+<section style="flex: none; padding: 16px 80px 80px">
+<div style="height: 320px; border-radius: var(--radius-xl); background: var(--clay-100); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: center; padding: 0 56px; overflow: hidden; position: relative">
+<div style="grid-column: span 7; display: flex; flex-direction: column; gap: 20px">
+<h2 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">रमेश जी की कहानी देखिए</span><span lang="en">Walk through Ramesh’s story</span></span></h2>
+<p class="d-body" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">मेटफॉर्मिन ख़त्म हुई → बोलकर बताया → दवा घर तक। 3 मिनट का डेमो।</span><span lang="en">Metformin ran out → reported by voice → medicine back in hand. A 3-minute demo.</span></span></p>
+<div style="display: flex; gap: 16px; align-items: center">
+<a class="sa-btn" href="W-Welcome.dc.html"><span class="sa-bi"><span lang="hi">डेमो खोलें</span><span lang="en">Open demo</span></span><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+<span class="sa-demo"><span class="sa-bi sa-bi--inline"><span lang="hi">नमूना डेटा</span><span lang="en">SYNTHETIC DEMO DATA</span></span></span>
+</div>
+</div>
+<div style="grid-column: span 5; position: relative; height: 320px">
+<div style="position: absolute; left: 60px; top: 30px; width: 300px; height: 300px; border-radius: 50%; background: var(--paper-raised); opacity: .7"></div>
+<img src="/_blob/aed83e5dcc43aa4fc266df1fedad29ec" alt="" style="position: absolute; left: 20px; top: 40px; width: 280px; height: 280px; object-fit: contain">
+<img src="/_blob/2d1741c84be3e18556864a5c66b5f945" alt="" style="position: absolute; left: 250px; top: 24px; width: 150px; height: 150px; object-fit: contain">
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="flex-grow: 1; background: var(--paper-sunk); padding: 56px 80px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 40px; align-content: start">
+<div style="grid-column: span 5; display: flex; flex-direction: column; gap: 16px">
+<img src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi" style="height: 48px; width: auto; align-self: flex-start">
+<p class="d-body-sm muted" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">दवा समय पर, घर तक — डायबिटीज़ और बीपी के मरीज़ों के साथ।</span><span lang="en">Every refill, reaching home — for people living with diabetes and high BP.</span></span></p>
+</div>
+<nav aria-label="Footer" style="grid-column: 7 / span 2; display: flex; flex-direction: column; gap: 10px">
+<span class="d-label"><span class="sa-bi sa-bi--inline"><span lang="hi">उत्पाद</span><span lang="en">Product</span></span></span>
+<a class="lnk" href="#how" style="font: 500 15px/22px var(--font-sans)">How it works · कैसे</a>
+<a class="lnk" href="#roles" style="font: 500 15px/22px var(--font-sans)">Who it’s for · किसके लिए</a>
+<a class="lnk" href="#trust" style="font: 500 15px/22px var(--font-sans)">Trust · भरोसा</a>
+</nav>
+<nav aria-label="Demo" style="grid-column: span 2; display: flex; flex-direction: column; gap: 10px">
+<span class="d-label"><span class="sa-bi sa-bi--inline"><span lang="hi">डेमो</span><span lang="en">Demo</span></span></span>
+<a class="lnk" href="W-Welcome.dc.html" style="font: 500 15px/22px var(--font-sans)">District web · वेब</a>
+<a class="lnk" href="M-Welcome.dc.html" style="font: 500 15px/22px var(--font-sans)">Mobile app · ऐप</a>
+</nav>
+<div style="grid-column: span 2; display: flex; flex-direction: column; gap: 10px">
+<span class="d-label"><span class="sa-bi sa-bi--inline"><span lang="hi">भाषा</span><span lang="en">Language</span></span></span>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language" style="align-self: flex-start"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</div>
+<div style="grid-column: span 12; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; box-shadow: inset 0 1px 0 var(--line)">
+<p class="d-caption">© 2026 Saathi · साथी</p>
+<p class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">डेमो में कोई असली मरीज़ डेटा नहीं है।</span><span lang="en">No real patient data is used in this demo.</span></span></p>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4860}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'hi';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

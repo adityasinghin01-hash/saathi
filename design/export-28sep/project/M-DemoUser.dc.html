@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Choose demo person — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 800px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+</defs></svg>
+<div style="height: 64px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 8px">
+<a class="sa-iconbtn" href="M-Role.dc.html" aria-label="पीछे · Back"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg></a>
+<div class="dots" aria-label="कदम 3 / 3 · Step 3 of 3"><i></i><i></i><i class="on"></i></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</div>
+<main style="flex-grow: 1; display: flex; flex-direction: column; gap: 16px; padding: 8px 16px 0">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 class="m-title hd" style="--bi-2nd: 16px"><span class="sa-bi"><span lang="hi">किसके रूप में देखें?</span><span lang="en">Continue as…</span></span></h1>
+<div style="display: flex; gap: 8px; align-items: center">
+<span class="sa-chip is-selected" style="min-height: 40px; cursor: default"><svg class="ic ic-20" aria-hidden="true"><use href="#i-profile"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मरीज़</span><span lang="en">Patient</span></span></span>
+<a class="lnk" href="M-Role.dc.html" style="font-size: 15px"><span class="sa-bi sa-bi--inline"><span lang="hi">बदलें</span><span lang="en">Change</span></span></a>
+</div>
+</div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: var(--radius-md); background: var(--paper-sunk)">
+<span class="sa-demo" style="flex: none">DEMO</span>
+<span class="sa-bi" style="font: 500 14px/20px var(--font-sans); --bi-2nd: 13px"><span lang="hi">ये नमूना लोग हैं — असली मरीज़ नहीं</span><span lang="en">Synthetic people — not real patients</span></span>
+</div>
+<div role="radiogroup" aria-label="डेमो व्यक्ति · Demo person" style="display: flex; flex-direction: column; gap: 12px">
+<button type="button" role="radio" aria-checked="{{r0}}" class="pick {{c0}}" onClick="{{p0}}">
+<span class="sa-avatar sa-avatar--sunk" style="--s: 48px">RK</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; min-width: 0">
+<span style="font: 600 18px/26px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">रमेश कुमार, 54</span><span lang="en">Ramesh Kumar, 54</span></span></span>
+<span class="m-caption">Metformin 500 mg · PHC Rohta</span>
+<span style="display: inline-flex; padding: 2px 10px; border-radius: var(--radius-full); background: var(--marigold-100); font: 600 13px/20px var(--font-sans)"><span class="sa-bi sa-bi--inline"><span lang="hi">कहानी वाला डेमो</span><span lang="en">Story demo</span></span></span>
+</span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+<button type="button" role="radio" aria-checked="{{r1}}" class="pick {{c1}}" onClick="{{p1}}">
+<span class="sa-avatar sa-avatar--sunk" style="--s: 48px">KD</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; min-width: 0">
+<span style="font: 600 18px/26px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">कमला देवी, 61</span><span lang="en">Kamla Devi, 61</span></span></span>
+<span class="m-caption">Amlodipine 5 mg · PHC Rohta</span>
+</span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+<button type="button" role="radio" aria-checked="{{r2}}" class="pick {{c2}}" onClick="{{p2}}">
+<span class="sa-avatar sa-avatar--sunk" style="--s: 48px">MS</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; min-width: 0">
+<span style="font: 600 18px/26px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">मोहम्मद सलीम, 47</span><span lang="en">Mohd. Salim, 47</span></span></span>
+<span class="m-caption">Glimepiride 1 mg · CHC Mawana</span>
+</span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+</div>
+</main>
+<div style="flex: none; padding: 16px 16px 24px">
+<a class="sa-btn sa-btn--hero" href="M-Shell-Patient.dc.html"><span class="sa-bi"><span lang="hi">{{ctaHi}}</span><span lang="en">{{ctaEn}}</span></span><svg class="ic ic-28" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'hi';
+    const who = s.who == null ? 0 : s.who;
+    const hi = ['रमेश के रूप में आगे बढ़ें', 'कमला के रूप में आगे बढ़ें', 'सलीम के रूप में आगे बढ़ें'];
+    const en = ['Continue as Ramesh', 'Continue as Kamla', 'Continue as Salim'];
+    const v = { aud: lang === 'hi' ? 'field' : 'desk', hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }), setEn: () => this.setState({ lang: 'en' }),
+      ctaHi: hi[who], ctaEn: en[who] };
+    [0, 1, 2].forEach((i) => {
+      v['r' + i] = who === i;
+      v['c' + i] = who === i ? 'is-on' : '';
+      v['p' + i] = () => this.setState({ who: i });
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

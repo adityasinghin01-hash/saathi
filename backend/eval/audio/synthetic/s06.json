@@ -1,0 +1,22 @@
+{
+  "id": "s06",
+  "synthetic_label": "Synthetic demo data",
+  "recording_kind": "Gemini TTS, not a real patient or ASHA recording",
+  "tts_model": "gemini-3.8-flash-tts",
+  "tts_voice": "Kore",
+  "tts_latency_seconds": 4.512,
+  "duration_seconds": 9.88,
+  "script": "सोमवार अट्ठाईस सितंबर को ग्लिमेपिराइड लेने गया था। सुंदरपुर पी एच सी में तीस गोलियां मांगीं, नहीं मिलीं। घर पर बस एक दिन की हैं।",
+  "patient_id": "patient-003",
+  "user_id": "patient-user-003",
+  "expected_fields": {
+    "patient_id": "patient-003",
+    "drug_id": "glimepiride",
+    "requested_qty": 30,
+    "household_supply_days": 1,
+    "attempted_date": "2026-09-28"
+  },
+  "expected_refill_received": false,
+  "hinglish": false,
+  "audio_mime_type": "audio/wav"
+}

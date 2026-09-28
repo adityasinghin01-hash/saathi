@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>ASHA home — my patients — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.pt{display:flex;align-items:center;gap:12px;min-height:76px;padding:10px 12px 10px 16px;text-decoration:none;color:var(--ink);transition:background 200ms}
+.pt+.pt{box-shadow:inset 0 1px 0 var(--line)}
+.pt:hover{background:var(--paper)}.pt:active{background:var(--paper-sunk)}
+.pt-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.pt-name{font:600 17px/24px var(--font-sans)}
+.pt-name .sa-bi{--bi-2nd:13px}
+.pt .sa-status{flex:none;align-self:center}
+.pt .sa-status .sa-bi{--bi-2nd:12px}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 1000px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-medicines" viewBox="0 0 24 24"><g transform="rotate(-45 12 12)"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5"></rect><path d="M12 8.5v7"></path></g></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-out-of-stock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M6 6l12 12"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none; padding: 0 8px 0 8px">
+<a class="sa-avbtn" href="M-Profile.dc.html" aria-label="प्रोफ़ाइल · Profile" style="padding: 4px"><span class="sa-avatar sa-avatar--mari">RE</span></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरे मरीज़</span><span lang="en">My patients</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="M-Notifications.dc.html" aria-label="सूचनाएँ · Notifications"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+</header>
+
+<main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 2px"><h1 class="m-title hd" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">नमस्ते, रेखा दीदी</span><span lang="en">Hello, Rekha</span></span></h1><span class="m-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">सुंदरपुर PHC क्षेत्र</span><span lang="en">Sundarpur PHC area</span></span></span></div>
+<span class="sa-demo" style="margin-top: 6px">DEMO</span>
+</div>
+<div role="group" aria-label="छाँटें · Filter" style="display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 4px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+<button type="button" class="sa-chip" aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="flex: none"><span class="sa-bi sa-bi--inline"><span lang="hi">{{c.hi}}</span><span lang="en">{{c.en}}</span></span><span class="sa-count">{{c.n}}</span></button>
+</sc-for>
+</div>
+<div class="sa-rows">
+<sc-for list="{{patients}}" as="p" hint-placeholder-count="6">
+<a class="pt" href="{{p.href}}">
+<span class="sa-avatar sa-avatar--sunk">{{p.ini}}</span>
+<span class="pt-main"><span class="pt-name"><span class="sa-bi"><span lang="hi">{{p.hi}}</span><span lang="en">{{p.en}}</span></span></span><span class="m-caption" style="font-size: 13px; line-height: 18px">{{p.med}}</span></span>
+<span class="sa-status sa-status--{{p.st}}"><svg class="ic ic-16" aria-hidden="true"><use href="{{p.icon}}"></use></svg><span class="sa-bi"><span lang="hi">{{p.sHi}}</span><span lang="en">{{p.sEn}}</span></span></span>
+</a>
+</sc-for>
+</div>
+<a class="sa-btn sa-btn--hero" href="M-Asha-Report.dc.html"><svg class="ic ic-28" aria-hidden="true"><use href="#i-mic"></use></svg><span class="sa-bi"><span lang="hi">मरीज़ के लिए रिपोर्ट करें</span><span lang="en">Report for a patient</span></span></a>
+</main>
+
+<nav class="sa-tabbar" aria-label="मुख्य · Main" style="flex: none">
+<a class="sa-tab" href="M-Asha-Home.dc.html" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></a>
+<a class="sa-tab" href="M-Case.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">शिकायतें</span><span lang="en">Reports</span></span></a>
+<a class="sa-tab" href="M-Asha-Home.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-bi"><span lang="hi">दवाइयाँ</span><span lang="en">Medicines</span></span></a>
+<a class="sa-tab" href="M-Profile.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'hi';
+    const f = s.f || 'all';
+    const icon = { out: '#i-out-of-stock', low: '#i-alert', ok: '#i-check-circle', wait: '#i-clock' };
+    const all = [
+      { ini: 'RA', hi: 'रमेश, 54', en: 'Ramesh, 54', med: 'Metformin 500 mg', st: 'wait', sHi: 'रास्ते में', sEn: 'On the way', href: 'M-Case.dc.html' },
+      { ini: 'GE', hi: 'गीता, 49', en: 'Geeta, 49', med: 'Metformin 500 mg · Glimepiride 1 mg', st: 'out', sHi: 'नहीं मिली', sEn: 'Not received', href: 'M-Asha-Report.dc.html' },
+      { ini: 'SA', hi: 'सावित्री, 66', en: 'Savitri, 66', med: 'Metformin 500 mg', st: 'wait', sHi: 'रिपोर्ट भेजी', sEn: 'Reported', href: 'M-Asha-Home.dc.html' },
+      { ini: 'KD', hi: 'कमला देवी, 61', en: 'Kamla Devi, 61', med: 'Amlodipine 5 mg', st: 'low', sHi: '4 दिन बची', sEn: '4 days left', href: 'M-Asha-Home.dc.html' },
+      { ini: 'ML', hi: 'मोहन लाल, 70', en: 'Mohan Lal, 70', med: 'Telmisartan 40 mg', st: 'low', sHi: '5 दिन बची', sEn: '5 days left', href: 'M-Asha-Home.dc.html' },
+      { ini: 'FA', hi: 'फ़रीदा, 57', en: 'Farida, 57', med: 'Glimepiride 1 mg', st: 'ok', sHi: '1 अक्टू. को', sEn: 'Due 1 Oct', href: 'M-Asha-Home.dc.html' }
+    ].map((p) => Object.assign({}, p, { icon: icon[p.st] }));
+    const defs = [['all', 'सभी', 'All'], ['out', 'नहीं मिली', 'Not received'], ['low', 'कम', 'Low'], ['wait', 'इंतज़ार', 'Waiting']];
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      patients: all.filter((p) => f === 'all' || p.st === f),
+      chips: defs.map((d) => ({ hi: d[1], en: d[2], on: f === d[0], n: d[0] === 'all' ? all.length : all.filter((p) => p.st === d[0]).length, pick: () => this.setState({ f: d[0] }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

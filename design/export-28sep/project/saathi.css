@@ -1,0 +1,66 @@
+/* Saathi tokens as CSS variables — values copied exactly from the Saathi design system tokens.json */
+@font-face{font-family:"Baloo 2";src:url("/_blob/16b1edd3dee0297d75a3c9f16a32e3fb") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Baloo 2";src:url("/_blob/a353ebd44fe2fdefd9f0d589c755b961") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Baloo 2 Devanagari";src:url("/_blob/e9582c4813b34388215bb8b7c81de7d4") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Baloo 2 Devanagari";src:url("/_blob/f8ecec4c5705b0d8a9086d19ab592aa8") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url("/_blob/63a858b04d92de3a43ae01a616234d5e") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url("/_blob/9230e13d7bb439130edbf9acb8802e50") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url("/_blob/4f0be66f341d802865d3a6f55cd29b80") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"IBM Plex Sans Devanagari";src:url("/_blob/2ef51442a05f4a3e30effcb55213ff19") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans Devanagari";src:url("/_blob/921e2b7ba22783084833b06e3df706aa") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Sans Devanagari";src:url("/_blob/b9d3d1d11cc3fb5b16f2d76dc1b25b3d") format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --paper:#fbf4ea;--paper-raised:#fffaf3;--paper-sunk:#f4e9da;
+  --ink:#2e2119;--ink-muted:#6a5444;--ink-faint:#9a8574;
+  --line:#e8d9c6;--line-strong:#9c8069;
+  --clay-100:#f8e2d4;--clay-500:#bf5630;--clay-600:#b04a24;--clay-700:#8f3a1b;--clay-800:#6f2c14;--clay-ink:#8a3517;--on-clay:#ffffff;
+  --marigold-400:#f2a93b;--marigold-100:#fdefd3;--leaf-400:#6d8a5a;--leaf-100:#e6eedc;
+  --status-out:#a3231b;--status-out-bg:#fbe4df;--status-out-solid:#c0392b;
+  --status-low:#7a4d00;--status-low-bg:#fcefcf;--status-low-solid:#b57a10;
+  --status-ok:#0f635b;--status-ok-bg:#dcefea;--status-ok-solid:#1f8a7d;
+  --status-wait:#5e554e;--status-wait-bg:#ece5dd;--status-wait-solid:#8c8076;
+  --chart-need:#b04a24;--chart-stock:#5b4332;--chart-3:#b57a10;--chart-4:#6d8a5a;--chart-grid:#eadfd1;
+  --focus-ring:#2e2119;--scrim:rgba(46,33,25,0.45);
+
+  --font-display:"Baloo 2","Baloo 2 Devanagari","IBM Plex Sans Devanagari",system-ui,sans-serif;
+  --font-sans:"IBM Plex Sans","IBM Plex Sans Devanagari",system-ui,sans-serif;
+  --font-hindi:"IBM Plex Sans Devanagari","IBM Plex Sans",system-ui,sans-serif;
+
+  --space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-24:24px;--space-32:32px;--space-40:40px;--space-48:48px;--space-56:56px;--space-64:64px;--space-80:80px;--space-96:96px;
+  --radius-xs:6px;--radius-sm:10px;--radius-md:16px;--radius-lg:22px;--radius-xl:32px;--radius-full:999px;
+
+  --elev-0:none;
+  --elev-1:0 1px 2px rgba(92,52,24,0.06), 0 2px 8px rgba(92,52,24,0.06);
+  --elev-2:0 2px 4px rgba(92,52,24,0.07), 0 8px 20px rgba(92,52,24,0.09);
+  --elev-3:0 6px 12px rgba(92,52,24,0.08), 0 18px 40px rgba(92,52,24,0.14);
+  --btn-lip:0 4px 0 #6f2c14, 0 8px 18px rgba(176,74,36,0.28);
+  --btn-lip-pressed:0 1px 0 #6f2c14, 0 2px 6px rgba(176,74,36,0.22);
+  --btn-soft:0 3px 0 #dcc8b2, 0 6px 14px rgba(92,52,24,0.10);
+  --btn-soft-pressed:0 1px 0 #dcc8b2, 0 1px 3px rgba(92,52,24,0.10);
+  --inset-well:inset 0 2px 4px rgba(92,52,24,0.08);
+
+  --tap-mobile:56px;--tap-mobile-hero:72px;--tap-web:44px;
+  --icon-sm:20px;--icon-md:24px;--icon-lg:32px;
+  --topbar-mobile:64px;--tabbar-mobile:72px;--sidebar-web:264px;--topbar-web:64px;--content-max:1280px;
+}
+[data-theme="dark"]{
+  --paper:#1c1511;--paper-raised:#271e18;--paper-sunk:#15100c;
+  --ink:#f6ece1;--ink-muted:#cdbba9;--ink-faint:#8f7d6e;--line:#3d3129;--line-strong:#8e7866;
+  --clay-100:#43261a;--clay-500:#f19670;--clay-600:#e9865d;--clay-700:#d06f47;--clay-800:#8c4426;--clay-ink:#f3a582;--on-clay:#2a120a;
+  --marigold-100:#3b2c16;--leaf-400:#9fbf8a;--leaf-100:#26301f;
+  --status-out:#ff9d8f;--status-out-bg:#4a1c17;--status-out-solid:#f07a6a;
+  --status-low:#f5c46b;--status-low-bg:#43321a;--status-low-solid:#e7ad3c;
+  --status-ok:#7fd4c3;--status-ok-bg:#173b36;--status-ok-solid:#4fb8a6;
+  --status-wait:#cbbfb4;--status-wait-bg:#352d27;--status-wait-solid:#8f8378;
+  --chart-need:#e9865d;--chart-stock:#dcc7b1;--chart-3:#e7ad3c;--chart-4:#9fbf8a;--chart-grid:#3a2f27;
+  --focus-ring:#f6ece1;--scrim:rgba(0,0,0,0.6);
+  --elev-1:0 1px 2px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.25);
+  --elev-2:0 2px 4px rgba(0,0,0,0.45), 0 8px 20px rgba(0,0,0,0.35);
+  --elev-3:0 6px 12px rgba(0,0,0,0.5), 0 18px 40px rgba(0,0,0,0.45);
+  --btn-lip:0 4px 0 #8c4426, 0 8px 18px rgba(0,0,0,0.45);
+  --btn-lip-pressed:0 1px 0 #8c4426, 0 2px 6px rgba(0,0,0,0.4);
+  --btn-soft:0 3px 0 #120d0a, 0 6px 14px rgba(0,0,0,0.4);
+  --btn-soft-pressed:0 1px 0 #120d0a, 0 1px 3px rgba(0,0,0,0.4);
+  --inset-well:inset 0 2px 4px rgba(0,0,0,0.45);
+}

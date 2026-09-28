@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Profile — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.kv{display:flex;gap:12px;align-items:center;padding:12px 0;font:400 15px/22px var(--font-sans)}
+.kv+.kv{box-shadow:inset 0 1px 0 var(--line)}
+.kv .ic{color:var(--ink-muted)}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 900px; background: var(--paper); color: var(--ink); display: flex; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.00 3.00 L13.76 3.17 L14.68 5.53 L15.89 6.18 L18.36 5.64 L19.48 7.00 L18.47 9.32 L18.87 10.63 L21.00 12.00 L20.83 13.76 L18.47 14.68 L17.82 15.89 L18.36 18.36 L17.00 19.48 L14.68 18.47 L13.37 18.87 L12.00 21.00 L10.24 20.83 L9.32 18.47 L8.11 17.82 L5.64 18.36 L4.52 17.00 L5.53 14.68 L5.13 13.37 L3.00 12.00 L3.17 10.24 L5.53 9.32 L6.18 8.11 L5.64 5.64 L7.00 4.52 L9.32 5.53 L10.63 5.13Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7"></path><path d="M10.5 12h9M16.5 8.5 20 12l-3.5 3.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+<symbol id="i-health-centre" viewBox="0 0 24 24"><path d="M3.5 20.5h17M5.5 20.5V9l6.5-4.5L18.5 9v11.5"></path><path d="M12 10v5M9.5 12.5h5"></path></symbol>
+<symbol id="i-language" viewBox="0 0 24 24"><path d="M3.5 5.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-3.5 3v-3h0a2 2 0 0 1-2-2z"></path><path d="M15.5 9.5h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2v3l-3.5-3h-3a2 2 0 0 1-2-2v-1"></path><path d="M7 6.5h5M9.5 6.5v3.5"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-out-of-stock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M6 6l12 12"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"></path></symbol>
+</defs></svg>
+
+<aside class="sa-sidebar" style="flex: none; height: 900px">
+<img class="sa-sidebar-logo" src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi">
+<a class="sa-nav" href="W-Shell.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg><span class="sa-bi"><span lang="hi">अवलोकन</span><span lang="en">Overview</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="hi">चेतावनी</span><span lang="en">Early warnings</span></span><span class="sa-nav-count">9</span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-transfer"></use></svg><span class="sa-bi"><span lang="hi">स्थानांतरण</span><span lang="en">Transfers</span></span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi"><span lang="hi">नक्शा</span><span lang="en">Map</span></span></button>
+<div class="sa-sidebar-foot">
+<a class="sa-nav" href="W-Settings.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">मदद</span><span lang="en">Help</span></span></button>
+<a class="sa-nav" href="W-Logout.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-logout"></use></svg><span class="sa-bi"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></a>
+</div>
+</aside>
+
+<div class="web-main">
+<header class="sa-topbar sa-topbar--web" style="flex: none">
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरी प्रोफ़ाइल</span><span lang="en">My profile</span></span></div>
+<span class="sa-demo">SYNTHETIC DEMO DATA</span>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="W-Shell.dc.html" aria-label="Notifications · सूचनाएँ"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+<a class="sa-avbtn" href="W-Shell.dc.html" aria-label="Profile menu · प्रोफ़ाइल मेनू"><span class="sa-avatar">AM</span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></a>
+</header>
+
+<main style="flex-grow: 1; padding: 32px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 24px; align-content: start">
+<!-- identity -->
+<section class="sa-card sa-card--web" style="grid-column: span 4; grid-row: span 3; gap: 20px; align-self: start">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 8px 0" class="bi-c">
+<span class="sa-avatar sa-avatar--lg" style="--s: 96px">AM</span>
+<span class="d-h2" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="en">Dr. Anil Mehra</span><span lang="hi">डॉ. अनिल मेहरा</span></span></span>
+<span class="sa-age" style="background: var(--clay-100); color: var(--clay-ink)"><span class="sa-bi sa-bi--inline"><span lang="hi">ज़िला NCD अधिकारी</span><span lang="en">District NCD officer</span></span></span>
+</div>
+<div>
+<div class="kv"><svg class="ic ic-20" aria-hidden="true"><use href="#i-health-centre"></use></svg><span style="flex-grow: 1" class="sa-bi sa-bi--inline"><span lang="hi">दफ़्तर</span><span lang="en">Office</span></span><span>CMO Office, Meerut</span></div>
+<div class="kv"><svg class="ic ic-20" aria-hidden="true"><use href="#i-phone"></use></svg><span style="flex-grow: 1" class="sa-bi sa-bi--inline"><span lang="hi">फ़ोन</span><span lang="en">Phone</span></span><span>+91 94••• ••381</span></div>
+<div class="kv"><svg class="ic ic-20" aria-hidden="true"><use href="#i-language"></use></svg><span style="flex-grow: 1" class="sa-bi sa-bi--inline"><span lang="hi">भाषा</span><span lang="en">Language</span></span><span>{{langName}}</span></div>
+<div class="kv"><svg class="ic ic-20" aria-hidden="true"><use href="#i-calendar"></use></svg><span style="flex-grow: 1" class="sa-bi sa-bi--inline"><span lang="hi">साथी पर</span><span lang="en">On Saathi since</span></span><span>Jun 2026</span></div>
+</div>
+<a class="sa-btn sa-btn--web sa-btn--outline" href="W-Settings.dc.html"><svg class="ic ic-20" aria-hidden="true"><use href="#i-settings"></use></svg><span class="sa-bi"><span lang="hi">सेटिंग्स खोलें</span><span lang="en">Open settings</span></span></a>
+</section>
+
+<!-- district -->
+<section class="sa-card sa-card--web" style="grid-column: span 8; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 class="d-h3"><span class="sa-bi"><span lang="hi">मेरा ज़िला</span><span lang="en">My district · Meerut</span></span></h2><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">42 केंद्र · 12 ब्लॉक</span><span lang="en">42 centres · 12 blocks</span></span></span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span class="sa-chip" style="cursor: default">Rohta · रोहटा</span><span class="sa-chip" style="cursor: default">Sardhana · सरधना</span><span class="sa-chip" style="cursor: default">Mawana · मवाना</span><span class="sa-chip" style="cursor: default">Kithore · किठौर</span><span class="sa-chip" style="cursor: default">Hastinapur · हस्तिनापुर</span><span class="sa-chip" style="cursor: default">Daurala · दौराला</span><span class="sa-chip" style="cursor: default; background: var(--paper-sunk)">+6</span>
+</div>
+</section>
+
+<!-- permissions -->
+<section class="sa-card sa-card--web" style="grid-column: span 8; gap: 16px">
+<h2 class="d-h3"><span class="sa-bi"><span lang="hi">आप क्या कर सकते हैं</span><span lang="en">What you can do</span></span></h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: var(--radius-md); background: var(--status-ok-bg); color: var(--status-ok); font: 600 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="en">Approve or reject AI transfers</span><span lang="hi">AI सुझाव मंज़ूर / रद्द करें</span></span></div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: var(--radius-md); background: var(--status-ok-bg); color: var(--status-ok); font: 600 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="en">See every centre and case</span><span lang="hi">हर केंद्र और मामला देखें</span></span></div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: var(--radius-md); background: var(--status-ok-bg); color: var(--status-ok); font: 600 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="en">Download the audit trail</span><span lang="hi">पूरा रिकॉर्ड डाउनलोड करें</span></span></div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: var(--radius-md); background: var(--status-out-bg); color: var(--status-out); font: 600 14px/20px var(--font-sans)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-out-of-stock"></use></svg><span class="sa-bi"><span lang="en">Change a prescription — never</span><span lang="hi">पर्ची बदलना — कभी नहीं</span></span></div>
+</div>
+</section>
+
+<!-- recent decisions -->
+<section class="sa-table-wrap" style="grid-column: span 8">
+<table class="sa-table">
+<caption style="text-align: left; padding: 16px 16px 8px; font: 600 18px/28px var(--font-sans)"><span class="sa-bi sa-bi--inline"><span lang="hi">हाल के फ़ैसले</span><span lang="en">Your recent decisions</span></span></caption>
+<thead><tr><th><span class="sa-bi"><span lang="hi">कब</span><span lang="en">When</span></span></th><th><span class="sa-bi"><span lang="hi">फ़ैसला</span><span lang="en">Decision</span></span></th><th><span class="sa-bi"><span lang="hi">केंद्र</span><span lang="en">Centres</span></span></th><th><span class="sa-bi"><span lang="hi">स्थिति</span><span lang="en">Status</span></span></th></tr></thead>
+<tbody>
+<tr><td>27 Sep</td><td>Approved · Amlodipine 5 mg × 300<span class="sa-cell-2">मंज़ूर · एम्लोडिपिन</span></td><td>Mawana → Kithore<span class="sa-cell-2">मवाना → किठौर</span></td><td><span class="sa-status sa-status--ok"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Delivered</span><span lang="hi">पहुँचा</span></span></span></td></tr>
+<tr><td>24 Sep</td><td>Rejected · Glimepiride 1 mg × 200<span class="sa-cell-2">रद्द · ग्लिमेपिराइड</span></td><td>Daurala → Rohta<span class="sa-cell-2">दौराला → रोहटा</span></td><td><span class="sa-status sa-status--wait"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Donor too low</span><span lang="hi">दाता के पास कम</span></span></span></td></tr>
+</tbody>
+</table>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'en';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      langName: lang === 'hi' ? 'हिंदी' : 'English'
+    };
+  }
+}
+</script>
+</body>
+</html>

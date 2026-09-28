@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>My case timeline — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 1260px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-medicines" viewBox="0 0 24 24"><g transform="rotate(-45 12 12)"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5"></rect><path d="M12 8.5v7"></path></g></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11z"></path><path d="M13.5 9.5h4l3 3.5v3.5h-7"></path><circle cx="6.5" cy="17.5" r="1.8"></circle><circle cx="17" cy="17.5" r="1.8"></circle></symbol>
+<symbol id="i-health-centre" viewBox="0 0 24 24"><path d="M3.5 20.5h17M5.5 20.5V9l6.5-4.5L18.5 9v11.5"></path><path d="M12 10v5M9.5 12.5h5"></path></symbol>
+<symbol id="i-hand-over" viewBox="0 0 24 24"><path d="M3 14.5h3.5l3.5 1.5h4a1.5 1.5 0 0 1 0 3H9.5"></path><path d="M13.5 18.5l5-2.3a1.6 1.6 0 0 1 1.5 2.8L14 21.5H3"></path><g transform="rotate(-45 14 8)"><rect x="9" y="5.5" width="10" height="5" rx="2.5"></rect><path d="M14 5.5v5"></path></g></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none; padding: 0 8px 0 8px">
+<a class="sa-avbtn" href="M-Profile.dc.html" aria-label="प्रोफ़ाइल · Profile" style="padding: 4px"><span class="sa-avatar sa-avatar--sunk">RA</span></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरी शिकायत</span><span lang="en">My report</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="M-Notifications.dc.html" aria-label="सूचनाएँ · Notifications"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+</header>
+
+<main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<section class="sa-card" style="gap: 10px">
+<div class="sa-card-head">
+<span style="display: flex; gap: 12px; align-items: center"><span style="width: 44px; height: 44px; border-radius: 14px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center; flex: none"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span style="font: 600 18px/26px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="hi">मेटफॉर्मिन 500 mg</span><span lang="en">Metformin 500 mg</span></span></span></span>
+<span class="sa-demo">DEMO</span>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center">
+<span class="sa-status sa-status--wait"><svg class="ic ic-16" aria-hidden="true"><use href="#i-truck"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">दवा रास्ते में</span><span lang="en">On the way</span></span></span>
+<span class="m-caption">सुंदरपुर PHC · Sundarpur PHC</span>
+</div>
+</section>
+
+<div class="sa-banner" style="background: var(--marigold-100); color: var(--ink); align-items: flex-start">
+<span class="sa-banner-ic" style="background: var(--paper-raised)"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+<span class="sa-bi" style="font-weight: 500"><span lang="hi">आगे क्या: दवा आज दोपहर सुंदरपुर PHC पहुँचेगी। पहुँचते ही हम आपको बताएँगे।</span><span lang="en">Next: the medicine reaches Sundarpur PHC this afternoon. We’ll tell you as soon as it’s there.</span></span>
+</div>
+
+<ol class="sa-steps" aria-label="मामले के कदम · Case steps" style="padding: 4px 4px 0">
+<li class="sa-step is-done"><span class="sa-step-dot"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg></span><div class="sa-step-body"><div class="sa-step-title"><span class="sa-bi"><span lang="hi">शिकायत दर्ज</span><span lang="en">Reported</span></span></div><div class="sa-step-meta"><span class="sa-bi"><span lang="hi">28 सितंबर, सुबह 9:40 · आपने बोलकर बताया</span><span lang="en">28 Sep, 9:40 am · you told us by voice</span></span></div></div></li>
+<li class="sa-step is-done"><span class="sa-step-dot"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg></span><div class="sa-step-body"><div class="sa-step-title"><span class="sa-bi"><span lang="hi">फ़ार्मासिस्ट ने जाँचा</span><span lang="en">Verified by pharmacist</span></span></div><div class="sa-step-meta"><span class="sa-bi"><span lang="hi">28 सितंबर, 11:05 · सुनीता: स्टॉक ख़त्म है</span><span lang="en">28 Sep, 11:05 am · Sunita: out of stock</span></span></div></div></li>
+<li class="sa-step is-current" aria-current="step"><span class="sa-step-dot"><svg class="ic ic-20" aria-hidden="true"><use href="#i-truck"></use></svg></span><div class="sa-step-body"><div class="sa-step-title"><span class="sa-bi"><span lang="hi">दवा रास्ते में</span><span lang="en">Transfer on the way</span></span></div><div class="sa-step-meta"><span class="sa-bi"><span lang="hi">29 सितंबर, सुबह 8:30 · नयागाँव PHC से</span><span lang="en">29 Sep, 8:30 am · from Nayagaon PHC</span></span></div></div></li>
+<li class="sa-step is-waiting"><span class="sa-step-dot"><svg class="ic ic-20" aria-hidden="true"><use href="#i-health-centre"></use></svg></span><div class="sa-step-body"><div class="sa-step-title"><span class="sa-bi"><span lang="hi">केंद्र पहुँची</span><span lang="en">Arrived at centre</span></span></div><div class="sa-step-meta"><span class="sa-bi"><span lang="hi">आज दोपहर तक</span><span lang="en">expected this afternoon</span></span></div></div></li>
+<li class="sa-step is-waiting"><span class="sa-step-dot"><svg class="ic ic-20" aria-hidden="true"><use href="#i-hand-over"></use></svg></span><div class="sa-step-body"><div class="sa-step-title"><span class="sa-bi"><span lang="hi">आपको मिली</span><span lang="en">Given to you</span></span></div><div class="sa-step-meta"><span class="sa-bi"><span lang="hi">सुंदरपुर PHC पर</span><span lang="en">at Sundarpur PHC</span></span></div></div></li>
+<li class="sa-step is-waiting"><span class="sa-step-dot"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg></span><div class="sa-step-body"><div class="sa-step-title"><span class="sa-bi"><span lang="hi">मामला बंद</span><span lang="en">Closed</span></span></div><div class="sa-step-meta"><span class="sa-bi"><span lang="hi">जब आप “मिल गई” दबाएँ</span><span lang="en">when you confirm you got it</span></span></div></div></li>
+</ol>
+
+<button type="button" class="sa-btn sa-btn--secondary sa-btn--block"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi"><span lang="hi">आशा दीदी रेखा को कॉल करें</span><span lang="en">Call ASHA Rekha</span></span></button>
+<a class="story" href="M-Verify.dc.html"><span class="sa-bi"><span lang="hi">कहानी: फ़ार्मासिस्ट सुनीता की स्क्रीन देखें</span><span lang="en">Story: see Pharmacist Sunita’s side</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</main>
+
+<nav class="sa-tabbar" aria-label="मुख्य · Main" style="flex: none">
+<a class="sa-tab" href="M-Shell-Patient.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></a>
+<a class="sa-tab" href="M-Case.dc.html" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">शिकायतें</span><span lang="en">Reports</span></span></a>
+<a class="sa-tab" href="M-Shell-Patient.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-bi"><span lang="hi">दवाइयाँ</span><span lang="en">Medicines</span></span></a>
+<a class="sa-tab" href="M-Profile.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":1260}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'hi';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

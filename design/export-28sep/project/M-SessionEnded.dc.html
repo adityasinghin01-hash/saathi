@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Session ended — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 800px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 11A7.5 7.5 0 0 0 6 7.2L4.5 9"></path><path d="M4.5 4.5V9H9"></path><path d="M4.5 13A7.5 7.5 0 0 0 18 16.8l1.5-1.8"></path><path d="M19.5 19.5V15H15"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+</defs></svg>
+<div style="height: 64px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 16px">
+<img src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi" style="height: 32px; width: auto; display: block">
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</div>
+<main class="bi-c" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 0 20px; text-align: center">
+<div style="width: 176px; height: 176px; border-radius: 50%; background: var(--marigold-100); display: grid; place-items: center">
+<img src="/_blob/a6525a3b924284bc4c89308e7bb333a3" alt="" style="width: 164px; height: 164px; object-fit: contain">
+</div>
+<h1 class="m-title hd" style="--bi-2nd: 16px"><span class="sa-bi"><span lang="hi">आपका सत्र ख़त्म हुआ</span><span lang="en">Your session has ended</span></span></h1>
+<p class="m-body muted" style="--bi-2nd: 14px"><span class="sa-bi"><span lang="hi">30 मिनट तक कुछ न होने पर हम सुरक्षा के लिए आपको बाहर कर देते हैं।</span><span lang="en">After 30 quiet minutes we sign you out, to keep your details safe.</span></span></p>
+<div class="sa-card" style="width: 100%; gap: 10px; text-align: left">
+<div style="display: flex; gap: 12px; align-items: center"><svg class="ic ic-20" aria-hidden="true" style="color: var(--status-ok)"><use href="#i-check-circle"></use></svg><span class="sa-bi" style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px; align-items: flex-start"><span lang="hi">आपका काम फ़ोन में सेव है</span><span lang="en">Your work is saved on this phone</span></span></div>
+<hr class="sa-divider">
+<div style="display: flex; gap: 12px; align-items: center"><svg class="ic ic-20" aria-hidden="true" style="color: var(--ink-muted)"><use href="#i-clock"></use></svg><span class="sa-bi" style="font: 500 15px/22px var(--font-sans); --bi-2nd: 13px; align-items: flex-start"><span lang="hi">आख़िरी बार: आज शाम 4:12</span><span lang="en">Last active: today, 4:12 pm</span></span></div>
+</div>
+</main>
+<div style="flex: none; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 8px">
+<a class="sa-btn sa-btn--hero" href="M-Welcome.dc.html"><svg class="ic ic-28" aria-hidden="true"><use href="#i-refresh"></use></svg><span class="sa-bi"><span lang="hi">फिर से शुरू करें</span><span lang="en">Start again</span></span></a>
+<button type="button" class="sa-btn sa-btn--ghost sa-btn--block"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi"><span lang="hi">आशा दीदी को कॉल करें</span><span lang="en">Call my ASHA</span></span></button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'hi';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "id": "s11",
+  "synthetic_label": "Synthetic demo data",
+  "recording_kind": "Gemini TTS, not a real patient or ASHA recording",
+  "tts_model": "gemini-3.8-flash-tts",
+  "tts_voice": "Kore",
+  "tts_latency_seconds": 8.041,
+  "duration_seconds": 9.8,
+  "script": "कल अट्ठाईस सितंबर को सुंदरपुर पी एच सी गई थी। Glimepiride की sixteen tablets मांगीं, stock नहीं था। घर पर two days की दवा बची है।",
+  "patient_id": "patient-003",
+  "user_id": "patient-user-003",
+  "expected_fields": {
+    "patient_id": "patient-003",
+    "drug_id": "glimepiride",
+    "requested_qty": 16,
+    "household_supply_days": 2,
+    "attempted_date": "2026-09-28"
+  },
+  "expected_refill_received": false,
+  "hinglish": true,
+  "audio_mime_type": "audio/wav"
+}

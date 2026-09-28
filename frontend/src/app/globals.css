@@ -1,0 +1,39 @@
+@import "../styles/saathi.css";
+@import "../styles/bundle.css";
+@import "../styles/app.css";
+@import "../styles/screens.css";
+
+:root {
+  --font-display: var(--nf-baloo), var(--nf-plex-deva), system-ui, sans-serif;
+  --font-sans: var(--nf-plex), var(--nf-plex-deva), system-ui, sans-serif;
+  --font-hindi: var(--nf-plex-deva), var(--nf-plex), system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; color: inherit; }
+img { max-width: 100%; }
+
+/* ---- app frames (built from Saathi tokens) ---- */
+.phone-frame { min-height: 100dvh; display: flex; justify-content: center; background: var(--paper-sunk); }
+.phone-app { width: 100%; max-width: 480px; min-height: 100dvh; background: var(--paper); display: flex; flex-direction: column; position: relative; box-shadow: var(--elev-2); }
+.phone-app > main { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.phone-app .sa-tabbar { position: sticky; bottom: 0; }
+.phone-app .sa-topbar { position: sticky; top: 0; z-index: 5; background: var(--paper); }
+.phone-foot { position: sticky; bottom: 0; padding: 12px 16px 20px; display: flex; flex-direction: column; gap: 8px; background: linear-gradient(to top, var(--paper) 80%, transparent); }
+
+.web-app { min-height: 100dvh; display: flex; background: var(--paper); }
+.web-app .sa-sidebar { position: sticky; top: 0; height: 100dvh; flex: none; }
+.web-app .web-main { flex: 1; min-width: 0; }
+.web-app .web-content { padding: 24px 32px 48px; display: flex; flex-direction: column; gap: 20px; max-width: var(--content-max); width: 100%; }
+
+.center-page { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+.err-text { color: var(--status-out); font-weight: 600; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.grid-kpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.split { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 1000px) { .split { grid-template-columns: 1fr; } .web-app .sa-sidebar { display: none; } .web-app .web-content { padding: 16px; } }
+.table-scroll { overflow-x: auto; }
+.num { font-variant-numeric: tabular-nums; }

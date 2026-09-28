@@ -1,0 +1,20 @@
+{
+  "label": "Synthetic demo data",
+  "clip": "s01.wav",
+  "demo_user": "patient-user-001",
+  "result": {
+    "http_status": 200,
+    "ai_source": "gemini",
+    "ai_model": "gemini-3.1-flash-lite",
+    "latency_ms": 8727.8,
+    "fields": {
+      "patient_id": "patient-001",
+      "drug_id": "metformin",
+      "requested_qty": 30,
+      "household_supply_days": 2,
+      "attempted_at": "2026-09-28T20:46:33.660545Z"
+    },
+    "transcript": "मेरी मेटफॉर्मिन की दवा खत्म हो गई। कल 28 सितंबर को सुंदरपुर पीएससी गया था। 30 गोलियां मांगी, दवा नहीं मिली। घर में दो दिन की बची है।",
+    "error": null
+  }
+}

@@ -1,0 +1,5 @@
+Implemented B10–B13 in order. The forecast evaluation uses independently generated patient need, and the Hindi/Hinglish corpus has hand-authored gold labels. Results and the full tables are in [notes-codex.md](/Users/aditya/dev/refill-loop/docs/notes-codex.md) and [backend/eval/results](/Users/aditya/dev/refill-loop/backend/eval/results).
+
+The combined forecast **loses on hidden-demand error** to dispensing-only in the baseline, stale-prescription, false-report, and long-stockout scenarios. It also raises more false alerts in those scenarios and with outside purchases. The Ramesh script completed the full local API flow with `phc-2` as donor.
+
+Verification: **56 passed, 1 skipped**; Ruff passed. Live Gemini extraction was not run because no API key was present. The Docker image was not built because Docker is unavailable. No commit, push, or deployment was performed.

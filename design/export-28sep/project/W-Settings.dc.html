@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.wrow{min-height:60px;font-size:15px;padding:10px 0;gap:14px;border-radius:0}
+.wrow .sa-row-ic{width:40px;height:40px;border-radius:12px}
+.wrow:hover{background:transparent}
+.pv-0{font-size:16px;line-height:26px}.pv-1{font-size:18px;line-height:30px}.pv-2{font-size:20px;line-height:32px}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 1000px; background: var(--paper); color: var(--ink); display: flex; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.00 3.00 L13.76 3.17 L14.68 5.53 L15.89 6.18 L18.36 5.64 L19.48 7.00 L18.47 9.32 L18.87 10.63 L21.00 12.00 L20.83 13.76 L18.47 14.68 L17.82 15.89 L18.36 18.36 L17.00 19.48 L14.68 18.47 L13.37 18.87 L12.00 21.00 L10.24 20.83 L9.32 18.47 L8.11 17.82 L5.64 18.36 L4.52 17.00 L5.53 14.68 L5.13 13.37 L3.00 12.00 L3.17 10.24 L5.53 9.32 L6.18 8.11 L5.64 5.64 L7.00 4.52 L9.32 5.53 L10.63 5.13Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7"></path><path d="M10.5 12h9M16.5 8.5 20 12l-3.5 3.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-language" viewBox="0 0 24 24"><path d="M3.5 5.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-3.5 3v-3h0a2 2 0 0 1-2-2z"></path><path d="M15.5 9.5h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2v3l-3.5-3h-3a2 2 0 0 1-2-2v-1"></path><path d="M7 6.5h5M9.5 6.5v3.5"></path></symbol>
+<symbol id="i-suggest" viewBox="0 0 24 24"><path d="M9 17.5h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.6 10.8c.4.3.6.8.6 1.3v.9h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3z"></path></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+<symbol id="i-user-group" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"></circle><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"></path><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5.8M17.5 14.8c1.8.6 3.1 2.1 3.5 4.7"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-cases-dl" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+</defs></svg>
+
+<aside class="sa-sidebar" style="flex: none; height: 1000px">
+<img class="sa-sidebar-logo" src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi">
+<a class="sa-nav" href="W-Shell.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg><span class="sa-bi"><span lang="hi">अवलोकन</span><span lang="en">Overview</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="hi">चेतावनी</span><span lang="en">Early warnings</span></span><span class="sa-nav-count">9</span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-transfer"></use></svg><span class="sa-bi"><span lang="hi">स्थानांतरण</span><span lang="en">Transfers</span></span></button>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi"><span lang="hi">नक्शा</span><span lang="en">Map</span></span></button>
+<div class="sa-sidebar-foot">
+<a class="sa-nav" href="W-Settings.dc.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">मदद</span><span lang="en">Help</span></span></button>
+<a class="sa-nav" href="W-Logout.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-logout"></use></svg><span class="sa-bi"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></a>
+</div>
+</aside>
+
+<div class="web-main">
+<header class="sa-topbar sa-topbar--web" style="flex: none">
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></div>
+<span class="sa-demo">SYNTHETIC DEMO DATA</span>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="W-Shell.dc.html" aria-label="Notifications · सूचनाएँ"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+<a class="sa-avbtn" href="W-Profile.dc.html" aria-label="Profile · प्रोफ़ाइल"><span class="sa-avatar">AM</span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></a>
+</header>
+
+<main style="flex-grow: 1; padding: 32px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 24px; align-content: start">
+
+<!-- Language & reading -->
+<section class="sa-card sa-card--web" style="grid-column: span 6; gap: 20px">
+<h2 class="d-h3" style="display: flex; gap: 10px; align-items: center"><svg class="ic" aria-hidden="true" style="color: var(--clay-ink)"><use href="#i-language"></use></svg><span class="sa-bi"><span lang="hi">भाषा और पढ़ना</span><span lang="en">Language &amp; reading</span></span></h2>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="d-label"><span class="sa-bi sa-bi--inline"><span lang="hi">पहले कौन-सी भाषा</span><span lang="en">Which language leads</span></span></span>
+<div class="sa-lang sa-lang--lg" role="group" aria-label="Language · भाषा" style="align-self: flex-start"><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">English</button><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिंदी</button></div>
+<p class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">दोनों भाषाएँ हमेशा दिखती हैं।</span><span lang="en">Both languages always show — this only changes which comes first.</span></span></p>
+</div>
+<hr class="sa-divider">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="d-label"><span class="sa-bi sa-bi--inline"><span lang="hi">अक्षर का आकार</span><span lang="en">Text size</span></span></span>
+<div class="tsz" role="group" aria-label="Text size · अक्षर का आकार" style="max-width: 360px">
+<button type="button" aria-pressed="{{s0}}" onClick="{{size0}}" style="font-size: 15px; min-height: 44px">A</button>
+<button type="button" aria-pressed="{{s1}}" onClick="{{size1}}" style="font-size: 18px; min-height: 44px">A+</button>
+<button type="button" aria-pressed="{{s2}}" onClick="{{size2}}" style="font-size: 21px; min-height: 44px">A++</button>
+</div>
+<p class="{{pvCls}}" style="margin: 0; padding: 12px 14px; border-radius: var(--radius-md); background: var(--paper-sunk)"><span class="sa-bi"><span lang="en">Metformin 500 mg runs out at PHC Rohta in 4 days.</span><span lang="hi">रोहटा में मेटफॉर्मिन 4 दिन में ख़त्म होगी।</span></span></p>
+</div>
+</section>
+
+<!-- Notifications -->
+<section class="sa-card sa-card--web" style="grid-column: span 6; gap: 8px">
+<h2 class="d-h3" style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px"><svg class="ic" aria-hidden="true" style="color: var(--clay-ink)"><use href="#i-notifications"></use></svg><span class="sa-bi"><span lang="hi">सूचनाएँ</span><span lang="en">Notifications</span></span></h2>
+<button type="button" class="sa-row wrow" role="switch" aria-checked="{{n1}}" onClick="{{t1}}"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-alert"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">शुरुआती चेतावनी</span><span lang="en">Early warnings (in app + email)</span></span></span><span class="sa-switch" aria-hidden="true" aria-checked="{{n1}}"></span></button>
+<button type="button" class="sa-row wrow" role="switch" aria-checked="{{n2}}" onClick="{{t2}}"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-suggest"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">नया AI सुझाव</span><span lang="en">New AI transfer suggestion</span></span></span><span class="sa-switch" aria-hidden="true" aria-checked="{{n2}}"></span></button>
+<button type="button" class="sa-row wrow" role="switch" aria-checked="{{n3}}" onClick="{{t3}}"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-calendar"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">रोज़ सुबह 8 बजे सारांश</span><span lang="en">Daily summary at 8:00 am</span></span></span><span class="sa-switch" aria-hidden="true" aria-checked="{{n3}}"></span></button>
+<button type="button" class="sa-row wrow" role="switch" aria-checked="{{n4}}" onClick="{{t4}}"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-phone"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">स्टॉक ख़त्म होने पर SMS</span><span lang="en">SMS when a centre runs out</span></span></span><span class="sa-switch" aria-hidden="true" aria-checked="{{n4}}"></span></button>
+</section>
+
+<!-- Data & privacy -->
+<section class="sa-card sa-card--web" style="grid-column: span 6; gap: 8px">
+<h2 class="d-h3" style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px"><svg class="ic" aria-hidden="true" style="color: var(--clay-ink)"><use href="#i-user-group"></use></svg><span class="sa-bi"><span lang="hi">डेटा और गोपनीयता</span><span lang="en">Data &amp; privacy</span></span></h2>
+<button type="button" class="sa-row wrow" role="switch" aria-checked="{{n5}}" onClick="{{t5}}"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-user-group"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">तालिकाओं में मरीज़ों के नाम छिपाएँ</span><span lang="en">Hide patient names in tables</span></span></span><span class="sa-switch" aria-hidden="true" aria-checked="{{n5}}"></span></button>
+<div class="sa-row wrow" style="cursor: default"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-clock"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">अपने-आप लॉग आउट</span><span lang="en">Sign out after inactivity</span></span></span><span class="sa-row-val"><span class="sa-bi sa-bi--inline"><span lang="hi">30 मिनट</span><span lang="en">30 min</span></span></span></div>
+<button type="button" class="sa-row wrow"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-cases-dl"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">पूरा रिकॉर्ड डाउनलोड करें</span><span lang="en">Download audit trail (CSV)</span></span></span><span class="sa-row-chev"><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></button>
+<p class="d-caption" style="padding-top: 8px"><span class="sa-bi sa-bi--inline"><span lang="hi">साथी मरीज़ों की जानकारी सिर्फ़ उनके केंद्र और ज़िले के साथ साझा करता है।</span><span lang="en">Patient details are shared only with their own centre and district.</span></span></p>
+</section>
+
+<!-- Help & account -->
+<section class="sa-card sa-card--web" style="grid-column: span 6; gap: 8px">
+<h2 class="d-h3" style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px"><svg class="ic" aria-hidden="true" style="color: var(--clay-ink)"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">मदद और खाता</span><span lang="en">Help &amp; account</span></span></h2>
+<a class="sa-row wrow" href="Main.dc.html"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-help"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">साथी कैसे काम करता है</span><span lang="en">How Saathi works</span></span></span><span class="sa-row-chev"><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></a>
+<button type="button" class="sa-row wrow"><span class="sa-row-ic"><svg class="ic ic-20" aria-hidden="true"><use href="#i-phone"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">सहायता से बात करें</span><span lang="en">Contact support</span></span></span><span class="sa-row-val">Mon–Sat, 9–6</span></button>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 16px; margin-top: 8px; box-shadow: inset 0 1px 0 var(--line)">
+<span class="d-body-sm muted"><span class="sa-bi"><span lang="en">Signed in as Dr. Anil Mehra</span><span lang="hi">डॉ. अनिल मेहरा के रूप में</span></span></span>
+<a class="sa-btn sa-btn--web sa-btn--danger" href="W-Logout.dc.html"><svg class="ic ic-20" aria-hidden="true"><use href="#i-logout"></use></svg><span class="sa-bi"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></a>
+</div>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const size = s.size == null ? 0 : s.size;
+    const d = { n1: true, n2: true, n3: true, n4: false, n5: false };
+    const v = {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      s0: size === 0, s1: size === 1, s2: size === 2,
+      size0: () => this.setState({ size: 0 }), size1: () => this.setState({ size: 1 }), size2: () => this.setState({ size: 2 }),
+      pvCls: 'pv-' + size
+    };
+    Object.keys(d).forEach((k, i) => {
+      const on = s[k] == null ? d[k] : s[k];
+      v[k] = on;
+      v['t' + (i + 1)] = () => this.setState({ [k]: !on });
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

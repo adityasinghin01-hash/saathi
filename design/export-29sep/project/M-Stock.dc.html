@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Today's stock count — pharmacist app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.sk{display:flex;flex-direction:column;gap:10px}
+.sk-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.sk .stepper button{width:48px;height:48px}
+.sk .stepper output{min-height:48px;font-size:20px}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 1160px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M7 18.5h9.5a4 4 0 0 0 1.4-7.7A6 6 0 0 0 7.2 9 4.8 4.8 0 0 0 7 18.5z"></path><path d="M4 4l16 16"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none">
+<a class="sa-iconbtn" href="M-Shell-Pharmacist.dc.html" aria-label="Back · पीछे"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">आज की गिनती</span><span lang="en">Today’s stock count</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</header>
+
+<main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<sc-if value="{{saved}}" hint-placeholder-val="{{true}}">
+<div class="sa-banner sa-banner--offline" role="status"><span class="sa-banner-ic"><svg class="ic" aria-hidden="true"><use href="#i-cloud-off"></use></svg></span><span class="sa-bi" style="font-weight: 600"><span lang="en">Saved offline — will send when online</span><span lang="hi">फ़ोन में सेव — नेट आते ही भेज देंगे</span></span></div>
+</sc-if>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<span class="m-caption"><span class="sa-bi"><span lang="en">Sundarpur PHC · count each shelf and adjust</span><span lang="hi">सुंदरपुर PHC · हर अलमारी गिनें</span></span></span>
+<span class="sa-demo">DEMO</span>
+</div>
+
+<sc-for list="{{meds}}" as="m" hint-placeholder-count="4">
+<section class="sa-card sk">
+<div class="sk-top">
+<span style="display: flex; flex-direction: column"><span style="font: 600 17px/24px var(--font-sans)">{{m.name}}</span><span class="m-caption" style="font-size: 13px; line-height: 18px">{{m.hi}} · last count {{m.last}}</span></span>
+<sc-if value="{{m.stale}}" hint-placeholder-val="{{false}}"><span class="sa-age is-stale"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>{{m.age}}</span></sc-if>
+<sc-if value="{{m.fresh}}" hint-placeholder-val="{{true}}"><span class="sa-age {{m.ageCls}}"><span class="sa-age-dot"></span>{{m.age}}</span></sc-if>
+</div>
+<div class="stepper"><button type="button" onClick="{{m.dec}}" aria-label="{{m.decLabel}}"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button><output aria-live="polite">{{m.nowTxt}}</output><button type="button" onClick="{{m.inc}}" aria-label="{{m.incLabel}}"><svg class="ic" aria-hidden="true"><use href="#i-plus"></use></svg></button></div>
+<span class="m-caption" style="font-size: 13px">{{m.diff}}</span>
+</section>
+</sc-for>
+
+<button type="button" class="sa-btn sa-btn--hero" onClick="{{save}}"><svg class="ic ic-28" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="en">Save count</span><span lang="hi">गिनती सेव करें</span></span></button>
+<p class="m-caption" style="text-align: center; margin-top: -6px"><span class="sa-bi sa-bi--inline" style="justify-content: center"><span lang="en">{{pendEn}}</span><span lang="hi">{{pendHi}}</span></span></p>
+</main>
+
+<nav class="sa-tabbar" aria-label="Main · मुख्य" style="flex: none">
+<a class="sa-tab" href="M-Shell-Pharmacist.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></a>
+<a class="sa-tab" href="M-Verify.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span><span class="sa-tab-count">6</span></a>
+<a class="sa-tab" href="M-Stock.dc.html" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg></span><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></a>
+<a class="sa-tab" href="M-Profile.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":1160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const saved = s.saved == null ? true : s.saved;
+    const base = [
+      ['met', 'Metformin 500 mg', 'मेटफॉर्मिन', 0, 2, 0],
+      ['gli', 'Glimepiride 1 mg', 'ग्लिमेपिराइड', 640, 26, 620],
+      ['aml', 'Amlodipine 5 mg', 'एम्लोडिपिन', 1450, 26, 1410],
+      ['tel', 'Telmisartan 40 mg', 'टेल्मिसार्टन', 980, 72, 960]
+    ];
+    const fmt = (n) => n.toLocaleString('en-IN');
+    const age = (h) => (h < 24 ? h + ' h ago' : Math.round(h / 24) + (h < 48 ? ' day ago' : ' days ago'));
+    const meds = base.map((b) => {
+      const now = s[b[0]] == null ? b[5] : s[b[0]];
+      const d = now - b[3];
+      return {
+        name: b[1], hi: b[2], last: fmt(b[3]), age: age(b[4]), stale: b[4] >= 48, fresh: b[4] < 48, ageCls: b[4] < 6 ? 'is-fresh' : '',
+        nowTxt: fmt(now),
+        diff: d === 0 ? 'Same as last count · पिछली जैसी' : (d > 0 ? '+' : '−') + fmt(Math.abs(d)) + ' since last count · पिछली से',
+        dec: () => this.setState({ [b[0]]: Math.max(0, now - 10), saved: false }),
+        inc: () => this.setState({ [b[0]]: now + 10, saved: false }),
+        decLabel: '10 fewer ' + b[1] + ' · 10 कम', incLabel: '10 more ' + b[1] + ' · 10 ज़्यादा'
+      };
+    });
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      meds: meds, saved: saved,
+      save: () => this.setState({ saved: true }),
+      pendEn: saved ? '4 counts waiting to send' : 'Not saved yet', pendHi: saved ? '4 गिनती भेजना बाकी' : 'अभी सेव नहीं'
+    };
+  }
+}
+</script>
+</body>
+</html>

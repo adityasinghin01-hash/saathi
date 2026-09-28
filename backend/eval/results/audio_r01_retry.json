@@ -1,0 +1,27 @@
+{
+  "id": "r01",
+  "file": "r01.opus",
+  "http_status": 200,
+  "latency_ms": 10327.6,
+  "ai_source": "gemini",
+  "ai_model": "gemini-3.1-flash-lite",
+  "transcript": "Hello hello नमस्कार आदाब कैसा है आपका समय? So hello आज मेरा blood pressure 2 km की दूरी से बढ़ रहा है। पता नहीं कितना ये बढ़ता रहेगा। जय माता दी सब खेड़वाल शब्बा खैर शुभ रात्रि और सब बढ़िया everything is good. राम राम भाई सारियां ने और सब बढ़िया चल रहा है क्या आपके साथ? हमारे साथ तो सब बढ़िया चल रहा है क्या आपके साथ सब बढ़िया चल रहा है? हमारी तो तबीयत बहुत खराब है जी डॉक्टर जी हमारी सुनते ही नहीं है। नहीं तो डॉक्टर कुछ भी जाके बोलो वो यही बोलता है कि इसे दिखाओ उसे दिखाओ ये करो वो करो हमारा तो blood pressure हमारे तो diabetes. हमारे तो रोज़ सुई ठोकने लगते हैं लोग। सुई ठोकते ठोकते हम भी कहीं ठुक न जाए।",
+  "transcript_devanagari": true,
+  "fields": {
+    "patient_id": "patient-003",
+    "drug_id": null,
+    "requested_qty": null,
+    "household_supply_days": null,
+    "attempted_at": null
+  },
+  "missing": [
+    "drug_id",
+    "requested_qty",
+    "household_supply_days",
+    "attempted_at"
+  ],
+  "not_a_refill_report": true,
+  "error": null,
+  "not_a_refill_report_correct": true,
+  "wrong_fields": {}
+}

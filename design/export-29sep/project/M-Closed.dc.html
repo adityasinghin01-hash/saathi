@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>You have your medicine — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:10px 0;font:400 15px/22px var(--font-sans)}
+.kv+.kv{box-shadow:inset 0 1px 0 var(--line)}
+.kv .sa-bi{--bi-2nd:13px}
+.kv b{font-weight:600;text-align:right}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 880px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"></path></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none">
+<a class="sa-iconbtn" href="M-Case.dc.html" aria-label="पीछे · Back"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">मेरी शिकायत</span><span lang="en">My report</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</header>
+
+<main style="flex-grow: 1; padding: 20px 16px 0; display: flex; flex-direction: column; gap: 16px">
+<div class="bi-c" style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<div style="width: 176px; height: 176px; border-radius: 50%; background: var(--leaf-100); display: grid; place-items: center"><img src="/_blob/2d1741c84be3e18556864a5c66b5f945" alt="" style="width: 160px; height: 160px; object-fit: contain"></div>
+<h1 class="m-display hd" style="--bi-2nd: 18px"><span class="sa-bi"><span lang="hi">आपकी दवा मिल गई</span><span lang="en">You have your medicine</span></span></h1>
+</div>
+<section class="sa-card" style="gap: 0; padding: 8px 16px">
+<div class="kv"><span class="sa-bi"><span lang="hi">दवा</span><span lang="en">Medicine</span></span><b>Metformin 500 mg</b></div>
+<div class="kv"><span class="sa-bi"><span lang="hi">मिली / माँगी</span><span lang="en">Given / asked</span></span><b style="font-variant-numeric: tabular-nums">60 / 60</b></div>
+<div class="kv"><span class="sa-bi"><span lang="hi">कहाँ, कब</span><span lang="en">Where, when</span></span><b><span class="sa-bi" style="align-items: flex-end"><span lang="hi">सुंदरपुर PHC · 29 सितंबर, 4:00</span><span lang="en">Sundarpur PHC · 29 Sep, 4 pm</span></span></b></div>
+<div class="kv"><span class="sa-bi"><span lang="hi">किसने दी</span><span lang="en">Given by</span></span><b><span class="sa-bi" style="align-items: flex-end"><span lang="hi">फ़ार्मासिस्ट सुनीता</span><span lang="en">Pharmacist Sunita</span></span></b></div>
+</section>
+<p class="m-body" style="display: flex; gap: 10px; align-items: flex-start; padding: 0 4px"><svg class="ic" aria-hidden="true" style="flex: none; margin-top: 3px; color: var(--ink-muted)"><use href="#i-calendar"></use></svg><span class="sa-bi"><span lang="hi">अगली दवा लगभग 28 अक्टूबर को। हम याद दिला देंगे।</span><span lang="en">Next refill around 28 Oct — we’ll remind you.</span></span></p>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div class="sa-banner sa-banner--ok"><span class="sa-banner-ic"><svg class="ic" aria-hidden="true"><use href="#i-check-circle"></use></svg></span><span class="sa-bi" style="font-weight: 600"><span lang="hi">धन्यवाद। मामला बंद हो गया।</span><span lang="en">Thank you. Your case is closed.</span></span></div>
+</sc-if>
+</main>
+
+<div style="flex: none; padding: 12px 16px 20px; display: flex; flex-direction: column; gap: 8px">
+<sc-if value="{{notDone}}" hint-placeholder-val="{{true}}">
+<button type="button" class="sa-btn sa-btn--hero" onClick="{{confirm}}"><svg class="ic ic-28" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="hi">हाँ, मुझे मिल गई</span><span lang="en">Yes, I received it</span></span></button>
+<a class="sa-btn sa-btn--ghost sa-btn--block" href="M-Voice.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="hi">कम मिली या नहीं मिली?</span><span lang="en">Got less, or nothing?</span></span></a>
+</sc-if>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<a class="sa-btn sa-btn--hero" href="M-Shell-Patient.dc.html"><svg class="ic ic-28" aria-hidden="true"><use href="#i-home"></use></svg><span class="sa-bi"><span lang="hi">घर पर जाएँ</span><span lang="en">Go home</span></span></a>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'hi';
+    const done = !!s.done;
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      done: done, notDone: !done,
+      confirm: () => this.setState({ done: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

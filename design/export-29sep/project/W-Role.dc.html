@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Choose role — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 900px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+</defs></svg>
+<header style="height: 80px; flex: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 0 80px">
+<img src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi" style="height: 40px; width: auto; justify-self: start">
+<div style="justify-self: center; display: flex; gap: 12px; align-items: center"><div class="dots"><i></i><i class="on"></i><i></i></div><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">कदम 2 / 3</span><span lang="en">Step 2 of 3</span></span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा" style="justify-self: end"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</header>
+<main style="flex-grow: 1; padding: 32px 80px 48px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 40px; align-content: start">
+<div class="bi-c" style="grid-column: span 12; display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center">
+<h1 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">आप कौन हैं?</span><span lang="en">Who are you today?</span></span></h1>
+<p class="d-body muted" style="--bi-2nd: 14px"><span class="sa-bi"><span lang="hi">एक भूमिका चुनें — डेमो उसी की नज़र से दिखेगा</span><span lang="en">Pick a role — the demo opens through their eyes</span></span></p>
+</div>
+<div role="radiogroup" aria-label="Role · भूमिका" style="grid-column: span 12; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+<button type="button" role="radio" aria-checked="{{r0}}" class="pick {{c0}}" onClick="{{p0}}" style="flex-direction: column; align-items: stretch; padding: 0; overflow: hidden; gap: 0">
+<span class="g-sunk" style="height: 200px; display: grid; place-items: center; position: relative"><img src="/_blob/583792078e9f13de2bd11ff11486580f" alt="" style="width: 184px; height: 184px; object-fit: contain"><span class="pick-radio" style="position: absolute; right: 16px; top: 16px"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></span>
+<span style="padding: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+<span class="hd" style="font: 600 22px/32px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">मरीज़</span><span lang="en">Patient</span></span></span>
+<span class="d-body-sm muted" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">दवा न मिले तो बोलकर बताएँ</span><span lang="en">Tell us by voice when a refill is missed</span></span></span>
+<span class="sa-age"><svg class="ic ic-16" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मोबाइल ऐप</span><span lang="en">Mobile app</span></span></span>
+</span>
+</button>
+<button type="button" role="radio" aria-checked="{{r1}}" class="pick {{c1}}" onClick="{{p1}}" style="flex-direction: column; align-items: stretch; padding: 0; overflow: hidden; gap: 0">
+<span class="g-mari" style="height: 200px; display: grid; place-items: center; position: relative"><img src="/_blob/2d1741c84be3e18556864a5c66b5f945" alt="" style="width: 184px; height: 184px; object-fit: contain"><span class="pick-radio" style="position: absolute; right: 16px; top: 16px"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></span>
+<span style="padding: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+<span class="hd" style="font: 600 22px/32px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">आशा</span><span lang="en">ASHA worker</span></span></span>
+<span class="d-body-sm muted" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">अपने गाँव के मरीज़ों की ओर से</span><span lang="en">Report for the patients in your village</span></span></span>
+<span class="sa-age"><svg class="ic ic-16" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मोबाइल ऐप</span><span lang="en">Mobile app</span></span></span>
+</span>
+</button>
+<button type="button" role="radio" aria-checked="{{r2}}" class="pick {{c2}}" onClick="{{p2}}" style="flex-direction: column; align-items: stretch; padding: 0; overflow: hidden; gap: 0">
+<span class="g-leaf" style="height: 200px; display: grid; place-items: center; position: relative"><img src="/_blob/97632bfdcd20b386611835efbc1c4df4" alt="" style="width: 184px; height: 184px; object-fit: contain"><span class="pick-radio" style="position: absolute; right: 16px; top: 16px"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></span>
+<span style="padding: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+<span class="hd" style="font: 600 22px/32px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">फ़ार्मासिस्ट</span><span lang="en">Pharmacist</span></span></span>
+<span class="d-body-sm muted" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">जाँचें, स्टॉक लें, दवा सौंपें</span><span lang="en">Verify, receive stock, hand over</span></span></span>
+<span class="sa-age"><svg class="ic ic-16" aria-hidden="true"><use href="#i-phone"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">मोबाइल ऐप</span><span lang="en">Mobile app</span></span></span>
+</span>
+</button>
+<button type="button" role="radio" aria-checked="{{r3}}" class="pick {{c3}}" onClick="{{p3}}" style="flex-direction: column; align-items: stretch; padding: 0; overflow: hidden; gap: 0">
+<span class="g-clay" style="height: 200px; display: grid; place-items: center; position: relative"><img src="/_blob/a6525a3b924284bc4c89308e7bb333a3" alt="" style="width: 184px; height: 184px; object-fit: contain"><span class="pick-radio" style="position: absolute; right: 16px; top: 16px"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></span>
+<span style="padding: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+<span class="hd" style="font: 600 22px/32px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">ज़िला अधिकारी</span><span lang="en">District officer</span></span></span>
+<span class="d-body-sm muted" style="--bi-2nd: 13px"><span class="sa-bi"><span lang="hi">पूरे ज़िले का स्टॉक और चेतावनी</span><span lang="en">Stock and early warnings, district-wide</span></span></span>
+<span class="sa-age" style="background: var(--clay-100); color: var(--clay-ink)"><svg class="ic ic-16" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">वेब पर बेहतर</span><span lang="en">Best on web</span></span></span>
+</span>
+</button>
+</div>
+<div style="grid-column: span 12; display: flex; justify-content: space-between; align-items: center">
+<a class="sa-btn sa-btn--outline" href="W-Welcome.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg><span class="sa-bi"><span lang="hi">पीछे</span><span lang="en">Back</span></span></a>
+<a class="sa-btn" href="{{next}}" style="min-width: 240px"><span class="sa-bi"><span lang="hi">आगे बढ़ें</span><span lang="en">Continue</span></span><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const role = s.role == null ? 3 : s.role;
+    const v = { aud: lang === 'hi' ? 'field' : 'desk', hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }), setEn: () => this.setState({ lang: 'en' }),
+      next: ['M-DemoUser.dc.html', 'M-Asha-Home.dc.html', 'M-Shell-Pharmacist.dc.html', 'W-DemoUser.dc.html'][role] };
+    [0, 1, 2, 3].forEach((i) => {
+      v['r' + i] = role === i;
+      v['c' + i] = role === i ? 'is-on' : '';
+      v['p' + i] = () => this.setState({ role: i });
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

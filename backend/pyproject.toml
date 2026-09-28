@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "refill-loop-backend"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.30,<1",
+  "sqlmodel>=0.0.22,<1",
+  "python-multipart>=0.0.9,<1",
+  "httpx>=0.27,<1",
+  "statsforecast>=2,<3",
+  "ortools>=9.11,<10",
+  "google-genai>=1,<2",
+  "google-auth>=2,<3",
+  "python-dotenv>=1,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

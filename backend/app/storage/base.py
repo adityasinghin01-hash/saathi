@@ -1,0 +1,9 @@
+from typing import Protocol
+
+
+class Store(Protocol):
+    def get(self, kind: str, id: str) -> dict | None: ...
+
+    def list(self, kind: str) -> list[dict]: ...
+
+    def put(self, kind: str, item: dict) -> None: ...

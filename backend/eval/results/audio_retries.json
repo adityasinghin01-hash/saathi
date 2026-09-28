@@ -1,0 +1,106 @@
+{
+  "label": "Synthetic demo data",
+  "note": "Paced retry after 12-clip burst; configured only gemini-3.1-flash-lite",
+  "clips": [
+    {
+      "id": "s09",
+      "file": "s09.wav",
+      "http_status": 200,
+      "latency_ms": 3933.9,
+      "ai_source": "gemini",
+      "ai_model": "gemini-3.1-flash-lite",
+      "transcript": "सोमवार 28 सितंबर को सुंदरपुर पीएचसी से मेटफॉर्मिन की 20 गोलियां मांगी थीं। दवा मिल गई थी। अब घर में चार दिन की बची है।",
+      "fields": {
+        "patient_id": "patient-003",
+        "drug_id": "metformin",
+        "requested_qty": 20,
+        "household_supply_days": 4,
+        "attempted_at": "2026-09-28T20:41:04.221381Z"
+      },
+      "error": null,
+      "field_correct": {
+        "patient_id": true,
+        "drug_id": true,
+        "requested_qty": true,
+        "household_supply_days": true,
+        "attempted_date": true
+      },
+      "wrong_fields": {},
+      "transcript_similarity": 0.934,
+      "transcript_sane": true,
+      "refill_received_from_transcript": true,
+      "refill_received_correct": true
+    },
+    {
+      "id": "s10",
+      "file": "s10.wav",
+      "http_status": 200,
+      "latency_ms": 7918.7,
+      "ai_source": "gemini",
+      "ai_model": "gemini-3.1-flash-lite",
+      "transcript": "सोमवार 28 सितंबर को उदयपुर पीएचसी में अमलोडीपिन की 18 गोलियां मांगी थीं। दवा मिल गई थी। घर में तीन दिन की बची है।",
+      "fields": {
+        "patient_id": "patient-006",
+        "drug_id": "amlodipine",
+        "requested_qty": 18,
+        "household_supply_days": 3,
+        "attempted_at": "2026-09-28T20:41:18.160723Z"
+      },
+      "error": null,
+      "field_correct": {
+        "patient_id": true,
+        "drug_id": true,
+        "requested_qty": true,
+        "household_supply_days": true,
+        "attempted_date": true
+      },
+      "wrong_fields": {},
+      "transcript_similarity": 0.911,
+      "transcript_sane": true,
+      "refill_received_from_transcript": true,
+      "refill_received_correct": true
+    },
+    {
+      "id": "s12",
+      "file": "s12.wav",
+      "http_status": 200,
+      "latency_ms": 20203.3,
+      "ai_source": "fallback",
+      "ai_model": null,
+      "transcript": "Synthetic demo transcription of a refill request.",
+      "fields": {
+        "patient_id": "patient-006",
+        "drug_id": "amlodipine",
+        "requested_qty": 30,
+        "household_supply_days": 0,
+        "attempted_at": "2026-09-28T09:00:00Z"
+      },
+      "error": null,
+      "field_correct": {
+        "patient_id": true,
+        "drug_id": false,
+        "requested_qty": true,
+        "household_supply_days": false,
+        "attempted_date": false
+      },
+      "wrong_fields": {
+        "drug_id": {
+          "expected": "telmisartan",
+          "actual": "amlodipine"
+        },
+        "household_supply_days": {
+          "expected": 5,
+          "actual": 0
+        },
+        "attempted_date": {
+          "expected": "2026-09-27",
+          "actual": "2026-09-28"
+        }
+      },
+      "transcript_similarity": 0.156,
+      "transcript_sane": false,
+      "refill_received_from_transcript": null,
+      "refill_received_correct": false
+    }
+  ]
+}

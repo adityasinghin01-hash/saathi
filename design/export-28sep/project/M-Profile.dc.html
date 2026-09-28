@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Profile — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 1100px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.00 3.00 L13.76 3.17 L14.68 5.53 L15.89 6.18 L18.36 5.64 L19.48 7.00 L18.47 9.32 L18.87 10.63 L21.00 12.00 L20.83 13.76 L18.47 14.68 L17.82 15.89 L18.36 18.36 L17.00 19.48 L14.68 18.47 L13.37 18.87 L12.00 21.00 L10.24 20.83 L9.32 18.47 L8.11 17.82 L5.64 18.36 L4.52 17.00 L5.53 14.68 L5.13 13.37 L3.00 12.00 L3.17 10.24 L5.53 9.32 L6.18 8.11 L5.64 5.64 L7.00 4.52 L9.32 5.53 L10.63 5.13Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-medicines" viewBox="0 0 24 24"><g transform="rotate(-45 12 12)"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5"></rect><path d="M12 8.5v7"></path></g></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7"></path><path d="M10.5 12h9M16.5 8.5 20 12l-3.5 3.5"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h2.8l1.4 4-2 1.5a11 11 0 0 0 6.3 6.3l1.5-2 4 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-health-centre" viewBox="0 0 24 24"><path d="M3.5 20.5h17M5.5 20.5V9l6.5-4.5L18.5 9v11.5"></path><path d="M12 10v5M9.5 12.5h5"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none; padding-left: 16px">
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="M-Notifications.dc.html" aria-label="सूचनाएँ · Notifications"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+</header>
+<main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 16px">
+<section class="sa-card" style="flex-direction: row; align-items: center; gap: 16px">
+<span class="sa-avatar sa-avatar--sunk sa-avatar--lg">RK</span>
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<span style="font: 600 20px/28px var(--font-sans); --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">रमेश कुमार</span><span lang="en">Ramesh Kumar</span></span></span>
+<span class="m-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">54 वर्ष · मरीज़</span><span lang="en">54 yrs · Patient</span></span></span>
+</div>
+</section>
+<section class="sa-card" style="flex-direction: row; align-items: center; gap: 12px; background: var(--marigold-100)">
+<span class="sa-avatar sa-avatar--mari" style="box-shadow: 0 0 0 2px var(--paper-raised)">RD</span>
+<span style="flex-grow: 1; font: 600 16px/22px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="hi">मेरी आशा दीदी: रेखा देवी</span><span lang="en">My ASHA: Rekha Devi</span></span></span>
+<button type="button" class="sa-btn sa-btn--secondary sa-btn--icon" aria-label="रेखा दीदी को कॉल करें · Call Rekha"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg></button>
+</section>
+<span class="grp" style="margin-top: 8px"><span class="sa-bi sa-bi--inline"><span lang="hi">मेरी जानकारी</span><span lang="en">My details</span></span></span>
+<div class="sa-rows">
+<div class="sa-row" style="cursor: default"><span class="sa-row-ic"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">फ़ोन</span><span lang="en">Phone</span></span></span><span class="sa-row-val">+91 98••• ••210</span></div>
+<div class="sa-row" style="cursor: default"><span class="sa-row-ic"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">गाँव</span><span lang="en">Village</span></span></span><span class="sa-row-val"><span class="sa-bi" style="align-items: flex-end; --bi-2nd: 13px"><span lang="hi">रसूलपुर</span><span lang="en">Rasulpur</span></span></span></div>
+<div class="sa-row" style="cursor: default"><span class="sa-row-ic"><svg class="ic" aria-hidden="true"><use href="#i-health-centre"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">मेरा केंद्र</span><span lang="en">My health centre</span></span></span><span class="sa-row-val">PHC Rohta</span></div>
+<a class="sa-row" href="M-Shell-Patient.dc.html"><span class="sa-row-ic"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">मेरी दवाइयाँ</span><span lang="en">My medicines</span></span></span><span class="sa-row-val">2</span><span class="sa-row-chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></a>
+</div>
+<span class="grp" style="margin-top: 8px"><span class="sa-bi sa-bi--inline"><span lang="hi">ऐप</span><span lang="en">App</span></span></span>
+<div class="sa-rows">
+<a class="sa-row" href="M-Settings.dc.html"><span class="sa-row-ic"><svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></span><span class="sa-row-chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></a>
+<a class="sa-row" href="Landing-Mobile.dc.html"><span class="sa-row-ic"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg></span><span class="sa-row-main"><span class="sa-bi"><span lang="hi">मदद</span><span lang="en">Help</span></span></span><span class="sa-row-chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></a>
+<a class="sa-row" href="M-Logout.dc.html" style="color: var(--status-out)"><span class="sa-row-ic" style="background: var(--status-out-bg); color: var(--status-out)"><svg class="ic" aria-hidden="true"><use href="#i-logout"></use></svg></span><span class="sa-row-main"><span class="sa-bi" style="--bi-2nd-color: var(--status-out)"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></span></a>
+</div>
+<div style="display: flex; justify-content: center; gap: 8px; align-items: center; padding-top: 8px"><span class="sa-demo">DEMO</span><span class="m-caption">Saathi 0.1</span></div>
+</main>
+<nav class="sa-tabbar" aria-label="मुख्य · Main" style="flex: none">
+<a class="sa-tab" href="M-Shell-Patient.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></a>
+<a class="sa-tab" href="M-Shell-Patient.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">शिकायतें</span><span lang="en">Reports</span></span></a>
+<a class="sa-tab" href="M-Shell-Patient.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-medicines"></use></svg></span><span class="sa-bi"><span lang="hi">दवाइयाँ</span><span lang="en">Medicines</span></span></a>
+<a class="sa-tab" href="M-Profile.dc.html" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'hi';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

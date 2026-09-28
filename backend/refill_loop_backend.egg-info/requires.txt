@@ -1,0 +1,11 @@
+fastapi<1,>=0.115
+uvicorn<1,>=0.30
+sqlmodel<1,>=0.0.22
+python-multipart<1,>=0.0.9
+httpx<1,>=0.27
+statsforecast<3,>=2
+ortools<10,>=9.11
+
+[dev]
+pytest<9,>=8
+ruff<1,>=0.6

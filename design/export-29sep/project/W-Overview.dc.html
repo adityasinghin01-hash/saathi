@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>District stock &amp; warnings — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.dt{background:var(--paper-raised);border-radius:var(--radius-lg);box-shadow:var(--elev-1);overflow:hidden}
+.dt-row{display:grid;grid-template-columns:180px 80px 108px 88px 96px 76px minmax(0,1fr) 64px;align-items:center}
+.dt-head{background:var(--paper-sunk)}
+.dt-th{display:flex;align-items:flex-start;gap:4px;padding:10px 12px;border:0;background:transparent;color:var(--ink-muted);font:600 13px/18px var(--font-sans);text-align:left;cursor:pointer;min-height:56px}
+.dt-th:hover{color:var(--ink)}
+.dt-th.is-num{justify-content:flex-end;text-align:right}
+.dt-th .sa-bi{--bi-2nd:11px}
+.dt-th .ic{width:16px;height:16px;margin-top:1px;opacity:0}
+.dt-th.is-sorted{color:var(--ink)}.dt-th.is-sorted .ic{opacity:1}
+.dt-body .dt-row{min-height:56px;border-top:1px solid var(--line);font:400 14px/20px var(--font-sans);text-decoration:none;color:var(--ink);transition:background 200ms}
+.dt-body a.dt-row:hover{background:var(--paper)}
+.dt-body .dt-row.is-out{background:var(--status-out-bg)}
+.dt-td{padding:8px 12px;min-width:0}
+.dt-td.is-num{text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
+.dt-2{display:block;font-size:13px;line-height:18px;color:var(--ink-muted)}
+.cn{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:6px 8px;border:0;border-radius:12px;background:transparent;color:var(--ink);font:500 14px/20px var(--font-sans);text-align:left;cursor:pointer}
+.cn:hover{background:var(--paper)}.cn.is-on{background:var(--clay-100);color:var(--clay-ink)}
+.cn .sa-status{margin-left:auto;min-height:26px;padding:2px 8px 2px 6px;font-size:12px}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 1780px; background: var(--paper); color: var(--ink); display: flex; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.00 3.00 L13.76 3.17 L14.68 5.53 L15.89 6.18 L18.36 5.64 L19.48 7.00 L18.47 9.32 L18.87 10.63 L21.00 12.00 L20.83 13.76 L18.47 14.68 L17.82 15.89 L18.36 18.36 L17.00 19.48 L14.68 18.47 L13.37 18.87 L12.00 21.00 L10.24 20.83 L9.32 18.47 L8.11 17.82 L5.64 18.36 L4.52 17.00 L5.53 14.68 L5.13 13.37 L3.00 12.00 L3.17 10.24 L5.53 9.32 L6.18 8.11 L5.64 5.64 L7.00 4.52 L9.32 5.53 L10.63 5.13Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7"></path><path d="M10.5 12h9M16.5 8.5 20 12l-3.5 3.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-out-of-stock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M6 6l12 12"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"></path></symbol>
+<symbol id="i-health-centre" viewBox="0 0 24 24"><path d="M3.5 20.5h17M5.5 20.5V9l6.5-4.5L18.5 9v11.5"></path><path d="M12 10v5M9.5 12.5h5"></path></symbol>
+<symbol id="i-suggest" viewBox="0 0 24 24"><path d="M9 17.5h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.6 10.8c.4.3.6.8.6 1.3v.9h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3z"></path></symbol>
+</defs></svg>
+
+<aside class="sa-sidebar" style="flex: none; height: 1780px">
+<img class="sa-sidebar-logo" src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi">
+<a class="sa-nav" href="W-Shell.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg><span class="sa-bi"><span lang="hi">अवलोकन</span><span lang="en">Overview</span></span></a>
+<a class="sa-nav" href="W-Evaluation.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="hi">चेतावनी</span><span lang="en">Early warnings</span></span><span class="sa-nav-count">5</span></a>
+<a class="sa-nav" href="W-Cases.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></a>
+<a class="sa-nav" href="W-Transfers.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-transfer"></use></svg><span class="sa-bi"><span lang="hi">स्थानांतरण</span><span lang="en">Transfers</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi"><span lang="hi">नक्शा</span><span lang="en">Map</span></span></a>
+<div class="sa-sidebar-foot">
+<a class="sa-nav" href="W-Settings.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">मदद</span><span lang="en">Help</span></span></button>
+<a class="sa-nav" href="W-Logout.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-logout"></use></svg><span class="sa-bi"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></a>
+</div>
+</aside>
+
+<div class="web-main">
+<header class="sa-topbar sa-topbar--web" style="flex: none">
+<div class="sa-topbar-title" style="flex: 1 0 auto"><span class="sa-bi"><span lang="hi">स्टॉक · सूर्यनगर</span><span lang="en">Stock · Suryanagar</span></span></div>
+<span class="sa-demo">SYNTHETIC DEMO DATA</span>
+<span class="sa-age is-fresh"><span class="sa-age-dot"></span><span class="sa-bi sa-bi--inline"><span lang="hi">1 घंटा पहले</span><span lang="en">updated 1 h ago</span></span></span>
+<label class="sa-input sa-input--web" style="width: 220px"><span class="sa-adorn"><svg class="ic ic-20" aria-hidden="true"><use href="#i-search"></use></svg></span><input placeholder="Search centre or medicine · खोजें" aria-label="Search · खोजें"></label>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="W-Shell.dc.html" aria-label="Notifications · सूचनाएँ"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+<a class="sa-avbtn" href="W-Profile.dc.html" aria-label="Dr. Mehra — profile · प्रोफ़ाइल"><span class="sa-avatar">DM</span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></a>
+</header>
+
+<main style="flex-grow: 1; padding: 32px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 20px; align-content: start">
+<div style="grid-column: span 12; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="d-h1 hd" style="--bi-2nd: 18px"><span class="sa-bi"><span lang="hi">ज़िला स्टॉक और चेतावनी</span><span lang="en">District stock &amp; warnings</span></span></h1>
+<p class="d-body-sm muted"><span class="sa-bi sa-bi--inline"><span lang="hi">हर PHC × हर दवा · दिन = मरीज़ों की ज़रूरत के हिसाब से</span><span lang="en">Every PHC × medicine · days left are counted at patients’ need, not past dispensing</span></span></p>
+</div>
+<a class="sa-btn sa-btn--web sa-btn--outline" href="W-Evaluation.dc.html"><svg class="ic ic-20" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">चेतावनी कितनी सही है?</span><span lang="en">How well does the warning work?</span></span></a>
+</div>
+
+<!-- filters: one row above the table -->
+<div style="grid-column: span 12; display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+<label class="sa-input sa-input--web" style="width: 220px; padding-left: 12px"><svg class="ic ic-20" aria-hidden="true" style="color: var(--ink-muted)"><use href="#i-health-centre"></use></svg><select aria-label="Centre · केंद्र" value="{{centre}}" onChange="{{onCentre}}" style="flex: 1; height: 42px; border: 0; background: transparent; color: var(--ink); font: 500 15px/22px var(--font-sans)"><option value="all">All centres · सभी केंद्र</option><option value="Sundarpur PHC">Sundarpur PHC</option><option value="Nayagaon PHC">Nayagaon PHC</option><option value="Amarpur PHC">Amarpur PHC</option><option value="Shantipur PHC">Shantipur PHC</option><option value="Navgram PHC">Navgram PHC</option><option value="Udaypur PHC">Udaypur PHC</option></select></label>
+<div role="group" aria-label="Medicine · दवा" style="display: flex; gap: 8px">
+<sc-for list="{{medChips}}" as="m" hint-placeholder-count="5">
+<button type="button" class="sa-chip" aria-pressed="{{m.on}}" onClick="{{m.pick}}"><span class="sa-bi sa-bi--inline"><span lang="en">{{m.en}}</span><span lang="hi">{{m.hi}}</span></span></button>
+</sc-for>
+</div>
+<button type="button" class="sa-chip" aria-pressed="{{warnOnly}}" onClick="{{toggleWarn}}" style="margin-left: auto"><svg class="ic ic-20" aria-hidden="true"><use href="#i-filter"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Warnings only</span><span lang="hi">सिर्फ़ चेतावनी</span></span><span class="sa-count">5</span></button>
+</div>
+
+<!-- centres: small map + list -->
+<aside class="sa-card sa-card--web" style="grid-column: span 3; align-self: start; padding: 16px; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 class="d-h3" style="font-size: 16px; --bi-2nd: 12px"><span class="sa-bi"><span lang="en">Centres</span><span lang="hi">केंद्र</span></span></h2><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="en">worst status</span><span lang="hi">सबसे ख़राब स्थिति</span></span></span></div>
+<svg width="224" height="196" viewBox="0 0 224 196" role="img" aria-label="Map of Suryanagar district: Sundarpur PHC out of stock; Amarpur, Shantipur, Navgram and Udaypur running low; Nayagaon PHC and the district store fine" style="display: block; background: var(--paper-sunk); border-radius: 16px">
+<path d="M28 44 C 60 14, 130 8, 176 26 C 208 40, 214 88, 200 124 C 188 160, 140 186, 96 180 C 52 174, 18 146, 14 106 C 10 78, 14 60, 28 44 Z" style="fill: var(--paper-raised); stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 4 4"></path>
+<g><circle cx="150" cy="52" r="12" style="fill: var(--status-out-solid); stroke: var(--paper-raised); stroke-width: 2"></circle><svg x="143" y="45" width="14" height="14" viewBox="0 0 24 24" class="ic" style="width: 14px; height: 14px; color: var(--paper-raised); stroke-width: 3"><use href="#i-out-of-stock"></use></svg><text x="150" y="80" text-anchor="middle" style="font: 600 12px var(--font-sans); fill: var(--ink)">Sundarpur</text></g>
+<g><circle cx="62" cy="56" r="12" style="fill: var(--status-ok-solid); stroke: var(--paper-raised); stroke-width: 2"></circle><svg x="55" y="49" width="14" height="14" viewBox="0 0 24 24" class="ic" style="width: 14px; height: 14px; color: var(--paper-raised); stroke-width: 3"><use href="#i-check-circle"></use></svg><text x="62" y="84" text-anchor="middle" style="font: 500 12px var(--font-sans); fill: var(--ink)">Nayagaon</text></g>
+<g><circle cx="176" cy="112" r="12" style="fill: var(--status-low-solid); stroke: var(--paper-raised); stroke-width: 2"></circle><svg x="169" y="105" width="14" height="14" viewBox="0 0 24 24" class="ic" style="width: 14px; height: 14px; color: var(--paper-raised); stroke-width: 3"><use href="#i-alert"></use></svg><text x="176" y="140" text-anchor="middle" style="font: 500 12px var(--font-sans); fill: var(--ink)">Amarpur</text></g>
+<g><circle cx="44" cy="118" r="12" style="fill: var(--status-low-solid); stroke: var(--paper-raised); stroke-width: 2"></circle><svg x="37" y="111" width="14" height="14" viewBox="0 0 24 24" class="ic" style="width: 14px; height: 14px; color: var(--paper-raised); stroke-width: 3"><use href="#i-alert"></use></svg><text x="48" y="146" text-anchor="middle" style="font: 500 12px var(--font-sans); fill: var(--ink)">Shantipur</text></g>
+<g><circle cx="104" cy="132" r="12" style="fill: var(--status-low-solid); stroke: var(--paper-raised); stroke-width: 2"></circle><svg x="97" y="125" width="14" height="14" viewBox="0 0 24 24" class="ic" style="width: 14px; height: 14px; color: var(--paper-raised); stroke-width: 3"><use href="#i-alert"></use></svg><text x="104" y="160" text-anchor="middle" style="font: 500 12px var(--font-sans); fill: var(--ink)">Navgram</text></g>
+<g><circle cx="150" cy="164" r="12" style="fill: var(--status-low-solid); stroke: var(--paper-raised); stroke-width: 2"></circle><svg x="143" y="157" width="14" height="14" viewBox="0 0 24 24" class="ic" style="width: 14px; height: 14px; color: var(--paper-raised); stroke-width: 3"><use href="#i-alert"></use></svg><text x="186" y="168" text-anchor="middle" style="font: 500 12px var(--font-sans); fill: var(--ink)">Udaypur</text></g>
+<g><rect x="96" y="80" width="22" height="22" rx="6" style="fill: var(--ink)"></rect><svg x="100" y="84" width="14" height="14" viewBox="0 0 24 24" class="ic" style="width: 14px; height: 14px; color: var(--paper-raised)"><use href="#i-stock"></use></svg><text x="107" y="116" text-anchor="middle" style="font: 500 12px var(--font-sans); fill: var(--ink-muted)">Store</text></g>
+</svg>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{centres}}" as="c" hint-placeholder-count="7">
+<button type="button" class="cn {{c.cls}}" onClick="{{c.pick}}"><span class="sa-bi" style="--bi-2nd: 12px"><span lang="en">{{c.en}}</span><span lang="hi">{{c.hi}}</span></span><span class="sa-status sa-status--{{c.st}}"><svg class="ic ic-16" aria-hidden="true"><use href="{{c.icon}}"></use></svg>{{c.label}}</span></button>
+</sc-for>
+</div>
+<p class="d-caption" style="display: flex; gap: 6px; align-items: flex-start"><svg class="ic ic-16" aria-hidden="true" style="margin-top: 2px"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="en">District Store holds bulk stock and is the last resort.</span><span lang="hi">ज़िला भंडार आख़िरी सहारा है।</span></span></p>
+</aside>
+
+<!-- the working table -->
+<section style="grid-column: span 9; display: flex; flex-direction: column; gap: 12px">
+<div class="dt" role="table" aria-label="Stock by PHC and medicine · केंद्र और दवा के हिसाब से स्टॉक">
+<div class="dt-row dt-head" role="row">
+<button type="button" class="dt-th {{h.centre}}" role="columnheader" aria-sort="{{a.centre}}" onClick="{{s.centre}}"><span class="sa-bi"><span lang="en">Centre · medicine</span><span lang="hi">केंद्र · दवा</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="dt-th is-num {{h.onHand}}" role="columnheader" aria-sort="{{a.onHand}}" onClick="{{s.onHand}}"><span class="sa-bi" style="align-items: flex-end"><span lang="en">On hand</span><span lang="hi">स्टॉक</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="dt-th {{h.age}}" role="columnheader" aria-sort="{{a.age}}" onClick="{{s.age}}"><span class="sa-bi"><span lang="en">Data age</span><span lang="hi">कब का डेटा</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="dt-th is-num {{h.need}}" role="columnheader" aria-sort="{{a.need}}" onClick="{{s.need}}"><span class="sa-bi" style="align-items: flex-end"><span lang="en">Patients’ need</span><span lang="hi">ज़रूरत · 30 दिन</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="dt-th is-num {{h.forecast}}" role="columnheader" aria-sort="{{a.forecast}}" onClick="{{s.forecast}}"><span class="sa-bi" style="align-items: flex-end"><span lang="en">Dispensing forecast</span><span lang="hi">वितरण अनुमान</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="dt-th is-num {{h.days}}" role="columnheader" aria-sort="{{a.days}}" onClick="{{s.days}}"><span class="sa-bi" style="align-items: flex-end"><span lang="en">Days left</span><span lang="hi">दिन बचे</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="dt-th {{h.st}}" role="columnheader" aria-sort="{{a.st}}" onClick="{{s.st}}"><span class="sa-bi"><span lang="en">Warning</span><span lang="hi">चेतावनी</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="dt-th is-num {{h.cases}}" role="columnheader" aria-sort="{{a.cases}}" onClick="{{s.cases}}"><span class="sa-bi" style="align-items: flex-end"><span lang="en">Cases</span><span lang="hi">मामले</span></span><svg class="ic" aria-hidden="true" style="transform: {{rot}}"><use href="#i-chevron-down"></use></svg></button>
+</div>
+<div class="dt-body" role="rowgroup">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="24">
+<a class="dt-row {{r.cls}}" role="row" href="{{r.href}}">
+<span class="dt-td" role="cell"><span style="font-weight: 600">{{r.centre}}</span><span class="dt-2">{{r.med}} · {{r.centreHi}}</span></span>
+<span class="dt-td is-num" role="cell">{{r.onHandTxt}}</span>
+<span class="dt-td" role="cell"><sc-if value="{{r.stale}}" hint-placeholder-val="{{false}}"><span class="sa-age is-stale"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>{{r.age}}</span></sc-if><sc-if value="{{r.fresh}}" hint-placeholder-val="{{true}}"><span class="sa-age {{r.ageCls}}"><span class="sa-age-dot"></span>{{r.age}}</span></sc-if></span>
+<span class="dt-td is-num" role="cell">{{r.needTxt}}</span>
+<span class="dt-td is-num" role="cell">{{r.fcTxt}}<span class="dt-2">{{r.fcNote}}</span></span>
+<span class="dt-td is-num" role="cell" style="font-weight: 600">{{r.days}}</span>
+<span class="dt-td" role="cell"><span class="sa-status sa-status--{{r.st}}" style="min-height: 28px; font-size: 13px"><svg class="ic ic-16" aria-hidden="true"><use href="{{r.icon}}"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">{{r.stEn}}</span><span lang="hi">{{r.stHi}}</span></span></span></span>
+<span class="dt-td is-num" role="cell">{{r.cases}}</span>
+</a>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center">
+<p class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="en">{{countEn}}</span><span lang="hi">{{countHi}}</span></span></p>
+<p class="d-caption" style="display: flex; gap: 8px; align-items: center"><span class="sa-demo">DEMO</span><span class="sa-bi sa-bi--inline"><span lang="en">Need = active prescriptions × daily dose. Forecast = what past dispensing predicts.</span><span lang="hi">ज़रूरत = पर्चियाँ × रोज़ की खुराक</span></span></p>
+</div>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1780}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const med = s.med || 'all';
+    const centre = s.centre || 'all';
+    const warnOnly = !!s.warnOnly;
+    const sortKey = s.sortKey || 'days';
+    const dir = s.dir || 1;
+    const hi = { 'Sundarpur PHC': 'सुंदरपुर', 'Nayagaon PHC': 'नयागाँव', 'Amarpur PHC': 'अमरपुर', 'Shantipur PHC': 'शांतिपुर', 'Navgram PHC': 'नवग्राम', 'Udaypur PHC': 'उदयपुर' };
+    // [centre, medicine, on hand, age in hours, patients' need for 30 days, open cases, dispensing forecast override]
+    const raw = [
+      ['Sundarpur PHC', 'Metformin 500 mg', 0, 2, 2640, 14, 1980],
+      ['Sundarpur PHC', 'Glimepiride 1 mg', 640, 26, 600, 0],
+      ['Sundarpur PHC', 'Amlodipine 5 mg', 1450, 26, 1020, 1],
+      ['Sundarpur PHC', 'Telmisartan 40 mg', 980, 72, 780, 0],
+      ['Nayagaon PHC', 'Metformin 500 mg', 6400, 4, 2520, 0],
+      ['Nayagaon PHC', 'Glimepiride 1 mg', 700, 4, 540, 0],
+      ['Nayagaon PHC', 'Amlodipine 5 mg', 2100, 4, 960, 0],
+      ['Nayagaon PHC', 'Telmisartan 40 mg', 880, 4, 660, 0],
+      ['Amarpur PHC', 'Metformin 500 mg', 1100, 24, 2280, 0],
+      ['Amarpur PHC', 'Glimepiride 1 mg', 520, 24, 480, 2],
+      ['Amarpur PHC', 'Amlodipine 5 mg', 1260, 24, 840, 0],
+      ['Amarpur PHC', 'Telmisartan 40 mg', 900, 24, 600, 0],
+      ['Shantipur PHC', 'Metformin 500 mg', 2900, 72, 1980, 0],
+      ['Shantipur PHC', 'Glimepiride 1 mg', 560, 72, 420, 0],
+      ['Shantipur PHC', 'Amlodipine 5 mg', 180, 72, 900, 1],
+      ['Shantipur PHC', 'Telmisartan 40 mg', 700, 72, 540, 0],
+      ['Navgram PHC', 'Metformin 500 mg', 2300, 5, 1800, 0],
+      ['Navgram PHC', 'Glimepiride 1 mg', 150, 5, 450, 0],
+      ['Navgram PHC', 'Amlodipine 5 mg', 1000, 5, 720, 0],
+      ['Navgram PHC', 'Telmisartan 40 mg', 1200, 5, 690, 1],
+      ['Udaypur PHC', 'Metformin 500 mg', 3300, 6, 2160, 0],
+      ['Udaypur PHC', 'Glimepiride 1 mg', 600, 6, 510, 0],
+      ['Udaypur PHC', 'Amlodipine 5 mg', 1150, 6, 810, 0],
+      ['Udaypur PHC', 'Telmisartan 40 mg', 520, 50, 780, 1]
+    ];
+    const fmt = (n) => n.toLocaleString('en-IN');
+    const ageTxt = (h) => (h < 24 ? h + ' h ago' : Math.round(h / 24) + (h < 48 ? ' day ago' : ' days ago'));
+    let rows = raw.map((x) => {
+      const days = Math.floor(x[2] / (x[4] / 30));
+      const st = days === 0 ? 'out' : days < 21 ? 'low' : 'ok';
+      const fc = x[6] || Math.round((x[4] * 0.95) / 10) * 10;
+      return {
+        centre: x[0], centreHi: hi[x[0]], med: x[1], onHand: x[2], onHandTxt: fmt(x[2]),
+        ageH: x[3], age: ageTxt(x[3]), stale: x[3] >= 48, fresh: x[3] < 48, ageCls: x[3] < 6 ? 'is-fresh' : '',
+        need: x[4], needTxt: fmt(x[4]), forecast: fc, fcTxt: fmt(fc),
+        fcNote: x[6] ? Math.round((1 - fc / x[4]) * 100) + '% below need' : '',
+        days: days, st: st, stRank: st === 'out' ? 0 : st === 'low' ? 1 : 2,
+        icon: st === 'out' ? '#i-out-of-stock' : st === 'low' ? '#i-alert' : '#i-check-circle',
+        stEn: st === 'out' ? 'Out of stock' : st === 'low' ? 'Runs out soon' : 'OK',
+        stHi: st === 'out' ? 'ख़त्म' : st === 'low' ? 'जल्द ख़त्म' : 'ठीक',
+        cases: x[5], cls: st === 'out' ? 'is-out' : '',
+        href: x[0] === 'Sundarpur PHC' && x[1] === 'Metformin 500 mg' ? 'W-Facility.dc.html' : 'W-Overview.dc.html'
+      };
+    });
+    rows = rows.filter((r) => (med === 'all' || r.med.indexOf(med) === 0) && (centre === 'all' || r.centre === centre) && (!warnOnly || r.st !== 'ok'));
+    const keyOf = { centre: (r) => r.centre + r.med, onHand: (r) => r.onHand, age: (r) => r.ageH, need: (r) => r.need, forecast: (r) => r.forecast, days: (r) => r.days, st: (r) => r.stRank * 1000 + r.days, cases: (r) => r.cases };
+    rows.sort((p, q) => { const a = keyOf[sortKey](p), b = keyOf[sortKey](q); return (a > b ? 1 : a < b ? -1 : 0) * dir; });
+    const keys = ['centre', 'onHand', 'age', 'need', 'forecast', 'days', 'st', 'cases'];
+    const h = {}, a = {}, sset = {};
+    keys.forEach((k) => {
+      h[k] = k === sortKey ? 'is-sorted' : '';
+      a[k] = k === sortKey ? (dir === 1 ? 'ascending' : 'descending') : 'none';
+      sset[k] = () => this.setState({ sortKey: k, dir: k === sortKey ? -dir : 1 });
+    });
+    const meds = [['all', 'All medicines', 'सभी दवाएँ'], ['Metformin', 'Metformin', 'मेटफॉर्मिन'], ['Glimepiride', 'Glimepiride', 'ग्लिमेपिराइड'], ['Amlodipine', 'Amlodipine', 'एम्लोडिपिन'], ['Telmisartan', 'Telmisartan', 'टेल्मिसार्टन']];
+    const worst = [
+      ['Sundarpur PHC', 'सुंदरपुर PHC', 'out', 'Out · ख़त्म'], ['Amarpur PHC', 'अमरपुर PHC', 'low', 'Low · कम'], ['Shantipur PHC', 'शांतिपुर PHC', 'low', 'Low · कम'],
+      ['Navgram PHC', 'नवग्राम PHC', 'low', 'Low · कम'], ['Udaypur PHC', 'उदयपुर PHC', 'low', 'Low · कम'], ['Nayagaon PHC', 'नयागाँव PHC', 'ok', 'OK · ठीक']
+    ];
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk', hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }), setEn: () => this.setState({ lang: 'en' }),
+      rows: rows, h: h, a: a, s: sset, rot: dir === 1 ? 'none' : 'rotate(180deg)',
+      centre: centre, onCentre: (e) => this.setState({ centre: e.target.value }),
+      warnOnly: warnOnly, toggleWarn: () => this.setState({ warnOnly: !warnOnly }),
+      medChips: meds.map((m) => ({ en: m[1], hi: m[2], on: med === m[0], pick: () => this.setState({ med: m[0] }) })),
+      centres: worst.map((c) => ({ en: c[0], hi: c[1], st: c[2], label: c[3], icon: c[2] === 'out' ? '#i-out-of-stock' : c[2] === 'low' ? '#i-alert' : '#i-check-circle', cls: centre === c[0] ? 'is-on' : '', pick: () => this.setState({ centre: centre === c[0] ? 'all' : c[0] }) })),
+      countEn: rows.length + ' of 24 rows · click a column to sort · Sundarpur × Metformin opens its detail',
+      countHi: '24 में से ' + rows.length + ' पंक्तियाँ'
+    };
+  }
+}
+</script>
+</body>
+</html>

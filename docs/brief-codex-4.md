@@ -1,0 +1,3 @@
+Continue as backend engineer (network allowed). Read docs/CONTRACT.md (now v0.3 — see "v0.3 additions") and docs/TASKS.md. Do B10, B11, B12, B13 in that order.
+Key honesty rule for B10/B13: do NOT generate evaluation data from the same formula the product uses — build an independent "true demand" simulator (patients with irregular adherence, unenrolled patients, outside purchases), then derive what each method would observe. Report where our method loses. No invented numbers in docs.
+Rules: edit only backend/ (eval/ and scripts/ live inside backend/); keep ruff clean and the full pytest suite green; add tests for new endpoints; update docs/notes-codex.md with real outputs (test summary, eval tables). No commit, push or deploy.

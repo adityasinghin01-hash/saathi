@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Verify a report — pharmacist app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.fact{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:var(--radius-md);background:var(--paper)}
+.fact .k{font:500 12px/18px var(--font-sans);color:var(--ink-muted)}
+.fact .v{font:600 16px/22px var(--font-sans);font-variant-numeric:tabular-nums}
+.ch{padding:12px 14px 12px 12px;gap:12px;min-height:72px}
+.ch .ci{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 1320px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-out-of-stock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M6 6l12 12"></path></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-language" viewBox="0 0 24 24"><path d="M3.5 5.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-3.5 3v-3h0a2 2 0 0 1-2-2z"></path><path d="M15.5 9.5h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2v3l-3.5-3h-3a2 2 0 0 1-2-2v-1"></path><path d="M7 6.5h5M9.5 6.5v3.5"></path></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none">
+<a class="sa-iconbtn" href="M-Shell-Pharmacist.dc.html" aria-label="Back · पीछे"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">रिपोर्ट जाँचें</span><span lang="en">Verify report</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</header>
+
+<main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<section class="sa-card" style="gap: 12px">
+<div class="sa-card-head">
+<span style="display: flex; gap: 12px; align-items: center"><span class="sa-avatar sa-avatar--sunk">RA</span><span style="display: flex; flex-direction: column"><span style="font: 600 18px/24px var(--font-sans)">Ramesh, 54 · रमेश</span><span class="m-caption" style="display: flex; gap: 4px; align-items: center"><svg class="ic ic-16" aria-hidden="true"><use href="#i-mic"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">by voice · 28 Sep, 9:40 am</span><span lang="hi">बोलकर</span></span></span></span></span>
+</div>
+<span class="sa-status sa-status--wait" style="align-self: flex-start"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Reported — not confirmed yet</span><span lang="hi">रिपोर्ट — पुष्टि बाकी</span></span></span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div class="fact"><span class="k"><span class="sa-bi sa-bi--inline"><span lang="en">Medicine</span><span lang="hi">दवा</span></span></span><span class="v">Metformin 500 mg</span></div>
+<div class="fact"><span class="k"><span class="sa-bi sa-bi--inline"><span lang="en">Came on</span><span lang="hi">कब आए</span></span></span><span class="v">26 Sep</span></div>
+<div class="fact"><span class="k"><span class="sa-bi sa-bi--inline"><span lang="en">Asked / got</span><span lang="hi">माँगी / मिली</span></span></span><span class="v">60 / 0</span></div>
+<div class="fact"><span class="k"><span class="sa-bi sa-bi--inline"><span lang="en">Left at home</span><span lang="hi">घर पर</span></span></span><span class="v">6 tablets</span></div>
+</div>
+</section>
+
+<section class="sa-card" style="gap: 8px">
+<span class="m-caption" style="font-weight: 600"><span class="sa-bi sa-bi--inline"><span lang="en">What he said</span><span lang="hi">उन्होंने क्या कहा</span></span></span>
+<blockquote lang="hi" style="margin: 0; padding: 4px 0 4px 12px; box-shadow: inset 3px 0 0 var(--line-strong); font: 400 16px/27px var(--font-hindi)">“26 तारीख़ को सुंदरपुर PHC गया था। मेटफॉर्मिन 500 की 60 गोलियाँ चाहिए थीं, एक भी नहीं मिली। घर पर 6 गोलियाँ बची हैं।”</blockquote>
+<p lang="en" class="m-caption" style="display: flex; gap: 6px; align-items: flex-start"><svg class="ic ic-16" aria-hidden="true" style="margin-top: 3px; flex: none"><use href="#i-language"></use></svg><span>“I went on the 26th. I needed 60 Metformin 500 tablets and got none. 6 left at home.”</span></p>
+</section>
+
+<section class="sa-card" style="gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font: 600 16px/22px var(--font-sans); --bi-2nd: 12px"><span class="sa-bi"><span lang="en">Stock on hand</span><span lang="hi">स्टॉक में</span></span></span>
+<span class="sa-age is-fresh"><span class="sa-age-dot"></span><span class="sa-bi sa-bi--inline"><span lang="en">updated 2 h ago</span><span lang="hi">2 घंटे पहले</span></span></span>
+</div>
+<div style="display: flex; align-items: baseline; gap: 8px"><span class="m-number" style="color: var(--status-out)">0</span><span class="m-caption"><span class="sa-bi"><span lang="en">tablets · your last count</span><span lang="hi">गोलियाँ · आपकी पिछली गिनती</span></span></span></div>
+<span class="m-caption" style="font-weight: 600; color: var(--ink)"><span class="sa-bi sa-bi--inline"><span lang="en">Count the shelf now</span><span lang="hi">अभी गिनें</span></span></span>
+<div class="stepper"><button type="button" onClick="{{dec}}" aria-label="10 fewer · 10 कम"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button><output aria-live="polite">{{count}}</output><button type="button" onClick="{{inc}}" aria-label="10 more · 10 ज़्यादा"><svg class="ic" aria-hidden="true"><use href="#i-plus"></use></svg></button></div>
+</section>
+
+<div role="radiogroup" aria-label="What did you find? · आपने क्या पाया?" style="display: flex; flex-direction: column; gap: 8px">
+<span style="font: 600 16px/22px var(--font-sans); --bi-2nd: 12px"><span class="sa-bi"><span lang="en">What did you find?</span><span lang="hi">आपने क्या पाया?</span></span></span>
+<button type="button" role="radio" aria-checked="{{c0}}" class="pick ch {{k0}}" onClick="{{p0}}"><span class="ci" style="background: var(--status-out-bg); color: var(--status-out)"><svg class="ic" aria-hidden="true"><use href="#i-out-of-stock"></use></svg></span><span style="flex-grow: 1; font: 600 17px/24px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="en">Out of stock</span><span lang="hi">स्टॉक ख़त्म</span></span></span><span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></button>
+<button type="button" role="radio" aria-checked="{{c1}}" class="pick ch {{k1}}" onClick="{{p1}}"><span class="ci" style="background: var(--status-ok-bg); color: var(--status-ok)"><svg class="ic" aria-hidden="true"><use href="#i-check-circle"></use></svg></span><span style="flex-grow: 1; font: 600 17px/24px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="en">Stock is available</span><span lang="hi">स्टॉक है</span></span></span><span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></button>
+<button type="button" role="radio" aria-checked="{{c2}}" class="pick ch {{k2}}" onClick="{{p2}}"><span class="ci" style="background: var(--status-wait-bg); color: var(--status-wait)"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span style="flex-grow: 1; font: 600 17px/24px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="en">Patient still has some at home</span><span lang="hi">मरीज़ के पास घर पर है</span></span></span><span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></button>
+</div>
+
+<a class="sa-btn sa-btn--block" href="{{next}}" style="--h: 56px"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="en">{{ctaEn}}</span><span lang="hi">{{ctaHi}}</span></span></a>
+<p class="m-caption" style="margin-top: -4px"><span class="sa-bi"><span lang="en">{{noteEn}}</span><span lang="hi">{{noteHi}}</span></span></p>
+<a class="story" href="W-Overview.dc.html"><span class="sa-bi"><span lang="en">Story: the district officer sees the warning</span><span lang="hi">कहानी: ज़िला अधिकारी को चेतावनी</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":1320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const c = s.choice == null ? 0 : s.choice;
+    const count = s.count == null ? 0 : s.count;
+    const cta = [['Confirm: out of stock', 'पुष्टि: स्टॉक ख़त्म'], ['Give medicine now', 'अभी दवा दें'], ['Mark as not urgent', 'ज़रूरी नहीं, दर्ज करें']];
+    const note = [
+      ['This turns the report into a confirmed shortage and alerts the district officer.', 'इससे ज़िला अधिकारी को चेतावनी जाएगी।'],
+      ['You’ll hand over the tablets on the next screen.', 'अगली स्क्रीन पर दवा सौंपें।'],
+      ['The case stays open; Ramesh gets a reminder to come back.', 'मामला खुला रहेगा; रमेश को याद दिलाया जाएगा।']
+    ];
+    const v = {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      count: count.toLocaleString('en-IN'),
+      dec: () => this.setState({ count: Math.max(0, count - 10) }),
+      inc: () => this.setState({ count: count + 10 }),
+      ctaEn: cta[c][0], ctaHi: cta[c][1], noteEn: note[c][0], noteHi: note[c][1],
+      next: c === 1 ? 'M-Receive-Give.dc.html' : 'M-Shell-Pharmacist.dc.html'
+    };
+    [0, 1, 2].forEach((i) => { v['c' + i] = c === i; v['k' + i] = c === i ? 'is-on' : ''; v['p' + i] = () => this.setState({ choice: i }); });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

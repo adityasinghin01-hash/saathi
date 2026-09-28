@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Choose language — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.pv-0{font-size:18px;line-height:30px}.pv-1{font-size:21px;line-height:34px}.pv-2{font-size:24px;line-height:38px}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 800px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-language" viewBox="0 0 24 24"><path d="M3.5 5.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-3.5 3v-3h0a2 2 0 0 1-2-2z"></path><path d="M15.5 9.5h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2v3l-3.5-3h-3a2 2 0 0 1-2-2v-1"></path><path d="M7 6.5h5M9.5 6.5v3.5"></path></symbol>
+</defs></svg>
+<div style="height: 64px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 8px">
+<a class="sa-iconbtn" href="M-Welcome.dc.html" aria-label="पीछे · Back"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg></a>
+<div class="dots" aria-label="कदम 1 / 3 · Step 1 of 3"><i class="on"></i><i></i><i></i></div>
+<span style="width: 48px"></span>
+</div>
+<main style="flex-grow: 1; display: flex; flex-direction: column; gap: 16px; padding: 8px 16px 0">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="m-title hd" style="--bi-2nd: 16px"><span class="sa-bi"><span lang="hi">अपनी भाषा चुनें</span><span lang="en">Choose your language</span></span></h1>
+</div>
+<div role="radiogroup" aria-label="भाषा · Language" style="display: flex; flex-direction: column; gap: 12px">
+<button type="button" role="radio" aria-checked="{{hiOn}}" class="pick {{hiCls}}" onClick="{{setHi}}">
+<span class="pick-art g-clay" style="width: 64px; height: 64px; font: 700 34px/1 var(--font-display); color: var(--clay-ink)">अ</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 700 22px/32px var(--font-display)">हिंदी</span><span class="m-caption">Hindi · नमस्ते, रमेश जी</span></span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+<button type="button" role="radio" aria-checked="{{enOn}}" class="pick {{enCls}}" onClick="{{setEn}}">
+<span class="pick-art g-mari" style="width: 64px; height: 64px; font: 700 34px/1 var(--font-display); color: var(--ink)">A</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 700 22px/32px var(--font-display)">English</span><span class="m-caption">अंग्रेज़ी · Hello, Ramesh</span></span>
+<span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span>
+</button>
+</div>
+<div class="sa-card" style="gap: 12px; margin-top: 4px">
+<span class="m-heading" style="font-size: 17px; line-height: 26px; --bi-2nd: 14px"><span class="sa-bi"><span lang="hi">अक्षर का आकार</span><span lang="en">Text size</span></span></span>
+<div class="tsz" role="group" aria-label="अक्षर का आकार · Text size">
+<button type="button" aria-pressed="{{s0}}" onClick="{{size0}}" style="font-size: 16px">अ</button>
+<button type="button" aria-pressed="{{s1}}" onClick="{{size1}}" style="font-size: 20px">अ+</button>
+<button type="button" aria-pressed="{{s2}}" onClick="{{size2}}" style="font-size: 24px">अ++</button>
+</div>
+<p class="{{pvCls}}" style="margin: 0; padding: 12px 14px; border-radius: var(--radius-md); background: var(--paper-sunk)"><span class="sa-bi"><span lang="hi">आपकी अगली दवा 3 दिन में मिलेगी</span><span lang="en">Your next refill is in 3 days</span></span></p>
+</div>
+<p class="m-caption" style="display: flex; gap: 8px; align-items: flex-start; padding: 0 4px"><svg class="ic ic-20" aria-hidden="true" style="margin-top: 1px"><use href="#i-language"></use></svg><span class="sa-bi"><span lang="hi">आप इसे कभी भी सेटिंग्स में बदल सकते हैं</span><span lang="en">You can change this anytime in Settings</span></span></p>
+</main>
+<div style="flex: none; padding: 16px 16px 24px">
+<a class="sa-btn sa-btn--hero" href="M-Role.dc.html"><span class="sa-bi"><span lang="hi">आगे बढ़ें</span><span lang="en">Continue</span></span><svg class="ic ic-28" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'hi';
+    const size = s.size == null ? 0 : s.size;
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      hiCls: lang === 'hi' ? 'is-on' : '', enCls: lang === 'en' ? 'is-on' : '',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      s0: size === 0, s1: size === 1, s2: size === 2,
+      size0: () => this.setState({ size: 0 }),
+      size1: () => this.setState({ size: 1 }),
+      size2: () => this.setState({ size: 2 }),
+      pvCls: 'pv-' + size
+    };
+  }
+}
+</script>
+</body>
+</html>

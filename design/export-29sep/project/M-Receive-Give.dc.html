@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Receive transfer and give to patient — pharmacist app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.sec{font:600 12px/18px var(--font-sans);letter-spacing:.04em;color:var(--clay-ink);display:flex;gap:8px;align-items:center}
+.sec .num{width:24px;height:24px;border-radius:50%;background:var(--clay-600);color:var(--on-clay);display:grid;place-items:center;font:600 13px/1 var(--font-sans)}
+.bt{display:grid;grid-template-columns:1.1fr 1fr .8fr;padding:8px 12px;font:400 14px/20px var(--font-sans);font-variant-numeric:tabular-nums}
+.bt+.bt{box-shadow:inset 0 1px 0 var(--line)}
+.bt.h{font:600 12px/18px var(--font-sans);color:var(--ink-muted);background:var(--paper-sunk)}
+.locked{opacity:.45;pointer-events:none}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 1180px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11z"></path><path d="M13.5 9.5h4l3 3.5v3.5h-7"></path><circle cx="6.5" cy="17.5" r="1.8"></circle><circle cx="17" cy="17.5" r="1.8"></circle></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-hand-over" viewBox="0 0 24 24"><path d="M3 14.5h3.5l3.5 1.5h4a1.5 1.5 0 0 1 0 3H9.5"></path><path d="M13.5 18.5l5-2.3a1.6 1.6 0 0 1 1.5 2.8L14 21.5H3"></path><g transform="rotate(-45 14 8)"><rect x="9" y="5.5" width="10" height="5" rx="2.5"></rect><path d="M14 5.5v5"></path></g></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none">
+<a class="sa-iconbtn" href="M-Shell-Pharmacist.dc.html" aria-label="Back · पीछे"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">स्टॉक आया · दवा दें</span><span lang="en">Receive &amp; give</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</header>
+
+<main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<span class="sec"><span class="num">1</span><span class="sa-bi sa-bi--inline"><span lang="en">INCOMING TRANSFER</span><span lang="hi">आ रहा स्टॉक</span></span></span>
+<section class="sa-card" style="gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<span style="display: flex; gap: 6px; align-items: center; font: 600 15px/22px var(--font-sans)">Nayagaon <svg class="ic ic-20" aria-hidden="true" style="color: var(--clay-ink)"><use href="#i-transfer"></use></svg> Sundarpur</span>
+<sc-if value="{{notRec}}" hint-placeholder-val="{{true}}"><span class="sa-status sa-status--wait" style="min-height: 28px; font-size: 13px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-truck"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Arriving</span><span lang="hi">आ रहा</span></span></span></sc-if>
+<sc-if value="{{rec}}" hint-placeholder-val="{{false}}"><span class="sa-status sa-status--ok" style="min-height: 28px; font-size: 13px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Received</span><span lang="hi">मिल गया</span></span></span></sc-if>
+</div>
+<div style="display: flex; align-items: baseline; gap: 8px"><span class="m-number">2,400</span><span class="m-caption">tablets · Metformin 500 mg · गोलियाँ</span></div>
+<span class="m-caption"><span class="sa-bi"><span lang="en">Dispatched 29 Sep, 8:30 am · approved by Dr. Mehra</span><span lang="hi">29 सितंबर सुबह 8:30 भेजा · डॉ. मेहरा ने मंज़ूर किया</span></span></span>
+<div role="table" aria-label="Batches · बैच" style="border-radius: var(--radius-md); overflow: hidden; box-shadow: inset 0 0 0 1px var(--line)">
+<div class="bt h" role="row"><span role="columnheader">Batch · बैच</span><span role="columnheader">Expires · समाप्ति</span><span role="columnheader" style="text-align: right">Tablets</span></div>
+<div class="bt" role="row"><span role="cell">MF-2407</span><span role="cell">Mar 2027</span><span role="cell" style="text-align: right">1,400</span></div>
+<div class="bt" role="row"><span role="cell">MF-2411</span><span role="cell">Jul 2027</span><span role="cell" style="text-align: right">1,000</span></div>
+</div>
+<span style="font: 600 15px/22px var(--font-sans); --bi-2nd: 12px"><span class="sa-bi"><span lang="en">Tablets you counted</span><span lang="hi">आपने कितनी गिनीं</span></span></span>
+<div class="stepper"><button type="button" onClick="{{recDec}}" aria-label="10 fewer · 10 कम"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button><output aria-live="polite">{{recTxt}}</output><button type="button" onClick="{{recInc}}" aria-label="10 more · 10 ज़्यादा"><svg class="ic" aria-hidden="true"><use href="#i-plus"></use></svg></button></div>
+<sc-if value="{{short}}" hint-placeholder-val="{{false}}"><p class="sa-help is-error" style="margin: 0"><svg class="ic ic-16" aria-hidden="true" style="margin-top: 3px"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="en">{{shortEn}}</span><span lang="hi">{{shortHi}}</span></span></p></sc-if>
+<button type="button" class="sa-btn sa-btn--block {{recBtn}}" onClick="{{markRec}}"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="en">{{recEn}}</span><span lang="hi">{{recHi}}</span></span></button>
+</section>
+
+<span class="sec"><span class="num">2</span><span class="sa-bi sa-bi--inline"><span lang="en">GIVE TO PATIENT</span><span lang="hi">मरीज़ को दें</span></span></span>
+<section class="sa-card {{giveCls}}" style="gap: 12px">
+<sc-if value="{{notRec}}" hint-placeholder-val="{{true}}"><p class="m-caption" style="display: flex; gap: 6px; align-items: center"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Mark the stock received first</span><span lang="hi">पहले स्टॉक प्राप्त दर्ज करें</span></span></p></sc-if>
+<div style="display: flex; gap: 12px; align-items: center">
+<span class="sa-avatar sa-avatar--sunk">RA</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column"><span style="font: 600 17px/24px var(--font-sans)">Ramesh, 54 · रमेश</span><span class="m-caption"><span class="sa-bi"><span lang="en">1 of 14 waiting · asked 60 on 26 Sep</span><span lang="hi">14 में से 1 · 26 सितंबर को 60 माँगीं</span></span></span></span>
+</div>
+<span style="font: 600 15px/22px var(--font-sans); --bi-2nd: 12px"><span class="sa-bi"><span lang="en">Tablets to give now</span><span lang="hi">अभी कितनी दें</span></span></span>
+<div class="stepper"><button type="button" onClick="{{gDec}}" aria-label="10 fewer · 10 कम"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button><output aria-live="polite">{{give}}</output><button type="button" onClick="{{gInc}}" aria-label="10 more · 10 ज़्यादा"><svg class="ic" aria-hidden="true"><use href="#i-plus"></use></svg></button></div>
+<div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap">
+<span style="font: 600 15px/22px var(--font-sans); font-variant-numeric: tabular-nums"><span class="sa-bi sa-bi--inline"><span lang="en">Given {{give}} / asked 60</span><span lang="hi">दी {{give}} / माँगी 60</span></span></span>
+<sc-if value="{{full}}" hint-placeholder-val="{{true}}"><span class="sa-status sa-status--ok" style="min-height: 28px; font-size: 13px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Full</span><span lang="hi">पूरी</span></span></span></sc-if>
+<sc-if value="{{partial}}" hint-placeholder-val="{{false}}"><span class="sa-status sa-status--low" style="min-height: 28px; font-size: 13px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">{{owedEn}}</span><span lang="hi">{{owedHi}}</span></span></span></sc-if>
+</div>
+<p class="m-caption" style="margin-top: -4px"><span class="sa-bi"><span lang="en">Partial is fine — the case stays open for what’s still owed.</span><span lang="hi">कम देना ठीक है — बाकी के लिए मामला खुला रहेगा।</span></span></p>
+<a class="sa-btn sa-btn--hero" href="M-Closed.dc.html"><svg class="ic ic-28" aria-hidden="true"><use href="#i-hand-over"></use></svg><span class="sa-bi"><span lang="en">Hand over medicine</span><span lang="hi">दवा सौंपें</span></span></a>
+</section>
+<a class="story" href="M-Closed.dc.html"><span class="sa-bi"><span lang="en">Story: what Ramesh sees next</span><span lang="hi">कहानी: रमेश को क्या दिखता है</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const rec = !!s.rec;
+    const got = s.got == null ? 2400 : s.got;
+    const give = s.give == null ? 60 : s.give;
+    const fmt = (n) => n.toLocaleString('en-IN');
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      rec: rec, notRec: !rec, giveCls: rec ? '' : 'locked',
+      recTxt: fmt(got),
+      recDec: () => this.setState({ got: Math.max(0, got - 10) }),
+      recInc: () => this.setState({ got: Math.min(2400, got + 10) }),
+      short: got < 2400, shortEn: (2400 - got) + ' fewer than sent — the district is told', shortHi: 'भेजे से ' + (2400 - got) + ' कम — ज़िले को बताया जाएगा',
+      markRec: () => this.setState({ rec: true }),
+      recBtn: rec ? 'is-success' : '',
+      recEn: rec ? 'Received · 1:10 pm' : 'Mark received', recHi: rec ? 'प्राप्त · 1:10' : 'प्राप्त दर्ज करें',
+      give: give,
+      gDec: () => this.setState({ give: Math.max(10, give - 10) }),
+      gInc: () => this.setState({ give: Math.min(60, give + 10) }),
+      full: give >= 60, partial: give < 60,
+      owedEn: (60 - give) + ' still owed', owedHi: (60 - give) + ' बाकी'
+    };
+  }
+}
+</script>
+</body>
+</html>

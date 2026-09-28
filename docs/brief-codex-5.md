@@ -1,0 +1,11 @@
+Continue as backend engineer (network allowed). Claude reviewed B10: the evaluation is honest and good. Its finding: prescription-based cohort_need assumes 100% adherence, so it over-forecasts (MAE ~5x dispensing-only, 1/3 false alerts) while cutting unmet patient-days ~99%. The `max` combination rule therefore just copies cohort_need.
+
+B14 — adherence-calibrated forecast:
+1. Add `calibrated_cohort_need`: per patient, estimate the proportion of days covered (PDC) from their own dispensing history (standard pharmacy metric; shrink toward the facility mean PDC when a patient has little history, e.g. Bayesian/beta shrinkage), multiply prescription need by it; unenrolled demand is covered by the dispensing forecast residual.
+2. New combination rule: combined = calibrated_cohort_need + max(0, dispensing_forecast_for_unenrolled_share) — document the exact formula; no double counting (subtract enrolled patients' dispensing from the dispensing series before forecasting the residual).
+3. Update the eval (same independent simulator; do NOT tune on the test repetitions — tune any shrinkage strength on separate repetitions): add metrics `overstock_units` (mean stock above 30 days of true need) and `stockout_days`, keep MAE, false alerts, unmet patient-days, lead days. Compare dispensing_only, prescription_only, calibrated, new combined. Report honestly where each wins/loses.
+4. Update docs/CONTRACT.md? NO — write the proposed formula in docs/notes-codex.md under "Proposed CONTRACT change" for Claude to approve; implement it behind a setting `DEMAND_RULE=calibrated|max` defaulting to `max` until approved.
+
+B15 — Gemini resilience: retry with exponential backoff + jitter on 429/503 (max ~3 tries, total < 10 s), then fall back to the deterministic fake and mark responses `ai_source: "fallback"` in API output. The .env in backend/ now holds a working GEMINI_API_KEY and GEMINI_MODEL=gemini-3.8-flash (never print or log the key). Load backend/.env at startup (python-dotenv) if present. Try the opt-in live test and the extraction eval once live; Google was returning 503 high-demand recently — if still 503, record that and move on.
+
+Rules: edit only backend/; ruff clean; full pytest green; real outputs in docs/notes-codex.md. No commit, push, deploy.

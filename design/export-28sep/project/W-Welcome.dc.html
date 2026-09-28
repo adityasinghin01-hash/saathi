@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Welcome — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 900px; background: var(--paper); color: var(--ink); display: flex; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-language" viewBox="0 0 24 24"><path d="M3.5 5.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-3.5 3v-3h0a2 2 0 0 1-2-2z"></path><path d="M15.5 9.5h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2v3l-3.5-3h-3a2 2 0 0 1-2-2v-1"></path><path d="M7 6.5h5M9.5 6.5v3.5"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+</defs></svg>
+
+<!-- left: warm brand panel with the clay scene -->
+<aside style="width: 640px; flex: none; position: relative; background: var(--clay-100); overflow: hidden; display: flex; flex-direction: column; padding: 40px 56px 48px">
+<img src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi" style="height: 44px; width: auto; align-self: flex-start">
+<div role="img" aria-label="A clay scene: medicine travels by van from a health centre to a patient’s home · दवा केंद्र से घर तक" style="position: relative; flex-grow: 1">
+<div style="position: absolute; left: -20px; top: 40px; width: 300px; height: 300px; border-radius: 50%; background: var(--marigold-100)"></div>
+<div style="position: absolute; left: 250px; top: 220px; width: 320px; height: 320px; border-radius: 50%; background: var(--leaf-100)"></div>
+<svg width="528" height="560" viewBox="0 0 528 560" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+<path class="road" d="M130 290 C 220 300, 220 430, 380 424" style="stroke-width: 26"></path>
+<path class="road-dots" d="M130 290 C 220 300, 220 430, 380 424"></path>
+<g transform="rotate(-40 470 110)"><rect x="448" y="100" width="22" height="20" rx="10" style="fill: var(--clay-600)"></rect><rect x="470" y="100" width="22" height="20" rx="10" style="fill: var(--marigold-400)"></rect></g>
+<g transform="rotate(-40 60 480)"><rect x="38" y="470" width="22" height="20" rx="10" style="fill: var(--paper-raised)"></rect><rect x="60" y="470" width="22" height="20" rx="10" style="fill: var(--marigold-400)"></rect></g>
+</svg>
+<img src="/_blob/a6525a3b924284bc4c89308e7bb333a3" alt="" style="position: absolute; left: 0; top: 60px; width: 260px; height: 260px; object-fit: contain">
+<img src="/_blob/aed83e5dcc43aa4fc266df1fedad29ec" alt="" style="position: absolute; left: 170px; top: 300px; width: 170px; height: 170px; object-fit: contain">
+<img src="/_blob/583792078e9f13de2bd11ff11486580f" alt="" style="position: absolute; left: 280px; top: 250px; width: 250px; height: 250px; object-fit: contain">
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p class="d-h2 hd" style="--bi-2nd: 17px"><span class="sa-bi"><span lang="hi">दवा समय पर, घर तक</span><span lang="en">Every refill, reaching home</span></span></p>
+<span class="sa-demo" style="align-self: flex-start"><span class="sa-bi sa-bi--inline"><span lang="hi">नमूना डेटा</span><span lang="en">SYNTHETIC DEMO DATA</span></span></span>
+</div>
+</aside>
+
+<!-- right: welcome + language -->
+<main style="flex-grow: 1; display: flex; flex-direction: column; padding: 32px 56px 48px">
+<div style="height: 48px; display: flex; align-items: center; justify-content: space-between">
+<a class="sa-btn sa-btn--ghost sa-btn--web" href="Main.dc.html"><svg class="ic ic-20" aria-hidden="true"><use href="#i-arrow-left"></use></svg><span class="sa-bi"><span lang="hi">होम पर वापस</span><span lang="en">Back to home</span></span></a>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</div>
+<div style="flex-grow: 1; display: flex; align-items: center; justify-content: center">
+<div style="width: 520px; display: flex; flex-direction: column; gap: 28px">
+<div class="dots" aria-label="Step 1 of 3 · कदम 1 / 3"><i class="on"></i><i></i><i></i></div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h1 class="d-h1 hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">साथी में आपका स्वागत है</span><span lang="en">Welcome to Saathi</span></span></h1>
+<p class="d-body muted" style="--bi-2nd: 14px"><span class="sa-bi"><span lang="hi">तीन छोटे कदम, फिर आप डेमो में होंगे।</span><span lang="en">Three small steps and you’re in the demo.</span></span></p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span class="d-label" style="display: flex; gap: 8px; align-items: center"><svg class="ic ic-20" aria-hidden="true"><use href="#i-language"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">अपनी भाषा चुनें</span><span lang="en">Choose your language</span></span></span>
+<div role="radiogroup" aria-label="Language · भाषा" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<button type="button" role="radio" aria-checked="{{enOn}}" class="pick {{enCls}}" onClick="{{setEn}}" style="flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px">
+<span style="display: flex; justify-content: space-between; width: 100%; align-items: center"><span class="pick-art g-mari" style="width: 56px; height: 56px; font: 700 30px/1 var(--font-display); color: var(--ink)">A</span><span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></span>
+<span style="font: 700 22px/32px var(--font-display)">English</span>
+<span class="d-caption">अंग्रेज़ी · “Good morning, Dr. Mehra”</span>
+</button>
+<button type="button" role="radio" aria-checked="{{hiOn}}" class="pick {{hiCls}}" onClick="{{setHi}}" style="flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px">
+<span style="display: flex; justify-content: space-between; width: 100%; align-items: center"><span class="pick-art g-clay" style="width: 56px; height: 56px; font: 700 30px/1 var(--font-display); color: var(--clay-ink)">अ</span><span class="pick-radio"><svg class="ic ic-16" aria-hidden="true" style="stroke-width: 3"><use href="#i-check"></use></svg></span></span>
+<span style="font: 700 22px/32px var(--font-display)">हिंदी</span>
+<span class="d-caption">Hindi · “सुप्रभात, डॉ. मेहरा”</span>
+</button>
+</div>
+<p class="d-caption" style="display: flex; gap: 6px; align-items: center"><svg class="ic ic-16" aria-hidden="true" style="color: var(--status-ok)"><use href="#i-check-circle"></use></svg><span class="sa-bi sa-bi--inline"><span lang="hi">दोनों भाषाएँ हमेशा दिखेंगी — बस आगे कौन रहे, यह आप चुनें</span><span lang="en">Both languages always show — you choose which leads</span></span></p>
+</div>
+<a class="sa-btn sa-btn--block" href="W-Role.dc.html"><span class="sa-bi"><span lang="hi">आगे बढ़ें</span><span lang="en">Continue</span></span><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'en';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      hiCls: lang === 'hi' ? 'is-on' : '', enCls: lang === 'en' ? 'is-on' : '',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

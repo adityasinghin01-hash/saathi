@@ -1,0 +1,5 @@
+Implemented the Gemini adapter in [backend/app/domain/ai.py](/Users/aditya/dev/refill-loop/backend/app/domain/ai.py:132). It uses Vertex AI with ADC, falls back to `GEMINI_API_KEY` when available, and uses the deterministic fake when neither is configured. Voice extraction uses a strict JSON schema and validates the result; transfer rationales are rendered only from engine facts.
+
+**Verification:** Ruff passed; pytest reported **44 passed, 1 skipped**. The health and seeded district overview smoke requests both returned HTTP 200 with valid JSON (28 overview rows). Uvicorn was stopped.
+
+I checked B1–B6, B8, and B9 in [TASKS.md](/Users/aditya/dev/refill-loop/docs/TASKS.md:5) and recorded the outputs in [notes-codex.md](/Users/aditya/dev/refill-loop/docs/notes-codex.md:5). **B7 remains unchecked:** its opt-in live test reached Vertex but failed because billing is not enabled for the ADC project. No commit, push, or deploy was performed.

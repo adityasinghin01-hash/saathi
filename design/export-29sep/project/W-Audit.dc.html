@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit trail drawer over case board — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.col{background:var(--paper-sunk);border-radius:var(--radius-lg);padding:10px;display:flex;flex-direction:column;gap:10px;min-height:640px}
+.colh{display:flex;align-items:center;gap:6px;padding:4px 4px 2px;font:600 14px/20px var(--font-sans)}
+.colh .sa-bi{--bi-2nd:12px}
+.colh .n{margin-left:auto;min-width:24px;height:22px;padding:0 7px;border-radius:11px;background:var(--paper-raised);font:600 12px/22px var(--font-sans);text-align:center}
+.kc{display:flex;flex-direction:column;gap:6px;padding:12px;border:0;border-radius:var(--radius-md);background:var(--paper-raised);box-shadow:var(--elev-1);text-align:left;color:var(--ink);text-decoration:none;cursor:pointer;transition:transform 110ms,box-shadow 200ms}
+.kc:hover{box-shadow:var(--elev-2);transform:translateY(-1px)}
+.kc.is-story{box-shadow:inset 0 0 0 2px var(--clay-600),var(--elev-1)}
+.kc-top{display:flex;align-items:center;gap:8px}
+.kc-med{font:600 14px/20px var(--font-sans)}
+.kc-phc{font:400 13px/18px var(--font-sans);color:var(--ink-muted)}
+.kc .sa-age{min-height:24px;font-size:12px;margin-left:auto}
+.more{padding:10px 12px;border-radius:var(--radius-md);box-shadow:inset 0 0 0 1.5px var(--line-strong);font:500 13px/18px var(--font-sans);color:var(--ink-muted)}
+.ev{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:12px;padding:12px 0;position:relative}
+.ev+.ev{box-shadow:inset 0 1px 0 var(--line)}
+.ev-ic{width:36px;height:36px;border-radius:12px;display:grid;place-items:center}
+.ev-who{font:600 14px/20px var(--font-sans)}
+.ev-role{font:500 12px/18px var(--font-sans);color:var(--ink-muted)}
+.ev-what{font:400 14px/20px var(--font-sans);margin-top:2px}
+.ev-time{font:500 12px/18px var(--font-sans);color:var(--ink-muted);font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 960px; background: var(--paper); color: var(--ink); display: flex; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.00 3.00 L13.76 3.17 L14.68 5.53 L15.89 6.18 L18.36 5.64 L19.48 7.00 L18.47 9.32 L18.87 10.63 L21.00 12.00 L20.83 13.76 L18.47 14.68 L17.82 15.89 L18.36 18.36 L17.00 19.48 L14.68 18.47 L13.37 18.87 L12.00 21.00 L10.24 20.83 L9.32 18.47 L8.11 17.82 L5.64 18.36 L4.52 17.00 L5.53 14.68 L5.13 13.37 L3.00 12.00 L3.17 10.24 L5.53 9.32 L6.18 8.11 L5.64 5.64 L7.00 4.52 L9.32 5.53 L10.63 5.13Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7"></path><path d="M10.5 12h9M16.5 8.5 20 12l-3.5 3.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5"></path></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11z"></path><path d="M13.5 9.5h4l3 3.5v3.5h-7"></path><circle cx="6.5" cy="17.5" r="1.8"></circle><circle cx="17" cy="17.5" r="1.8"></circle></symbol>
+<symbol id="i-suggest" viewBox="0 0 24 24"><path d="M9 17.5h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.6 10.8c.4.3.6.8.6 1.3v.9h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3z"></path></symbol>
+<symbol id="i-hand-over" viewBox="0 0 24 24"><path d="M3 14.5h3.5l3.5 1.5h4a1.5 1.5 0 0 1 0 3H9.5"></path><path d="M13.5 18.5l5-2.3a1.6 1.6 0 0 1 1.5 2.8L14 21.5H3"></path><g transform="rotate(-45 14 8)"><rect x="9" y="5.5" width="10" height="5" rx="2.5"></rect><path d="M14 5.5v5"></path></g></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"></path></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10-10a2.1 2.1 0 0 0-3-3l-10 10z"></path><path d="M13.5 8.5l3 3"></path></symbol>
+</defs></svg>
+
+<aside class="sa-sidebar" style="flex: none; height: 960px">
+<img class="sa-sidebar-logo" src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi">
+<a class="sa-nav" href="W-Shell.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg><span class="sa-bi"><span lang="hi">अवलोकन</span><span lang="en">Overview</span></span></a>
+<a class="sa-nav" href="W-Evaluation.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="hi">चेतावनी</span><span lang="en">Early warnings</span></span><span class="sa-nav-count">5</span></a>
+<a class="sa-nav" href="W-Cases.dc.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></a>
+<a class="sa-nav" href="W-Transfers.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-transfer"></use></svg><span class="sa-bi"><span lang="hi">स्थानांतरण</span><span lang="en">Transfers</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi"><span lang="hi">नक्शा</span><span lang="en">Map</span></span></a>
+<div class="sa-sidebar-foot">
+<a class="sa-nav" href="W-Settings.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">मदद</span><span lang="en">Help</span></span></button>
+<a class="sa-nav" href="W-Logout.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-logout"></use></svg><span class="sa-bi"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></a>
+</div>
+</aside>
+
+<div class="web-main">
+<header class="sa-topbar sa-topbar--web" style="flex: none">
+<div class="sa-topbar-title" style="flex: 1 0 auto"><span class="sa-bi"><span lang="hi">मामले · सूर्यनगर</span><span lang="en">Cases · Suryanagar</span></span></div>
+<span class="sa-demo">SYNTHETIC DEMO DATA</span>
+<span class="sa-age is-fresh"><span class="sa-age-dot"></span><span class="sa-bi sa-bi--inline"><span lang="hi">अभी अपडेट</span><span lang="en">updated 29 Sep, 10:00 am</span></span></span>
+<label class="sa-input sa-input--web" style="width: 220px"><span class="sa-adorn"><svg class="ic ic-20" aria-hidden="true"><use href="#i-search"></use></svg></span><input placeholder="Search patient or centre · खोजें" aria-label="Search · खोजें"></label>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="W-Shell.dc.html" aria-label="Notifications · सूचनाएँ"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+<a class="sa-avbtn" href="W-Profile.dc.html" aria-label="Dr. Mehra — profile · प्रोफ़ाइल"><span class="sa-avatar">DM</span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></a>
+</header>
+
+<main style="flex-grow: 1; padding: 24px 40px 32px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="d-h1 hd" style="--bi-2nd: 18px"><span class="sa-bi"><span lang="hi">मामलों का बोर्ड</span><span lang="en">Case board</span></span></h1>
+<p class="d-body-sm muted"><span class="sa-bi sa-bi--inline"><span lang="en">20 open · 6 closed this week · a report stays “Reported” until the pharmacist checks it</span><span lang="hi">20 खुले · फ़ार्मासिस्ट की जाँच तक “रिपोर्ट”</span></span></p>
+</div>
+<div style="display: flex; gap: 8px">
+<button type="button" class="sa-chip" aria-pressed="true"><span class="sa-bi sa-bi--inline"><span lang="en">All centres</span><span lang="hi">सभी केंद्र</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="sa-chip"><span class="sa-bi sa-bi--inline"><span lang="en">All medicines</span><span lang="hi">सभी दवाएँ</span></span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" class="sa-chip"><svg class="ic ic-20" aria-hidden="true"><use href="#i-filter"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Older than 2 days</span><span lang="hi">2 दिन से पुराने</span></span></button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; align-items: start">
+<section class="col" aria-label="Reported">
+<div class="colh"><svg class="ic ic-20" aria-hidden="true" style="color: var(--ink-muted)"><use href="#i-mic"></use></svg><span class="sa-bi"><span lang="en">Reported</span><span lang="hi">रिपोर्ट</span></span><span class="n">3</span></div>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">SA</span><span class="sa-age is-fresh"><span class="sa-age-dot"></span>2 h</span></span><span class="kc-med">Metformin 500 mg</span><span class="kc-phc">Sundarpur PHC · सुंदरपुर</span></button>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">KD</span><span class="sa-age is-fresh"><span class="sa-age-dot"></span>5 h</span></span><span class="kc-med">Amlodipine 5 mg</span><span class="kc-phc">Sundarpur PHC · सुंदरपुर</span></button>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">HS</span><span class="sa-age"><span class="sa-age-dot"></span>1 d</span></span><span class="kc-med">Telmisartan 40 mg</span><span class="kc-phc">Udaypur PHC · उदयपुर</span></button>
+</section>
+<section class="col" aria-label="Verified">
+<div class="colh"><svg class="ic ic-20" aria-hidden="true" style="color: var(--ink-muted)"><use href="#i-check"></use></svg><span class="sa-bi"><span lang="en">Verified</span><span lang="hi">जाँचा गया</span></span><span class="n">2</span></div>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">GE</span><span class="sa-age"><span class="sa-age-dot"></span>1 d</span></span><span class="kc-med">Metformin 500 mg</span><span class="kc-phc">Sundarpur PHC · सुंदरपुर</span></button>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">BR</span><span class="sa-age is-stale"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>2 d</span></span><span class="kc-med">Amlodipine 5 mg</span><span class="kc-phc">Shantipur PHC · शांतिपुर</span></button>
+</section>
+<section class="col" aria-label="Transfer">
+<div class="colh"><svg class="ic ic-20" aria-hidden="true" style="color: var(--ink-muted)"><use href="#i-truck"></use></svg><span class="sa-bi"><span lang="en">Transfer</span><span lang="hi">स्टॉक रास्ते में</span></span><span class="n">12</span></div>
+<button type="button" class="kc is-story" onClick="{{openAudit}}" aria-label="Ramesh, Metformin 500 mg, Sundarpur PHC — open audit trail"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">RA</span><span class="sa-age"><span class="sa-age-dot"></span>1 d</span></span><span class="kc-med">Metformin 500 mg</span><span class="kc-phc">Sundarpur PHC · Ramesh</span><span class="lnk" style="font-size: 12px">Audit trail · रिकॉर्ड</span></button>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">MK</span><span class="sa-age"><span class="sa-age-dot"></span>1 d</span></span><span class="kc-med">Metformin 500 mg</span><span class="kc-phc">Sundarpur PHC · सुंदरपुर</span></button>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">PD</span><span class="sa-age is-stale"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>6 d</span></span><span class="kc-med">Metformin 500 mg</span><span class="kc-phc">Sundarpur PHC · सुंदरपुर</span></button>
+<p class="more">+ 9 more · Sundarpur PHC, all Metformin, same transfer · 9 और</p>
+</section>
+<section class="col" aria-label="Received at centre">
+<div class="colh"><svg class="ic ic-20" aria-hidden="true" style="color: var(--ink-muted)"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="en">Received</span><span lang="hi">केंद्र पहुँची</span></span><span class="n">1</span></div>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">MS</span><span class="sa-age is-stale"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>3 d</span></span><span class="kc-med">Glimepiride 1 mg</span><span class="kc-phc">Amarpur PHC · अमरपुर</span></button>
+</section>
+<section class="col" aria-label="Supplied">
+<div class="colh"><svg class="ic ic-20" aria-hidden="true" style="color: var(--ink-muted)"><use href="#i-hand-over"></use></svg><span class="sa-bi"><span lang="en">Supplied</span><span lang="hi">दवा दी गई</span></span><span class="n">2</span></div>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">LK</span><span class="sa-age"><span class="sa-age-dot"></span>1 d</span></span><span class="kc-med">Glimepiride 1 mg</span><span class="kc-phc">Amarpur PHC · 30 of 30</span></button>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">JP</span><span class="sa-age"><span class="sa-age-dot"></span>1 d</span></span><span class="kc-med">Telmisartan 40 mg</span><span class="kc-phc">Navgram PHC · 20 of 30</span></button>
+</section>
+<section class="col" aria-label="Closed">
+<div class="colh"><svg class="ic ic-20" aria-hidden="true" style="color: var(--status-ok)"><use href="#i-check-circle"></use></svg><span class="sa-bi"><span lang="en">Closed</span><span lang="hi">बंद</span></span><span class="n">6</span></div>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">NV</span><span class="sa-status sa-status--ok" style="min-height: 24px; font-size: 12px; margin-left: auto; padding: 2px 8px 2px 4px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check-circle"></use></svg>Closed · बंद</span></span><span class="kc-med">Telmisartan 40 mg</span><span class="kc-phc">Udaypur PHC · 27 Sep</span></button>
+<button type="button" class="kc"><span class="kc-top"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">AK</span><span class="sa-status sa-status--ok" style="min-height: 24px; font-size: 12px; margin-left: auto; padding: 2px 8px 2px 4px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check-circle"></use></svg>Closed · बंद</span></span><span class="kc-med">Glimepiride 1 mg</span><span class="kc-phc">Amarpur PHC · 26 Sep</span></button>
+<p class="more">+ 4 more this week · 4 और</p>
+</section>
+</div>
+</main>
+</div>
+
+<!-- AUDIT TRAIL DRAWER -->
+<sc-if value="{{audit}}" hint-placeholder-val="{{false}}">
+<button type="button" class="scrim" aria-label="Close audit trail · बंद करें" onClick="{{closeAudit}}" style="border: 0; cursor: pointer"></button>
+<aside role="dialog" aria-modal="true" aria-labelledby="au-title" style="position: absolute; right: 0; top: 0; bottom: 0; width: 520px; background: var(--paper-raised); box-shadow: var(--elev-3); display: flex; flex-direction: column">
+<div style="padding: 20px 24px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 -1px 0 var(--line)">
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="en">Audit trail</span><span lang="hi">पूरा रिकॉर्ड</span></span></span><button type="button" class="sa-iconbtn" aria-label="Close · बंद करें" onClick="{{closeAudit}}"><svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg></button></div>
+<div style="display: flex; gap: 12px; align-items: center"><span class="sa-avatar sa-avatar--sunk">RA</span><div style="display: flex; flex-direction: column"><h2 id="au-title" class="d-h3"><span class="sa-bi"><span lang="en">Ramesh, 54 · Metformin 500 mg</span><span lang="hi">रमेश, 54 · मेटफॉर्मिन</span></span></h2><span class="d-caption">Sundarpur PHC · case opened 28 Sep, 9:40 am</span></div></div>
+<span class="sa-status sa-status--wait" style="align-self: flex-start"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Transfer on the way</span><span lang="hi">दवा रास्ते में</span></span></span>
+</div>
+<div style="flex-grow: 1; padding: 4px 24px; overflow: hidden">
+<div class="ev"><span class="ev-ic" style="background: var(--clay-100); color: var(--clay-ink)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-mic"></use></svg></span><div><div style="display: flex; justify-content: space-between; gap: 8px"><span class="ev-who">Ramesh <span class="ev-role">· Patient · मरीज़</span></span><span class="ev-time">28 Sep, 9:40 am</span></div><div class="ev-what">Reported by voice: asked 60, got 0 on 26 Sep; 6 tablets left at home.</div></div></div>
+<div class="ev"><span class="ev-ic" style="background: var(--leaf-100); color: var(--ink)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"></use></svg></span><div><div style="display: flex; justify-content: space-between; gap: 8px"><span class="ev-who">Sunita <span class="ev-role">· Pharmacist, Sundarpur PHC</span></span><span class="ev-time">28 Sep, 11:05 am</span></div><div class="ev-what">Verified: out of stock. Counted 0 tablets on hand.</div></div></div>
+<div class="ev"><span class="ev-ic" style="background: var(--status-low-bg); color: var(--status-low)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-alert"></use></svg></span><div><div style="display: flex; justify-content: space-between; gap: 8px"><span class="ev-who">Saathi <span class="ev-role">· System · सिस्टम</span></span><span class="ev-time">28 Sep, 11:06 am</span></div><div class="ev-what">Warning raised: Sundarpur × Metformin, 0 days left, 14 open cases.</div></div></div>
+<div class="ev"><span class="ev-ic" style="background: var(--marigold-100); color: var(--ink)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-suggest"></use></svg></span><div><div style="display: flex; justify-content: space-between; gap: 8px"><span class="ev-who">AI helper <span class="ev-role">· drafts only · सिर्फ़ मसौदा</span></span><span class="ev-time">28 Sep, 2:48 pm</span></div><div class="ev-what">Drafted transfer Nayagaon → Sundarpur, 2,400 tablets. All 3 checks passed. Waiting for approval.</div></div></div>
+<div class="ev"><span class="ev-ic" style="background: var(--clay-100); color: var(--clay-ink)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-check-circle"></use></svg></span><div><div style="display: flex; justify-content: space-between; gap: 8px"><span class="ev-who">Dr. Mehra <span class="ev-role">· District officer</span></span><span class="ev-time">28 Sep, 3:20 pm</span></div><div class="ev-what">Approved the transfer as drafted.</div></div></div>
+<div class="ev"><span class="ev-ic" style="background: var(--paper-sunk); color: var(--ink)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-truck"></use></svg></span><div><div style="display: flex; justify-content: space-between; gap: 8px"><span class="ev-who">Pharmacist <span class="ev-role">· Nayagaon PHC</span></span><span class="ev-time">29 Sep, 8:30 am</span></div><div class="ev-what">Dispatched 2,400 tablets · batches MF-2407, MF-2411.</div></div></div>
+<div class="ev" style="opacity: .75"><span class="ev-ic" style="box-shadow: inset 0 0 0 2px var(--status-wait-solid); color: var(--status-wait)"><svg class="ic ic-20" aria-hidden="true"><use href="#i-clock"></use></svg></span><div><div class="ev-who">Next · आगे</div><div class="ev-what">Sundarpur PHC counts and marks it received, then gives Ramesh his 60 tablets.</div></div></div>
+</div>
+<div style="padding: 16px 24px; display: flex; gap: 12px; align-items: center; box-shadow: inset 0 1px 0 var(--line)">
+<button type="button" class="sa-btn sa-btn--web sa-btn--outline"><span class="sa-bi sa-bi--inline"><span lang="en">Download record (CSV)</span><span lang="hi">रिकॉर्ड डाउनलोड</span></span></button>
+<span class="d-caption" style="margin-left: auto"><span class="sa-bi sa-bi--inline"><span lang="en">Records can’t be edited</span><span lang="hi">रिकॉर्ड बदला नहीं जा सकता</span></span></span>
+</div>
+</aside>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"auditOpen":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'en';
+    const audit = s.audit == null ? !!(this.props.auditOpen ?? true) : s.audit;
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      audit: audit,
+      openAudit: () => this.setState({ audit: true }),
+      closeAudit: () => this.setState({ audit: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

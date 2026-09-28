@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>App shell — pharmacist home</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 800px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"></circle><path d="M4.5 20c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"></path></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11z"></path><path d="M13.5 9.5h4l3 3.5v3.5h-7"></path><circle cx="6.5" cy="17.5" r="1.8"></circle><circle cx="17" cy="17.5" r="1.8"></circle></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+</defs></svg>
+
+<header class="sa-topbar" style="flex: none; padding: 0 8px">
+<a class="sa-avbtn" href="M-Profile.dc.html" aria-label="Profile · प्रोफ़ाइल" style="padding: 4px"><span class="sa-avatar sa-avatar--leaf">SU</span></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="M-Notifications.dc.html" aria-label="Notifications · सूचनाएँ"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+</header>
+
+<main style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<h1 class="m-title hd" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">सुप्रभात, सुनीता</span><span lang="en">Good morning, Sunita</span></span></h1>
+<span class="m-caption"><span class="sa-bi sa-bi--inline"><span lang="hi">सुंदरपुर PHC · फ़ार्मासिस्ट</span><span lang="en">Sundarpur PHC · Pharmacist</span></span></span>
+</div>
+<span class="sa-demo" style="margin-top: 6px">DEMO</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<a class="sa-card sa-card--action" href="M-Verify.dc.html" style="gap: 8px">
+<span style="width: 40px; height: 40px; border-radius: 12px; background: var(--clay-100); color: var(--clay-ink); display: grid; place-items: center"><svg class="ic ic-20" aria-hidden="true"><use href="#i-cases"></use></svg></span>
+<span class="m-number">6</span>
+<span style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="hi">जाँच बाकी</span><span lang="en">To verify</span></span></span>
+</a>
+<a class="sa-card sa-card--action" href="M-Receive-Give.dc.html" style="gap: 8px">
+<span style="width: 40px; height: 40px; border-radius: 12px; background: var(--marigold-100); color: var(--ink); display: grid; place-items: center"><svg class="ic ic-20" aria-hidden="true"><use href="#i-truck"></use></svg></span>
+<span class="m-number">1</span>
+<span style="font: 600 15px/22px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="hi">आज स्टॉक आ रहा</span><span lang="en">Arriving today</span></span></span>
+</a>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 class="m-heading" style="font-size: 18px; --bi-2nd: 13px"><span class="sa-bi"><span lang="hi">जाँच की कतार</span><span lang="en">Verify queue</span></span></h2>
+<a class="lnk" href="M-Verify.dc.html" style="font-size: 15px"><span class="sa-bi sa-bi--inline"><span lang="hi">सभी</span><span lang="en">See all</span></span></a>
+</div>
+<div class="sa-rows">
+<a class="sa-row" href="M-Verify.dc.html" style="min-height: 76px"><span class="sa-avatar sa-avatar--sunk">RA</span><span class="sa-row-main" style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 16px/22px var(--font-sans)">Ramesh · रमेश</span><span class="m-caption" style="display: flex; gap: 6px; align-items: center"><svg class="ic ic-16" aria-hidden="true"><use href="#i-mic"></use></svg>Metformin 500 mg · 12 min</span></span><span class="sa-row-chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></a>
+<a class="sa-row" href="M-Shell-Pharmacist.dc.html" style="min-height: 76px"><span class="sa-avatar sa-avatar--sunk">KD</span><span class="sa-row-main" style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 16px/22px var(--font-sans)">Kamla Devi · कमला</span><span class="m-caption" style="display: flex; gap: 6px; align-items: center"><svg class="ic ic-16" aria-hidden="true"><use href="#i-mic"></use></svg>Amlodipine 5 mg · 40 min</span></span><span class="sa-row-chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></a>
+<a class="sa-row" href="M-Shell-Pharmacist.dc.html" style="min-height: 76px"><span class="sa-avatar sa-avatar--mari">RE</span><span class="sa-row-main" style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 16px/22px var(--font-sans); --bi-2nd: 13px"><span class="sa-bi"><span lang="hi">आशा रेखा द्वारा · 2 मरीज़</span><span lang="en">via ASHA Rekha · 2 patients</span></span></span><span class="m-caption" style="display: flex; gap: 6px; align-items: center"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>Metformin 500 mg · 1 h</span></span><span class="sa-row-chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"></use></svg></span></a>
+</div>
+</main>
+
+<nav class="sa-tabbar" aria-label="Main · मुख्य" style="flex: none">
+<a class="sa-tab" href="M-Shell-Pharmacist.dc.html" aria-current="page"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="sa-bi"><span lang="hi">घर</span><span lang="en">Home</span></span></a>
+<a class="sa-tab" href="M-Verify.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg></span><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span><span class="sa-tab-count">6</span></a>
+<a class="sa-tab" href="M-Stock.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg></span><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></a>
+<a class="sa-tab" href="M-Profile.dc.html"><span class="sa-tab-pill"><svg class="ic" aria-hidden="true"><use href="#i-profile"></use></svg></span><span class="sa-bi"><span lang="hi">प्रोफ़ाइल</span><span lang="en">Profile</span></span></a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'en';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

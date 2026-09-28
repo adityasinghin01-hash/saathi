@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Welcome — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 800px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+</defs></svg>
+<div style="height: 64px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 16px">
+<img src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi" style="height: 32px; width: auto; display: block">
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</div>
+<main class="bi-c" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 0 24px; text-align: center">
+<div style="width: 240px; height: 240px; border-radius: 50%; background: var(--leaf-100); display: grid; place-items: center; position: relative">
+<img src="/_blob/583792078e9f13de2bd11ff11486580f" alt="" style="width: 224px; height: 224px; object-fit: contain">
+<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" style="position: absolute; right: 0; top: 18px"><g transform="rotate(-40 20 20)"><rect x="4" y="13" width="16" height="14" rx="7" style="fill: var(--paper-raised)"></rect><rect x="20" y="13" width="16" height="14" rx="7" style="fill: var(--marigold-400)"></rect></g></svg>
+</div>
+<h1 class="m-display hd" style="--bi-2nd: 20px"><span class="sa-bi"><span lang="hi">नमस्ते, स्वागत है</span><span lang="en">Namaste, welcome</span></span></h1>
+<p class="m-body-lg muted" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">दवा समय पर, घर तक — हम आपके साथ हैं।</span><span lang="en">Every refill, reaching home — we walk with you.</span></span></p>
+</main>
+<div style="flex: none; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 8px; align-items: stretch">
+<a class="sa-btn sa-btn--hero" href="M-Language.dc.html"><span class="sa-bi"><span lang="hi">शुरू करें</span><span lang="en">Let’s begin</span></span><svg class="ic ic-28" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+<a class="sa-btn sa-btn--ghost sa-btn--block" href="Landing-Mobile.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">साथी कैसे काम करता है</span><span lang="en">How Saathi works</span></span></a>
+<span class="sa-demo" style="align-self: center; margin-top: 4px"><span class="sa-bi sa-bi--inline"><span lang="hi">नमूना डेटा</span><span lang="en">SYNTHETIC DEMO DATA</span></span></span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'hi';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>

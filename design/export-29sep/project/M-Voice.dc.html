@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Voice report — app</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.caret{display:inline-block;width:2px;height:1.1em;margin-left:2px;vertical-align:-3px;background:var(--clay-600);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.caret{animation:none}}
+.rec-dot{width:10px;height:10px;border-radius:50%;background:var(--clay-600)}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 360px; height: 800px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10-10a2.1 2.1 0 0 0-3-3l-10 10z"></path><path d="M13.5 8.5l3 3"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></symbol>
+<symbol id="i-language" viewBox="0 0 24 24"><path d="M3.5 5.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-3.5 3v-3h0a2 2 0 0 1-2-2z"></path><path d="M15.5 9.5h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2v3l-3.5-3h-3a2 2 0 0 1-2-2v-1"></path><path d="M7 6.5h5M9.5 6.5v3.5"></path></symbol>
+</defs></svg>
+<header class="sa-topbar" style="flex: none">
+<a class="sa-iconbtn" href="M-Shell-Patient.dc.html" aria-label="पीछे · Back"><svg class="ic" aria-hidden="true"><use href="#i-arrow-left"></use></svg></a>
+<div class="sa-topbar-title"><span class="sa-bi"><span lang="hi">बोलकर बताएँ</span><span lang="en">Tell us by voice</span></span></div>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="भाषा · Language"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+</header>
+
+<main style="flex-grow: 1; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 class="m-title hd" style="--bi-2nd: 15px"><span class="sa-bi"><span lang="hi">क्या हुआ? बस बोलिए</span><span lang="en">What happened? Just speak</span></span></h1>
+<p class="m-caption"><span class="sa-bi"><span lang="hi">कौन-सी दवा, किस केंद्र पर, कब गए</span><span lang="en">Which medicine, which centre, when you went</span></span></p>
+</div>
+
+<sc-if value="{{voice}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0 4px">
+<button type="button" class="sa-mic {{micCls}}" aria-pressed="{{rec}}" onClick="{{toggleRec}}" aria-label="{{micLabel}}" style="width: 120px; height: 120px"><svg class="ic" aria-hidden="true" style="width: 48px; height: 48px"><use href="#i-mic"></use></svg></button>
+<span style="display: flex; gap: 8px; align-items: center; font: 600 15px/22px var(--font-sans)"><sc-if value="{{rec}}" hint-placeholder-val="{{true}}"><span class="rec-dot"></span></sc-if><span style="font-variant-numeric: tabular-nums">0:12</span><span class="sa-bi sa-bi--inline"><span lang="hi">{{statusHi}}</span><span lang="en">{{statusEn}}</span></span></span>
+</div>
+<section class="sa-card" aria-live="polite" style="gap: 8px">
+<span class="m-caption" style="font-weight: 600"><span class="sa-bi sa-bi--inline"><span lang="hi">हमने यह सुना</span><span lang="en">What we heard</span></span></span>
+<p lang="hi" style="margin: 0; font: 400 18px/30px var(--font-hindi)">26 तारीख़ को सुंदरपुर PHC गया था। मेटफॉर्मिन 500 की 60 गोलियाँ चाहिए थीं, एक भी नहीं मिली। घर पर 6 गोलियाँ बची हैं<span class="caret"></span></p>
+<p lang="en" class="m-caption" style="display: flex; gap: 6px; align-items: flex-start"><svg class="ic ic-16" aria-hidden="true" style="margin-top: 3px; flex: none"><use href="#i-language"></use></svg><span>I went to Sundarpur PHC on the 26th. I needed 60 Metformin 500 tablets and got none. 6 left at home.</span></p>
+</section>
+</sc-if>
+
+<sc-if value="{{typing}}" hint-placeholder-val="{{false}}">
+<label class="sa-field">
+<span class="sa-field-label"><span class="sa-bi"><span lang="hi">लिखकर बताएँ</span><span lang="en">Type what happened</span></span></span>
+<span class="sa-input" style="align-items: flex-start"><textarea rows="5" placeholder="जैसे: सुंदरपुर PHC पर मेटफॉर्मिन नहीं मिली · e.g. Didn’t get Metformin at Sundarpur PHC" style="font-size: 18px; min-height: 160px"></textarea></span>
+<span class="sa-help"><span class="sa-bi"><span lang="hi">हिंदी या अंग्रेज़ी, जैसे आसान लगे</span><span lang="en">Hindi or English, whichever is easier</span></span></span>
+</label>
+</sc-if>
+</main>
+
+<div style="flex: none; padding: 12px 16px 20px; display: flex; flex-direction: column; gap: 8px">
+<a class="sa-btn sa-btn--hero" href="M-Confirm.dc.html"><span class="sa-bi"><span lang="hi">{{ctaHi}}</span><span lang="en">{{ctaEn}}</span></span><svg class="ic ic-28" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" class="sa-btn sa-btn--outline" onClick="{{toggleType}}" style="padding: 8px 12px; font-size: 16px"><svg class="ic" aria-hidden="true"><use href="{{altIcon}}"></use></svg><span class="sa-bi"><span lang="hi">{{altHi}}</span><span lang="en">{{altEn}}</span></span></button>
+<a class="sa-btn sa-btn--ghost" href="M-Shell-Patient.dc.html" style="padding: 8px 12px; font-size: 16px"><svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg><span class="sa-bi"><span lang="hi">रद्द करें</span><span lang="en">Cancel</span></span></a>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":360,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const lang = s.lang || 'hi';
+    const typing = !!s.typing;
+    const rec = s.rec == null ? true : s.rec;
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      typing: typing, voice: !typing, rec: rec,
+      micCls: rec ? 'is-listening' : '',
+      micLabel: rec ? 'रोकें · Pause' : 'बोलना शुरू करें · Start speaking',
+      toggleRec: () => this.setState({ rec: !rec }),
+      statusHi: rec ? 'सुन रहे हैं…' : 'रुका हुआ', statusEn: rec ? 'Listening…' : 'Paused',
+      toggleType: () => this.setState({ typing: !typing }),
+      altIcon: typing ? '#i-mic' : '#i-edit',
+      altHi: typing ? 'बोलकर बताएँ' : 'लिखकर बताएँ', altEn: typing ? 'Speak instead' : 'Type instead',
+      ctaHi: typing ? 'आगे बढ़ें' : 'रोकें और जाँचें', ctaEn: typing ? 'Continue' : 'Stop & check'
+    };
+  }
+}
+</script>
+</body>
+</html>

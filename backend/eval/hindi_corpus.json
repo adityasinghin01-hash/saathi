@@ -1,0 +1,422 @@
+[
+  {
+    "id": "hi-01",
+    "transcript": "सुंदरपुर PHC में आज metformin 500 mg की 30 गोलियां नहीं मिलीं; घर में 0 दिन की बची हैं, 28 सितंबर को गया था।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Sundarpur PHC",
+      "date": "2026-09-28",
+      "requested_qty": 30,
+      "received_qty": 0,
+      "household_supply_days": 0,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-02",
+    "transcript": "28 सितंबर को Nayagaon PHC गया, metformin 500 mg 20 मांगी, 20 मिल गई, घर में 2 दिन की दवा थी।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Nayagaon PHC",
+      "date": "2026-09-28",
+      "requested_qty": 20,
+      "received_qty": 20,
+      "household_supply_days": 2,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-03",
+    "transcript": "Amarpur PHC पर 27 सितंबर को amlodipine 5 mg की 15 मांगी लेकिन एक भी नहीं मिली, घर में 1 दिन बचा।",
+    "gold": {
+      "medicine": "amlodipine",
+      "strength": "5 mg",
+      "facility": "Amarpur PHC",
+      "date": "2026-09-27",
+      "requested_qty": 15,
+      "received_qty": 0,
+      "household_supply_days": 1,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-04",
+    "transcript": "Shantipur PHC, 26 सितंबर: telmisartan 40 mg 30 चाहिए थी, 10 मिली, घर में 3 दिन की है।",
+    "gold": {
+      "medicine": "telmisartan",
+      "strength": "40 mg",
+      "facility": "Shantipur PHC",
+      "date": "2026-09-26",
+      "requested_qty": 30,
+      "received_qty": 10,
+      "household_supply_days": 3,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-05",
+    "transcript": "Navgram PHC 25 सितंबर को glimepiride 1 mg की 30 tablets नहीं दीं; 0 मिलीं, घर में 0 दिन।",
+    "gold": {
+      "medicine": "glimepiride",
+      "strength": "1 mg",
+      "facility": "Navgram PHC",
+      "date": "2026-09-25",
+      "requested_qty": 30,
+      "received_qty": 0,
+      "household_supply_days": 0,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-06",
+    "transcript": "Udaypur PHC में 24 सितंबर को metformin 500 mg 10 मांगी और पूरी 10 मिल गई, घर पर 4 दिन की थी।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Udaypur PHC",
+      "date": "2026-09-24",
+      "requested_qty": 10,
+      "received_qty": 10,
+      "household_supply_days": 4,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-07",
+    "transcript": "Sundarpur PHC 23 सितंबर: amlodipine 5 mg 20 मांगने पर सिर्फ 5 मिली, घर में 1 दिन।",
+    "gold": {
+      "medicine": "amlodipine",
+      "strength": "5 mg",
+      "facility": "Sundarpur PHC",
+      "date": "2026-09-23",
+      "requested_qty": 20,
+      "received_qty": 5,
+      "household_supply_days": 1,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-08",
+    "transcript": "22 सितंबर को Nayagaon PHC से telmisartan 40 mg की 15 नहीं मिली; घर में 2 दिन की है और 0 मिली।",
+    "gold": {
+      "medicine": "telmisartan",
+      "strength": "40 mg",
+      "facility": "Nayagaon PHC",
+      "date": "2026-09-22",
+      "requested_qty": 15,
+      "received_qty": 0,
+      "household_supply_days": 2,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-09",
+    "transcript": "Amarpur PHC में 21 सितंबर को glimepiride 1 mg की 10 मांगी, 10 मिली, घर में 0 दिन थी।",
+    "gold": {
+      "medicine": "glimepiride",
+      "strength": "1 mg",
+      "facility": "Amarpur PHC",
+      "date": "2026-09-21",
+      "requested_qty": 10,
+      "received_qty": 10,
+      "household_supply_days": 0,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-10",
+    "transcript": "Shantipur PHC पर 20 सितंबर metformin 500 mg 30 मांगी मगर दवा नहीं मिली, 0 मिली, घर में 3 दिन।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Shantipur PHC",
+      "date": "2026-09-20",
+      "requested_qty": 30,
+      "received_qty": 0,
+      "household_supply_days": 3,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-11",
+    "transcript": "19 सितंबर Navgram PHC पर amlodipine 5 mg 15 चाहिए, केवल 5 मिली, घर में 1 दिन की दवा।",
+    "gold": {
+      "medicine": "amlodipine",
+      "strength": "5 mg",
+      "facility": "Navgram PHC",
+      "date": "2026-09-19",
+      "requested_qty": 15,
+      "received_qty": 5,
+      "household_supply_days": 1,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-12",
+    "transcript": "Udaypur PHC से 18 सितंबर telmisartan 40 mg की 20 मांगी थी, नहीं मिली, घर में 0 दिन और मिली 0।",
+    "gold": {
+      "medicine": "telmisartan",
+      "strength": "40 mg",
+      "facility": "Udaypur PHC",
+      "date": "2026-09-18",
+      "requested_qty": 20,
+      "received_qty": 0,
+      "household_supply_days": 0,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-13",
+    "transcript": "17 सितंबर Sundarpur PHC: glimepiride 1 mg 30 की मांग थी, 30 मिल गई, 2 दिन की घर पर है।",
+    "gold": {
+      "medicine": "glimepiride",
+      "strength": "1 mg",
+      "facility": "Sundarpur PHC",
+      "date": "2026-09-17",
+      "requested_qty": 30,
+      "received_qty": 30,
+      "household_supply_days": 2,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-14",
+    "transcript": "Nayagaon PHC में 16 सितंबर को metformin 500 mg 15 नहीं मिली; 0 मिली, 1 दिन की बची।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Nayagaon PHC",
+      "date": "2026-09-16",
+      "requested_qty": 15,
+      "received_qty": 0,
+      "household_supply_days": 1,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-15",
+    "transcript": "15 सितंबर Amarpur PHC से amlodipine 5 mg 30 मांगी, 20 मिली, घर में 4 दिन।",
+    "gold": {
+      "medicine": "amlodipine",
+      "strength": "5 mg",
+      "facility": "Amarpur PHC",
+      "date": "2026-09-15",
+      "requested_qty": 30,
+      "received_qty": 20,
+      "household_supply_days": 4,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-16",
+    "transcript": "14 सितंबर Shantipur PHC में telmisartan 40 mg 10 मांगी, बिल्कुल नहीं मिली, घर में 0 दिन।",
+    "gold": {
+      "medicine": "telmisartan",
+      "strength": "40 mg",
+      "facility": "Shantipur PHC",
+      "date": "2026-09-14",
+      "requested_qty": 10,
+      "received_qty": 0,
+      "household_supply_days": 0,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-17",
+    "transcript": "Navgram PHC 13 सितंबर: glimepiride 1 mg 20 मांगी, 20 मिली, घर में 3 दिन की है।",
+    "gold": {
+      "medicine": "glimepiride",
+      "strength": "1 mg",
+      "facility": "Navgram PHC",
+      "date": "2026-09-13",
+      "requested_qty": 20,
+      "received_qty": 20,
+      "household_supply_days": 3,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-18",
+    "transcript": "12 सितंबर Udaypur PHC पर metformin 500 mg 30 की जगह 0 मिली, दवा नहीं मिली, घर में 2 दिन।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Udaypur PHC",
+      "date": "2026-09-12",
+      "requested_qty": 30,
+      "received_qty": 0,
+      "household_supply_days": 2,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-19",
+    "transcript": "11 सितंबर Sundarpur PHC से amlodipine 5 mg की 10 मांगी, 10 मिली, 1 दिन की बची है।",
+    "gold": {
+      "medicine": "amlodipine",
+      "strength": "5 mg",
+      "facility": "Sundarpur PHC",
+      "date": "2026-09-11",
+      "requested_qty": 10,
+      "received_qty": 10,
+      "household_supply_days": 1,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-20",
+    "transcript": "Nayagaon PHC में 10 सितंबर telmisartan 40 mg 20 मांगी पर नहीं मिली, 0 मिली, घर में 0 दिन।",
+    "gold": {
+      "medicine": "telmisartan",
+      "strength": "40 mg",
+      "facility": "Nayagaon PHC",
+      "date": "2026-09-10",
+      "requested_qty": 20,
+      "received_qty": 0,
+      "household_supply_days": 0,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-21",
+    "transcript": "9 सितंबर Amarpur PHC: glimepiride 1 mg 15 मांगी और 5 मिली, 2 दिन की घर में है।",
+    "gold": {
+      "medicine": "glimepiride",
+      "strength": "1 mg",
+      "facility": "Amarpur PHC",
+      "date": "2026-09-09",
+      "requested_qty": 15,
+      "received_qty": 5,
+      "household_supply_days": 2,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-22",
+    "transcript": "8 सितंबर Shantipur PHC से metformin 500 mg की 20 मांगी, स्टॉक नहीं था, 0 मिली, घर में 1 दिन।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Shantipur PHC",
+      "date": "2026-09-08",
+      "requested_qty": 20,
+      "received_qty": 0,
+      "household_supply_days": 1,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-23",
+    "transcript": "7 सितंबर Navgram PHC में amlodipine 5 mg 30 मांगी, 30 मिली, घर में 0 दिन की थी।",
+    "gold": {
+      "medicine": "amlodipine",
+      "strength": "5 mg",
+      "facility": "Navgram PHC",
+      "date": "2026-09-07",
+      "requested_qty": 30,
+      "received_qty": 30,
+      "household_supply_days": 0,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-24",
+    "transcript": "Udaypur PHC पर 6 सितंबर telmisartan 40 mg की 15 नहीं मिलीं, घर में 3 दिन, मिली 0।",
+    "gold": {
+      "medicine": "telmisartan",
+      "strength": "40 mg",
+      "facility": "Udaypur PHC",
+      "date": "2026-09-06",
+      "requested_qty": 15,
+      "received_qty": 0,
+      "household_supply_days": 3,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-25",
+    "transcript": "5 सितंबर Sundarpur PHC से glimepiride 1 mg की 20 मांगी, 10 मिली, घर में 2 दिन की है।",
+    "gold": {
+      "medicine": "glimepiride",
+      "strength": "1 mg",
+      "facility": "Sundarpur PHC",
+      "date": "2026-09-05",
+      "requested_qty": 20,
+      "received_qty": 10,
+      "household_supply_days": 2,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-26",
+    "transcript": "4 सितंबर Nayagaon PHC में metformin 500 mg की 10 मांगी, नहीं मिली, 0 मिली, घर में 4 दिन।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Nayagaon PHC",
+      "date": "2026-09-04",
+      "requested_qty": 10,
+      "received_qty": 0,
+      "household_supply_days": 4,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-27",
+    "transcript": "Amarpur PHC 3 सितंबर: amlodipine 5 mg 20 मांगी, 20 मिली, 1 दिन की घर में बाकी।",
+    "gold": {
+      "medicine": "amlodipine",
+      "strength": "5 mg",
+      "facility": "Amarpur PHC",
+      "date": "2026-09-03",
+      "requested_qty": 20,
+      "received_qty": 20,
+      "household_supply_days": 1,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-28",
+    "transcript": "2 सितंबर Shantipur PHC में telmisartan 40 mg की 30 नहीं मिली, 0 मिली, घर में 2 दिन है।",
+    "gold": {
+      "medicine": "telmisartan",
+      "strength": "40 mg",
+      "facility": "Shantipur PHC",
+      "date": "2026-09-02",
+      "requested_qty": 30,
+      "received_qty": 0,
+      "household_supply_days": 2,
+      "negated": true
+    }
+  },
+  {
+    "id": "hi-29",
+    "transcript": "Navgram PHC पर 1 सितंबर glimepiride 1 mg 15 मांगी, 15 मिल गई, घर में 0 दिन की बची थी।",
+    "gold": {
+      "medicine": "glimepiride",
+      "strength": "1 mg",
+      "facility": "Navgram PHC",
+      "date": "2026-09-01",
+      "requested_qty": 15,
+      "received_qty": 15,
+      "household_supply_days": 0,
+      "negated": false
+    }
+  },
+  {
+    "id": "hi-30",
+    "transcript": "31 अगस्त Udaypur PHC: metformin 500 mg की 20 मांगी पर दवा नहीं मिली, 0 मिली, घर में 1 दिन।",
+    "gold": {
+      "medicine": "metformin",
+      "strength": "500 mg",
+      "facility": "Udaypur PHC",
+      "date": "2026-08-31",
+      "requested_qty": 20,
+      "received_qty": 0,
+      "household_supply_days": 1,
+      "negated": true
+    }
+  }
+]

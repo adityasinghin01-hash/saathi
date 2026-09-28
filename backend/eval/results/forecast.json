@@ -1,0 +1,312 @@
+{
+  "label": "Synthetic demo data",
+  "seed": 7301,
+  "history_days": 90,
+  "horizon_days": 30,
+  "repetitions": 12,
+  "scenarios": {
+    "baseline": {
+      "false_report_count": 0,
+      "methods": {
+        "dispensing_only": {
+          "mae_daily": 4.98,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 227.58,
+          "overstock_units": 0.25,
+          "stockout_days": 4.92,
+          "alert_lead_days": 7.0,
+          "real_shortages": 12
+        },
+        "prescription_only": {
+          "mae_daily": 24.07,
+          "false_alert_rate": 0.333,
+          "alerts": 12,
+          "unmet_patient_days": 3.33,
+          "overstock_units": 389.19,
+          "stockout_days": 0.17,
+          "alert_lead_days": 12.58,
+          "real_shortages": 12
+        },
+        "calibrated": {
+          "mae_daily": 6.07,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 227.58,
+          "overstock_units": 0.0,
+          "stockout_days": 4.92,
+          "alert_lead_days": 7.0,
+          "real_shortages": 12
+        },
+        "combined": {
+          "mae_daily": 3.81,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 227.58,
+          "overstock_units": 0.02,
+          "stockout_days": 4.92,
+          "alert_lead_days": 7.0,
+          "real_shortages": 12
+        }
+      }
+    },
+    "enrolment_gap": {
+      "false_report_count": 0,
+      "methods": {
+        "dispensing_only": {
+          "mae_daily": 4.11,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 237.58,
+          "overstock_units": 0.03,
+          "stockout_days": 5.08,
+          "alert_lead_days": 6.67,
+          "real_shortages": 12
+        },
+        "prescription_only": {
+          "mae_daily": 4.04,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 237.58,
+          "overstock_units": 0.0,
+          "stockout_days": 5.08,
+          "alert_lead_days": 6.67,
+          "real_shortages": 12
+        },
+        "calibrated": {
+          "mae_daily": 23.52,
+          "false_alert_rate": 0.0,
+          "alerts": 4,
+          "unmet_patient_days": 629.08,
+          "overstock_units": 0.0,
+          "stockout_days": 13.58,
+          "alert_lead_days": 2.58,
+          "real_shortages": 12
+        },
+        "combined": {
+          "mae_daily": 4.27,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 237.58,
+          "overstock_units": 0.0,
+          "stockout_days": 5.08,
+          "alert_lead_days": 6.67,
+          "real_shortages": 12
+        }
+      }
+    },
+    "stale_prescriptions": {
+      "false_report_count": 0,
+      "methods": {
+        "dispensing_only": {
+          "mae_daily": 3.57,
+          "false_alert_rate": 0.083,
+          "alerts": 8,
+          "unmet_patient_days": 233.25,
+          "overstock_units": 0.97,
+          "stockout_days": 5.42,
+          "alert_lead_days": 5.67,
+          "real_shortages": 12
+        },
+        "prescription_only": {
+          "mae_daily": 59.42,
+          "false_alert_rate": 0.333,
+          "alerts": 12,
+          "unmet_patient_days": 25.17,
+          "overstock_units": 1461.91,
+          "stockout_days": 0.83,
+          "alert_lead_days": 11.42,
+          "real_shortages": 12
+        },
+        "calibrated": {
+          "mae_daily": 15.17,
+          "false_alert_rate": 0.333,
+          "alerts": 12,
+          "unmet_patient_days": 25.17,
+          "overstock_units": 186.26,
+          "stockout_days": 0.83,
+          "alert_lead_days": 11.42,
+          "real_shortages": 12
+        },
+        "combined": {
+          "mae_daily": 17.51,
+          "false_alert_rate": 0.333,
+          "alerts": 12,
+          "unmet_patient_days": 25.17,
+          "overstock_units": 236.45,
+          "stockout_days": 0.83,
+          "alert_lead_days": 11.42,
+          "real_shortages": 12
+        }
+      }
+    },
+    "false_reports": {
+      "false_report_count": 407,
+      "methods": {
+        "dispensing_only": {
+          "mae_daily": 4.98,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 227.58,
+          "overstock_units": 0.25,
+          "stockout_days": 4.92,
+          "alert_lead_days": 7.0,
+          "real_shortages": 12
+        },
+        "prescription_only": {
+          "mae_daily": 24.07,
+          "false_alert_rate": 0.333,
+          "alerts": 12,
+          "unmet_patient_days": 3.33,
+          "overstock_units": 389.19,
+          "stockout_days": 0.17,
+          "alert_lead_days": 12.58,
+          "real_shortages": 12
+        },
+        "calibrated": {
+          "mae_daily": 6.07,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 227.58,
+          "overstock_units": 0.0,
+          "stockout_days": 4.92,
+          "alert_lead_days": 7.0,
+          "real_shortages": 12
+        },
+        "combined": {
+          "mae_daily": 3.81,
+          "false_alert_rate": 0.0,
+          "alerts": 8,
+          "unmet_patient_days": 227.58,
+          "overstock_units": 0.02,
+          "stockout_days": 4.92,
+          "alert_lead_days": 7.0,
+          "real_shortages": 12
+        }
+      }
+    },
+    "outside_purchases": {
+      "false_report_count": 0,
+      "methods": {
+        "dispensing_only": {
+          "mae_daily": 25.76,
+          "false_alert_rate": 0.0,
+          "alerts": 2,
+          "unmet_patient_days": 148.08,
+          "overstock_units": 0.0,
+          "stockout_days": 6.0,
+          "alert_lead_days": 2.17,
+          "real_shortages": 12
+        },
+        "prescription_only": {
+          "mae_daily": 23.76,
+          "false_alert_rate": 0.75,
+          "alerts": 12,
+          "unmet_patient_days": 0.0,
+          "overstock_units": 674.19,
+          "stockout_days": 0.0,
+          "alert_lead_days": 22.08,
+          "real_shortages": 12
+        },
+        "calibrated": {
+          "mae_daily": 25.81,
+          "false_alert_rate": 0.0,
+          "alerts": 2,
+          "unmet_patient_days": 148.08,
+          "overstock_units": 0.0,
+          "stockout_days": 6.0,
+          "alert_lead_days": 2.17,
+          "real_shortages": 12
+        },
+        "combined": {
+          "mae_daily": 24.14,
+          "false_alert_rate": 0.0,
+          "alerts": 3,
+          "unmet_patient_days": 111.33,
+          "overstock_units": 0.0,
+          "stockout_days": 4.58,
+          "alert_lead_days": 3.33,
+          "real_shortages": 12
+        }
+      }
+    },
+    "long_stockout": {
+      "false_report_count": 0,
+      "methods": {
+        "dispensing_only": {
+          "mae_daily": 4.28,
+          "false_alert_rate": 0.083,
+          "alerts": 8,
+          "unmet_patient_days": 260.17,
+          "overstock_units": 0.21,
+          "stockout_days": 5.67,
+          "alert_lead_days": 7.08,
+          "real_shortages": 12
+        },
+        "prescription_only": {
+          "mae_daily": 24.14,
+          "false_alert_rate": 0.25,
+          "alerts": 12,
+          "unmet_patient_days": 8.33,
+          "overstock_units": 393.46,
+          "stockout_days": 0.17,
+          "alert_lead_days": 11.92,
+          "real_shortages": 12
+        },
+        "calibrated": {
+          "mae_daily": 5.2,
+          "false_alert_rate": 0.0,
+          "alerts": 7,
+          "unmet_patient_days": 319.58,
+          "overstock_units": 0.0,
+          "stockout_days": 7.0,
+          "alert_lead_days": 5.83,
+          "real_shortages": 12
+        },
+        "combined": {
+          "mae_daily": 2.81,
+          "false_alert_rate": 0.083,
+          "alerts": 10,
+          "unmet_patient_days": 133.75,
+          "overstock_units": 0.61,
+          "stockout_days": 2.83,
+          "alert_lead_days": 9.42,
+          "real_shortages": 12
+        }
+      }
+    }
+  },
+  "tuning": {
+    "candidate_days": [
+      0,
+      10,
+      30,
+      60
+    ],
+    "training_repetitions": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007
+    ],
+    "selected_days": 60,
+    "training_mae_daily": {
+      "0": 13.35,
+      "10": 13.31,
+      "30": 13.28,
+      "60": 13.25
+    }
+  },
+  "methodology": {
+    "truth": "Individual medicine need before outside purchases",
+    "false_alert": "Alert with enough stock for 14 days of PHC requests",
+    "unmet": "Unfilled PHC request patient-days; alert order arrives day 7",
+    "lead": "Cutoff alert days before true stockout; missed alert scores zero",
+    "overstock": "Mean daily on-hand units above true 30-day patient need",
+    "stockout_days": "Days ending with zero on-hand units"
+  }
+}

@@ -1,0 +1,6 @@
+Continue as backend engineer (network allowed). Read docs/CONTRACT.md, docs/TASKS.md (see "Status note"), docs/notes-codex.md (including "Antigravity fix" — that test change was reviewed and approved by Claude).
+1. Run ruff; fix all issues. Run the full pytest suite; must stay green.
+2. Smoke test: start uvicorn on port 8000, hit /api/v1/health and /api/v1/district/overview with a seeded district_officer X-Demo-User, confirm valid JSON, stop the server.
+3. Tick TASKS.md boxes B1–B6, B8, B9 only if verified by passing tests.
+4. B7 real Gemini: implement a real adapter behind the existing DraftAI interface using Vertex AI (google-genai SDK) with application default credentials (they exist on this machine at ~/.config/gcloud); model id from env GEMINI_MODEL; fall back to GEMINI_API_KEY; fall back to the deterministic fake if neither is configured (never crash). Voice: audio (webm/ogg/wav) + language → structured fields per CONTRACT + transcript, with a strict JSON schema; reject/flag any medical-advice text. Transfer rationale: short plain-language reason built ONLY from engine facts. Add tests using the fake; add one opt-in live test skipped unless RUN_LIVE_GEMINI=1.
+Rules: edit only backend/; update docs/notes-codex.md with real outputs; no commit, push or deploy.

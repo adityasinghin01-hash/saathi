@@ -1,0 +1,22 @@
+{
+  "id": "s05",
+  "synthetic_label": "Synthetic demo data",
+  "recording_kind": "Gemini TTS, not a real patient or ASHA recording",
+  "tts_model": "gemini-3.8-flash-tts",
+  "tts_voice": "Kore",
+  "tts_latency_seconds": 5.963,
+  "duration_seconds": 10.2,
+  "script": "परसों सत्ताईस सितंबर को मेटफॉर्मिन लेने सुंदरपुर पी एच सी गया। पच्चीस गोलियां चाहिए थीं, मगर नहीं मिलीं। घर में चार दिन की बची हैं।",
+  "patient_id": "patient-003",
+  "user_id": "patient-user-003",
+  "expected_fields": {
+    "patient_id": "patient-003",
+    "drug_id": "metformin",
+    "requested_qty": 25,
+    "household_supply_days": 4,
+    "attempted_date": "2026-09-27"
+  },
+  "expected_refill_received": false,
+  "hinglish": false,
+  "audio_mime_type": "audio/wav"
+}

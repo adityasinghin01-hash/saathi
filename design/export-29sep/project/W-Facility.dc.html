@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sundarpur PHC × Metformin — web</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="saathi.css">
+<link rel="stylesheet" href="ds/saathi/components/bundle.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#fbf4ea}
+a{color:#8a3517}a:hover{color:#8f3a1b}
+.kpi{background:var(--paper-raised);border-radius:var(--radius-lg);box-shadow:var(--elev-1);padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.kpi .d-label{color:var(--ink-muted)}
+.kpi .d-label .sa-bi{--bi-2nd:12px}
+.sw{display:inline-block;width:18px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.crow{display:flex;gap:12px;align-items:center;padding:10px 0;font:400 14px/20px var(--font-sans)}
+.crow+.crow{box-shadow:inset 0 1px 0 var(--line)}
+.bar:hover{opacity:.8}
+</style>
+</helmet>
+<div class="sa-root" data-audience="{{aud}}" style="width: 1440px; height: 980px; background: var(--paper); color: var(--ink); display: flex; overflow: hidden; position: relative">
+<svg class="sa-sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19z"></path></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.00 3.00 L13.76 3.17 L14.68 5.53 L15.89 6.18 L18.36 5.64 L19.48 7.00 L18.47 9.32 L18.87 10.63 L21.00 12.00 L20.83 13.76 L18.47 14.68 L17.82 15.89 L18.36 18.36 L17.00 19.48 L14.68 18.47 L13.37 18.87 L12.00 21.00 L10.24 20.83 L9.32 18.47 L8.11 17.82 L5.64 18.36 L4.52 17.00 L5.53 14.68 L5.13 13.37 L3.00 12.00 L3.17 10.24 L5.53 9.32 L6.18 8.11 L5.64 5.64 L7.00 4.52 L9.32 5.53 L10.63 5.13Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="i-notifications" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"></path><path d="M10 21h4"></path></symbol>
+<symbol id="i-cases" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"></rect><path d="M9 3.5h6v3H9z"></path><path d="M8.5 11h7M8.5 15h4.5"></path></symbol>
+<symbol id="i-stock" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4z"></path><path d="M3.5 8 12 12l8.5-4M12 12v9"></path></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7"></path><path d="M10.5 12h9M16.5 8.5 20 12l-3.5 3.5"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6"></path><path d="M12 17h.01"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M8 12.3l2.7 2.7L16 9.5"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 4.7 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></symbol>
+<symbol id="i-out-of-stock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M6 6l12 12"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5"></path></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"></path></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5"></path><path d="M20 16H6M9.5 12.5 6 16l3.5 3.5"></path></symbol>
+<symbol id="i-suggest" viewBox="0 0 24 24"><path d="M9 17.5h6M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.6 10.8c.4.3.6.8.6 1.3v.9h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3z"></path></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></symbol>
+<symbol id="i-user-group" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"></circle><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"></path><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5.8M17.5 14.8c1.8.6 3.1 2.1 3.5 4.7"></path></symbol>
+</defs></svg>
+
+<aside class="sa-sidebar" style="flex: none; height: 980px">
+<img class="sa-sidebar-logo" src="/_blob/19cb50ae6b922b216d7885119cae8135" alt="साथी Saathi">
+<a class="sa-nav" href="W-Shell.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-home"></use></svg><span class="sa-bi"><span lang="hi">अवलोकन</span><span lang="en">Overview</span></span></a>
+<a class="sa-nav" href="W-Evaluation.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg><span class="sa-bi"><span lang="hi">चेतावनी</span><span lang="en">Early warnings</span></span><span class="sa-nav-count">5</span></a>
+<a class="sa-nav" href="W-Cases.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-cases"></use></svg><span class="sa-bi"><span lang="hi">मामले</span><span lang="en">Cases</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-stock"></use></svg><span class="sa-bi"><span lang="hi">स्टॉक</span><span lang="en">Stock</span></span></a>
+<a class="sa-nav" href="W-Transfers.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-transfer"></use></svg><span class="sa-bi"><span lang="hi">स्थानांतरण</span><span lang="en">Transfers</span></span></a>
+<a class="sa-nav" href="W-Overview.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span class="sa-bi"><span lang="hi">नक्शा</span><span lang="en">Map</span></span></a>
+<div class="sa-sidebar-foot">
+<a class="sa-nav" href="W-Settings.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg><span class="sa-bi"><span lang="hi">सेटिंग्स</span><span lang="en">Settings</span></span></a>
+<button type="button" class="sa-nav"><svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg><span class="sa-bi"><span lang="hi">मदद</span><span lang="en">Help</span></span></button>
+<a class="sa-nav" href="W-Logout.dc.html"><svg class="ic" aria-hidden="true"><use href="#i-logout"></use></svg><span class="sa-bi"><span lang="hi">लॉग आउट</span><span lang="en">Log out</span></span></a>
+</div>
+</aside>
+
+<div class="web-main">
+<header class="sa-topbar sa-topbar--web" style="flex: none">
+<div class="sa-topbar-title" style="flex: 1 0 auto"><span class="sa-bi"><span lang="hi">स्टॉक · सूर्यनगर</span><span lang="en">Stock · Suryanagar</span></span></div>
+<span class="sa-demo">SYNTHETIC DEMO DATA</span>
+<span class="sa-age is-fresh"><span class="sa-age-dot"></span><span class="sa-bi sa-bi--inline"><span lang="hi">2 घंटे पहले</span><span lang="en">updated 2 h ago</span></span></span>
+<label class="sa-input sa-input--web" style="width: 220px"><span class="sa-adorn"><svg class="ic ic-20" aria-hidden="true"><use href="#i-search"></use></svg></span><input placeholder="Search centre or medicine · खोजें" aria-label="Search · खोजें"></label>
+<div class="sa-lang sa-lang--sm" role="group" aria-label="Language · भाषा"><button type="button" aria-pressed="{{hiOn}}" onClick="{{setHi}}">हिं</button><button type="button" aria-pressed="{{enOn}}" onClick="{{setEn}}">EN</button></div>
+<a class="sa-iconbtn" href="W-Shell.dc.html" aria-label="Notifications · सूचनाएँ"><svg class="ic" aria-hidden="true"><use href="#i-notifications"></use></svg><span class="sa-badge-dot"></span></a>
+<a class="sa-avbtn" href="W-Profile.dc.html" aria-label="Dr. Mehra — profile · प्रोफ़ाइल"><span class="sa-avatar">DM</span><svg class="ic ic-20" aria-hidden="true"><use href="#i-chevron-down"></use></svg></a>
+</header>
+
+<main style="flex-grow: 1; padding: 24px 40px 32px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 20px; align-content: start">
+<div style="grid-column: span 12; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<nav aria-label="Breadcrumb" class="d-caption" style="display: flex; gap: 6px; align-items: center"><a class="lnk" href="W-Overview.dc.html" style="font-weight: 500">Stock · स्टॉक</a><svg class="ic ic-16" aria-hidden="true"><use href="#i-chevron-right"></use></svg><span>Sundarpur PHC</span></nav>
+<h1 class="d-h1 hd" style="--bi-2nd: 18px"><span class="sa-bi"><span lang="hi">सुंदरपुर PHC × मेटफॉर्मिन 500 mg</span><span lang="en">Sundarpur PHC × Metformin 500 mg</span></span></h1>
+</div>
+<span class="sa-status sa-status--out sa-status--lg"><svg class="ic ic-20" aria-hidden="true"><use href="#i-out-of-stock"></use></svg><span class="sa-bi sa-bi--inline"><span lang="en">Out of stock since 22 Sep</span><span lang="hi">22 सितंबर से ख़त्म</span></span></span>
+</div>
+
+<!-- KPI row -->
+<div style="grid-column: span 12; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
+<div class="kpi"><span class="d-label"><span class="sa-bi"><span lang="en">On hand</span><span lang="hi">स्टॉक में</span></span></span><span class="d-kpi" style="color: var(--status-out)">0</span><span class="sa-age is-fresh" style="align-self: flex-start"><span class="sa-age-dot"></span><span class="sa-bi sa-bi--inline"><span lang="en">2 h ago · Sunita</span><span lang="hi">2 घंटे पहले</span></span></span></div>
+<div class="kpi"><span class="d-label"><span class="sa-bi"><span lang="en">Patients’ need · 30 days</span><span lang="hi">मरीज़ों की ज़रूरत</span></span></span><span class="d-kpi">2,640</span><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="en">44 patients × 60 tablets</span><span lang="hi">44 मरीज़</span></span></span></div>
+<div class="kpi"><span class="d-label"><span class="sa-bi"><span lang="en">Dispensing forecast · 30 days</span><span lang="hi">वितरण अनुमान</span></span></span><span class="d-kpi">1,980</span><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="en">25% below need</span><span lang="hi">ज़रूरत से 25% कम</span></span></span></div>
+<div class="kpi"><span class="d-label"><span class="sa-bi"><span lang="en">Days left</span><span lang="hi">कितने दिन बचे</span></span></span><span class="d-kpi">0 <span class="d-h3" style="font-weight: 500; color: var(--ink-muted)">→ ~27</span></span><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="en">~27 with a transfer of 2,400</span><span lang="hi">स्थानांतरण से ~27</span></span></span></div>
+<div class="kpi"><span class="d-label"><span class="sa-bi"><span lang="en">Open cases</span><span lang="hi">खुले मामले</span></span></span><span class="d-kpi">14</span><span class="d-caption"><span class="sa-bi sa-bi--inline"><span lang="en">13 verified · 1 reported</span><span lang="hi">13 जाँचे गए</span></span></span></div>
+</div>
+
+<!-- chart -->
+<section class="sa-card sa-card--web" style="grid-column: span 8; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+<h2 class="d-h3"><span class="sa-bi"><span lang="en">Last 60 days and the next 30</span><span lang="hi">पिछले 60 दिन और अगले 30</span></span></h2>
+<span class="sa-demo">DEMO</span>
+</div>
+<div class="sa-legend" style="color: var(--ink)">
+<span><i class="sw" style="background: var(--ink)"></i>Stock on hand · स्टॉक</span>
+<span><i class="sw" style="background: var(--chart-need); height: 3px"></i>Patients’ need · ज़रूरत</span>
+<span><i class="sw" style="background: repeating-linear-gradient(90deg, var(--chart-stock) 0 5px, transparent 5px 9px); height: 3px"></i>Dispensing forecast · अनुमान</span>
+<span><i class="sw" style="background: var(--chart-4); height: 10px; width: 10px; border-radius: 3px"></i>Actually given · दिया गया</span>
+<span><i class="sw" style="background: var(--status-out-bg); box-shadow: inset 0 0 0 1px var(--status-out-solid); height: 12px; width: 12px; border-radius: 3px"></i>Stock-out · ख़त्म</span>
+</div>
+<svg width="672" height="384" viewBox="0 0 672 384" role="img" aria-label="Chart. Stock on hand fell to zero from 18 to 24 August and again from 22 September until today. Patients’ need is 84 to 88 tablets a day; the dispensing forecast is 66 a day. During stock-outs almost nothing was given. With a transfer of 2,400 tablets arriving 29 September, stock lasts about 27 days." style="display: block">
+<!-- stock-out shading, both panels -->
+<rect x="175.4" y="18" width="48" height="334" style="fill: var(--status-out-bg)"><title>Stock-out 18–24 Aug · 7 days</title></rect>
+<rect x="415.3" y="18" width="41.1" height="334" style="fill: var(--status-out-bg)"><title>Stock-out 22–28 Sep · 7 days so far</title></rect>
+<text x="199.4" y="32" text-anchor="middle" style="font: 600 12px var(--font-sans); fill: var(--status-out)">Out 7 d</text>
+<text x="435.8" y="150" text-anchor="middle" style="font: 600 12px var(--font-sans); fill: var(--status-out)">Out 7 d</text>
+
+<!-- panel A: stock on hand -->
+<text x="52" y="12" style="font: 600 13px var(--font-sans); fill: var(--ink-muted)">Stock on hand · स्टॉक (गोलियाँ)</text>
+<line class="sa-ch-grid" x1="52" x2="662" y1="52" y2="52"></line><line class="sa-ch-grid" x1="52" x2="662" y1="108" y2="108"></line><line class="sa-ch-base" x1="52" x2="662" y1="164" y2="164"></line>
+<text class="sa-ch-ax" x="44" y="56" text-anchor="end">2,000</text><text class="sa-ch-ax" x="44" y="112" text-anchor="end">1,000</text><text class="sa-ch-ax" x="44" y="168" text-anchor="end">0</text>
+<path d="M52 91.2 L100 117 L148 142.7 L175.4 164 L216.5 164 L223.4 24 L271.3 57.6 L319.3 92.3 L367.3 128.2 L415.3 164 L456.4 164 L456.4 164 L52 164 Z" style="fill: var(--ink); opacity: .07"></path>
+<polyline class="sa-ch-line" points="52,91.2 100,117 148,142.7 175.4,164 216.5,164 223.4,24 271.3,57.6 319.3,92.3 367.3,128.2 415.3,164 456.4,164" style="stroke: var(--ink)"></polyline>
+<polyline class="sa-ch-line is-dashed" points="456.4,164 463.2,29.6 648.3,164" style="stroke: var(--ink); opacity: .6"></polyline>
+<circle class="sa-ch-dot" cx="456.4" cy="164" r="5" style="stroke: var(--ink)"><title>Today: 0 tablets</title></circle>
+<text x="662" y="30" text-anchor="end" style="font: 600 12px var(--font-sans); fill: var(--ink)">With transfer (arrives 29 Sep): ~27 days</text>
+<text x="662" y="46" text-anchor="end" style="font: 400 12px var(--font-sans); fill: var(--ink-muted)">स्थानांतरण से ~27 दिन</text>
+<text x="470" y="156" style="font: 400 12px var(--font-sans); fill: var(--ink-muted)">Without: 0 days</text>
+<text x="278" y="40" style="font: 400 12px var(--font-sans); fill: var(--ink-muted)">+2,500 from store</text>
+
+<!-- today -->
+<line x1="456.4" x2="456.4" y1="18" y2="352" style="stroke: var(--ink-muted); stroke-width: 1.5; stroke-dasharray: 3 4"></line>
+
+<!-- panel B: tablets per day -->
+<text x="52" y="202" style="font: 600 13px var(--font-sans); fill: var(--ink-muted)">Tablets per day · रोज़ की गोलियाँ</text>
+<line class="sa-ch-grid" x1="52" x2="662" y1="212" y2="212"></line><line class="sa-ch-grid" x1="52" x2="662" y1="257.3" y2="257.3"></line><line class="sa-ch-grid" x1="52" x2="662" y1="302.7" y2="302.7"></line><line class="sa-ch-base" x1="52" x2="662" y1="348" y2="348"></line>
+<text class="sa-ch-ax" x="44" y="216" text-anchor="end">120</text><text class="sa-ch-ax" x="44" y="261.3" text-anchor="end">80</text><text class="sa-ch-ax" x="44" y="306.7" text-anchor="end">40</text><text class="sa-ch-ax" x="44" y="352" text-anchor="end">0</text>
+<rect class="bar" x="56" y="273.2" width="40" height="74.8" rx="4" style="fill: var(--chart-4)"><title>31 Jul–6 Aug: 66 a day given</title></rect>
+<rect class="bar" x="104" y="273.2" width="40" height="74.8" rx="4" style="fill: var(--chart-4)"><title>7–13 Aug: 66 a day given</title></rect>
+<rect class="bar" x="152" y="304.9" width="40" height="43.1" rx="4" style="fill: var(--chart-4)"><title>14–20 Aug: 38 a day given</title></rect>
+<rect class="bar" x="199.9" y="311.7" width="40" height="36.3" rx="4" style="fill: var(--chart-4)"><title>21–27 Aug: 32 a day given</title></rect>
+<rect class="bar" x="247.9" y="247.1" width="40" height="100.9" rx="4" style="fill: var(--chart-4)"><title>28 Aug–3 Sep: 89 a day given</title></rect>
+<rect class="bar" x="295.9" y="248.3" width="40" height="99.7" rx="4" style="fill: var(--chart-4)"><title>4–10 Sep: 88 a day given</title></rect>
+<rect class="bar" x="343.9" y="244.9" width="40" height="103.1" rx="4" style="fill: var(--chart-4)"><title>11–17 Sep: 91 a day given</title></rect>
+<rect class="bar" x="391.8" y="290.2" width="40" height="57.8" rx="4" style="fill: var(--chart-4)"><title>18–24 Sep: 51 a day given</title></rect>
+<polyline class="sa-ch-line is-dashed" points="52,273.2 662,273.2" style="stroke: var(--chart-stock); stroke-width: 2"></polyline>
+<polyline class="sa-ch-line" points="52,252.8 257.6,252.8 257.6,248.3 456.4,248.3" style="stroke: var(--chart-need)"></polyline>
+<polyline class="sa-ch-line is-dashed" points="456.4,248.3 662,248.3" style="stroke: var(--chart-need); opacity: .6"></polyline>
+<circle class="sa-ch-dot" cx="456.4" cy="248.3" r="5" style="stroke: var(--chart-need)"><title>Need today: 88 a day</title></circle>
+<text x="662" y="241" text-anchor="end" style="font: 600 12px var(--font-sans); fill: var(--ink)">Need 88/day</text>
+<text x="662" y="268" text-anchor="end" style="font: 600 12px var(--font-sans); fill: var(--ink)">Forecast 66/day</text>
+<!-- hidden demand callout -->
+<path d="M476 318 L 440 318" style="fill: none; stroke: var(--status-out); stroke-width: 1.5"></path><circle cx="438" cy="318" r="3" style="fill: var(--status-out)"></circle>
+<rect x="476" y="288" width="186" height="58" rx="8" style="fill: var(--paper-raised); stroke: var(--status-out-solid); stroke-width: 1.2"></rect>
+<text x="486" y="305" style="font: 600 12px var(--font-sans); fill: var(--status-out)">Hidden demand · छिपी माँग</text>
+<text x="486" y="321" style="font: 400 12px var(--font-sans); fill: var(--ink)">patients came, no medicine</text>
+<text x="486" y="337" style="font: 400 12px var(--font-sans); fill: var(--ink-muted)">मरीज़ आए, दवा नहीं मिली</text>
+
+<!-- x axis -->
+<text class="sa-ch-ax" x="52" y="370" text-anchor="start">31 Jul</text>
+<text class="sa-ch-ax" x="148" y="370" text-anchor="middle">14 Aug</text>
+<text class="sa-ch-ax" x="243.9" y="370" text-anchor="middle">28 Aug</text>
+<text class="sa-ch-ax" x="339.9" y="370" text-anchor="middle">11 Sep</text>
+<text x="456.4" y="370" text-anchor="middle" style="font: 600 12px var(--font-sans); fill: var(--ink)">Today 28 Sep</text>
+<text class="sa-ch-ax" x="662" y="370" text-anchor="end">28 Oct</text>
+</svg>
+<p class="d-caption"><span class="sa-bi"><span lang="en">Why the forecast is too low: it learns from what was given, and nothing could be given on stock-out days. Need comes from active prescriptions.</span><span lang="hi">अनुमान कम है क्योंकि स्टॉक ख़त्म के दिनों में कुछ दिया ही नहीं गया।</span></span></p>
+</section>
+
+<!-- right column -->
+<div style="grid-column: span 4; display: flex; flex-direction: column; gap: 20px">
+<section class="sa-card sa-card--web" style="gap: 12px">
+<div class="sa-card--suggest" style="margin: -24px -24px 0; padding: 20px 24px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; display: flex; flex-direction: column; gap: 12px; box-shadow: none">
+<span class="sa-ai" style="align-self: flex-start"><span class="sa-ai-ic"><svg class="ic ic-16" aria-hidden="true"><use href="#i-suggest"></use></svg></span><span class="sa-bi sa-bi--inline"><span lang="en">AI can draft it — you decide</span><span lang="hi">AI सुझाएगा, फ़ैसला आपका</span></span></span>
+<p class="d-body-sm"><span class="sa-bi"><span lang="en">Saathi looks for a PHC that can spare Metformin without dropping below its own safety stock. Nothing moves until you approve.</span><span lang="hi">कुछ भी तब तक नहीं भेजा जाएगा जब तक आप मंज़ूर न करें।</span></span></p>
+<a class="sa-btn sa-btn--web" href="W-Transfer-Draft.dc.html" style="align-self: stretch"><svg class="ic ic-20" aria-hidden="true"><use href="#i-transfer"></use></svg><span class="sa-bi"><span lang="en">Draft a transfer</span><span lang="hi">स्थानांतरण का मसौदा</span></span></a>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 4px"><h2 class="d-h3" style="font-size: 16px"><span class="sa-bi sa-bi--inline"><span lang="en">Open cases · 14</span><span lang="hi">खुले मामले</span></span></h2><a class="lnk" href="W-Cases.dc.html" style="font-size: 14px">See all · सभी</a></div>
+<div>
+<div class="crow"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">RA</span><span style="flex-grow: 1"><span style="font-weight: 600">Ramesh, 54</span><span class="dt-2" style="display: block; font-size: 13px; color: var(--ink-muted)">asked 60 · got 0 · 26 Sep</span></span><span class="sa-status sa-status--wait" style="min-height: 26px; font-size: 12px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>Verified · जाँचा</span></div>
+<div class="crow"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">GE</span><span style="flex-grow: 1"><span style="font-weight: 600">Geeta, 49</span><span style="display: block; font-size: 13px; color: var(--ink-muted)">asked 60 · got 0 · 27 Sep</span></span><span class="sa-status sa-status--wait" style="min-height: 26px; font-size: 12px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>Verified · जाँचा</span></div>
+<div class="crow"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm">SA</span><span style="flex-grow: 1"><span style="font-weight: 600">Savitri, 66</span><span style="display: block; font-size: 13px; color: var(--ink-muted)">via ASHA Rekha · today</span></span><span class="sa-status sa-status--wait" style="min-height: 26px; font-size: 12px"><svg class="ic ic-16" aria-hidden="true"><use href="#i-clock"></use></svg>Reported · रिपोर्ट</span></div>
+<div class="crow"><span class="sa-avatar sa-avatar--sunk sa-avatar--sm" style="background: var(--paper-sunk)">+11</span><span class="d-caption" style="flex-grow: 1">11 more patients, all verified · 11 और मरीज़</span></div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || 'en';
+    return {
+      aud: lang === 'hi' ? 'field' : 'desk',
+      hiOn: lang === 'hi', enOn: lang === 'en',
+      setHi: () => this.setState({ lang: 'hi' }),
+      setEn: () => this.setState({ lang: 'en' })
+    };
+  }
+}
+</script>
+</body>
+</html>
