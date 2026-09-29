@@ -8,6 +8,7 @@ docs/log-*.txt
 # personal recordings
 backend/eval/audio/real/*
 !backend/eval/audio/real/README.md
+!backend/eval/audio/real/RECORDING-GUIDE.md
 # deps / builds / local state
 node_modules/
 **/node_modules/

@@ -32,16 +32,22 @@ export default function PharmacistHome() {
   const row = (c: Case, href: string) => {
     const a = age(c.created_at, now);
     return (
-      <Link key={c.id} className="sa-row" href={href} data-testid={`case-row-${c.id}`} style={{ minHeight: 76 }}>
-        <span className="sa-avatar sa-avatar--sunk">{initials(who(c.patient_id).initials)}</span>
-        <span className="sa-row-main" style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <span style={{ font: "600 16px/22px var(--font-sans)" }}><DrugName d={ref.drug(c.drug_id)} id={c.drug_id} /></span>
-          <span className="m-caption" style={{ display: "flex", gap: 6, alignItems: "center" }}>
-            <Icon name={c.channel === "voice" ? "mic" : "edit"} size={16} />
-            <Bi inline hi={`${who(c.patient_id).hi} · ${a.hi}`} en={`${who(c.patient_id).en} · ${a.en}`} />
+      <Link key={c.id} className="sa-row" href={href} data-testid={`case-row-${c.id}`} style={{ minHeight: 76, padding: "12px 14px", alignItems: "flex-start", gap: 12 }}>
+        <span className="sa-avatar sa-avatar--sunk" style={{ flex: "none", marginTop: 2 }}>{initials(who(c.patient_id).initials)}</span>
+        <span className="sa-row-main" style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, flexWrap: "wrap" }}>
+            <span style={{ font: "600 16px/22px var(--font-sans)", minWidth: 0, flex: "1 1 120px" }}>
+              <DrugName d={ref.drug(c.drug_id)} id={c.drug_id} inline={false} />
+            </span>
+            <div style={{ flex: "none" }}>
+              <CaseStatusChip status={c.status} />
+            </div>
+          </div>
+          <span className="m-caption" style={{ display: "flex", gap: 6, alignItems: "flex-start" }}>
+            <Icon name={c.channel === "voice" ? "mic" : "edit"} size={16} style={{ flex: "none", marginTop: 3 }} />
+            <Bi inline hi={`${who(c.patient_id).hi} · ${a.hi}`} en={`${who(c.patient_id).en} · ${a.en}`} style={{ minWidth: 0 }} />
           </span>
         </span>
-        <CaseStatusChip status={c.status} />
       </Link>
     );
   };
@@ -77,20 +83,20 @@ export default function PharmacistHome() {
           <h2 className="m-heading" style={{ fontSize: 18 }}><Bi inline hi="आ रहा स्टॉक" en="Incoming stock" /></h2>
           <div className="sa-rows">
             {incoming.map((t) => (
-              <Link key={t.id} className="sa-row" href={`/pharmacist/transfer/${t.id}`} data-testid={`incoming-${t.id}`} style={{ minHeight: 72 }}>
-                <span className="sa-row-ic"><Icon name="truck" /></span>
-                <span className="sa-row-main" style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                  <span style={{ font: "600 16px/22px var(--font-sans)" }}><DrugName d={ref.drug(t.drug_id)} id={t.drug_id} /> · <span className="num">{t.quantity}</span></span>
+              <Link key={t.id} className="sa-row" href={`/pharmacist/transfer/${t.id}`} data-testid={`incoming-${t.id}`} style={{ minHeight: 72, padding: "12px 14px", alignItems: "flex-start", gap: 12 }}>
+                <span className="sa-row-ic" style={{ marginTop: 2 }}><Icon name="truck" /></span>
+                <span className="sa-row-main" style={{ display: "flex", flexDirection: "column", gap: 2, flex: 1, minWidth: 0 }}>
+                  <span style={{ font: "600 16px/22px var(--font-sans)" }}><DrugName d={ref.drug(t.drug_id)} id={t.drug_id} inline={false} /> · <span className="num">{t.quantity}</span></span>
                   <span className="m-caption"><Bi inline hi={`${hiName(ref.facility(t.from_facility_id), "facility")} से`} en={`from ${ref.facility(t.from_facility_id)?.name ?? t.from_facility_id}`} /></span>
                 </span>
-                <Icon name="chevron-right" />
+                <Icon name="chevron-right" style={{ alignSelf: "center" }} />
               </Link>
             ))}
             {viaCases.map((c) => (
-              <Link key={c.id} className="sa-row" href={`/pharmacist/transfer/${c.transfer_id}`} data-testid={`incoming-${c.transfer_id}`} style={{ minHeight: 72 }}>
-                <span className="sa-row-ic"><Icon name="truck" /></span>
-                <span className="sa-row-main"><DrugName d={ref.drug(c.drug_id)} id={c.drug_id} /></span>
-                <Icon name="chevron-right" />
+              <Link key={c.id} className="sa-row" href={`/pharmacist/transfer/${c.transfer_id}`} data-testid={`incoming-${c.transfer_id}`} style={{ minHeight: 72, padding: "12px 14px", alignItems: "flex-start", gap: 12 }}>
+                <span className="sa-row-ic" style={{ marginTop: 2 }}><Icon name="truck" /></span>
+                <span className="sa-row-main"><DrugName d={ref.drug(c.drug_id)} id={c.drug_id} inline={false} /></span>
+                <Icon name="chevron-right" style={{ alignSelf: "center" }} />
               </Link>
             ))}
           </div>

@@ -51,8 +51,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     api
       .me()
-      .then(setUser)
-      .catch(() => localStorage.removeItem(USER_KEY))
+      .then((me) => {
+        setUser(me);
+        try {
+          localStorage.setItem("saathi_cache_me", JSON.stringify(me));
+        } catch {}
+      })
+      .catch(() => {
+        try {
+          const cached = localStorage.getItem("saathi_cache_me");
+          if (cached) {
+            setUser(JSON.parse(cached));
+            return;
+          }
+        } catch {}
+        localStorage.removeItem(USER_KEY);
+      })
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -61,6 +75,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.setItem(USER_KEY, userId);
       const me = await api.me();
       setUser(me);
+      try {
+        localStorage.setItem("saathi_cache_me", JSON.stringify(me));
+      } catch {}
       router.push(HOME[me.role]);
     },
     [router],

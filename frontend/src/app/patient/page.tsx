@@ -4,11 +4,13 @@ import Link from "next/link";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/AuthContext";
 import { useLoad, useRefData } from "@/lib/hooks";
+import { useNotifications } from "@/lib/NotificationContext";
 import { PhoneShell } from "@/components/shells";
 import { Bi, CaseStatusChip, DemoBadge, DrugName, ErrorBox, FacilityName, Icon, Loading } from "@/components/ui";
 
 export default function PatientHome() {
   const { user } = useAuth();
+  const { arrivedNotification, markAsRead } = useNotifications();
   const ref = useRefData();
   const pid = user?.patient_id ?? "";
   const home = useLoad(async () => {
@@ -26,6 +28,28 @@ export default function PatientHome() {
         </h1>
         <DemoBadge />
       </div>
+
+      {arrivedNotification && (
+        <Link
+          href={`/patient/cases/${arrivedNotification.case_id}`}
+          onClick={() => markAsRead(arrivedNotification.id)}
+          className="sa-banner sa-banner--ok"
+          data-testid="arrived-banner"
+          role="status"
+          style={{ cursor: "pointer", textDecoration: "none", display: "flex", alignItems: "center", gap: 12 }}
+        >
+          <span className="sa-banner-ic"><Icon name="health-centre" size={24} /></span>
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
+            <span style={{ font: "600 17px/22px var(--font-sans)" }}>
+              <Bi hi="आपकी दवा पहुँच गई" en="Your medicine has arrived" />
+            </span>
+            <span className="m-caption" style={{ color: "currentColor", opacity: 0.9 }}>
+              <FacilityName f={ref.facility(arrivedNotification.facility_id)} id={arrivedNotification.facility_id} />
+            </span>
+          </div>
+          <Icon name="chevron-right" size={20} />
+        </Link>
+      )}
 
       {home.loading && !home.data && <Loading />}
       {home.error ? <ErrorBox error={home.error} onRetry={home.reload} /> : null}

@@ -2,6 +2,8 @@
 
 import React, { useEffect } from "react";
 import { useAuth } from "@/lib/AuthContext";
+import { NotificationProvider } from "@/lib/NotificationContext";
+import { WakeScreen } from "@/components/WakeScreen";
 import { Loading } from "@/components/ui";
 
 export function RootLayoutClient({ children }: { children: React.ReactNode }) {
@@ -11,6 +13,12 @@ export function RootLayoutClient({ children }: { children: React.ReactNode }) {
     if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
   }, []);
 
-  if (isLoading) return <div className="center-page"><Loading /></div>;
-  return <>{children}</>;
+  // The wake screen also covers the login check: a returning user waits on /me while the server wakes.
+  if (isLoading) return <><WakeScreen /><div className="center-page"><Loading /></div></>;
+  return (
+    <NotificationProvider>
+      <WakeScreen />
+      {children}
+    </NotificationProvider>
+  );
 }

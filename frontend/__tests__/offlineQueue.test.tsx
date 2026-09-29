@@ -42,3 +42,17 @@ test('OfflineQueueProvider handles enqueue and syncs online', async () => {
 
   expect(api.syncBatch).toHaveBeenCalled();
 });
+
+test('splitSyncResults keeps nothing sent twice and separates refused reports', async () => {
+  const { splitSyncResults } = await import('@/lib/OfflineQueueContext');
+  const ops = ['a', 'b', 'c', 'd'].map((op_id) => ({ op_id, method: 'POST', path: '/cases', body: {} }));
+  const { done, failed } = splitSyncResults(ops, [
+    { op_id: 'a', status: 'applied' },
+    { op_id: 'b', status: 'error' },
+    { op_id: 'c', status: 'duplicate' },
+  ]);
+  expect(done).toEqual(['a', 'c']);
+  expect(failed).toEqual(['b']);
+  // 'd' got no answer: it must stay on the phone and be sent again later
+  expect([...done, ...failed]).not.toContain('d');
+});

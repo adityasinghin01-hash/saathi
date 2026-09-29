@@ -14,6 +14,12 @@ Brand/design system: **Saathi · साथी** (name may change) — https://cl
 - Codex gpt-6-sol (never Astra for build) = backend: `codex exec --skip-git-repo-check -m gpt-6-sol -s workspace-write -c sandbox_workspace_write.network_access=true -C ~/dev/refill-loop -o docs/out-codex-N.md - < docs/brief-codex-N.md`
 - Antigravity = frontend, **run by Aditya in the Antigravity app** (Claude writes the prompt, Aditya pastes, Claude cross-checks). Headless `agy` from Claude is blocked (per-command permissions; skip-permissions denied by the Claude safety classifier).
 
+## UPDATE 29 Sep 2026 ~12 PM — fixes A–E built and verified, UNCOMMITTED
+- Backend (Codex R16, brief-codex-16.md): /notifications + mark-read (CONTRACT v0.7), keep-awake GitHub workflow, real-audio eval harness + backend/eval/audio/real/RECORDING-GUIDE.md, sync/batch tests. 119 passed / 1 skipped, ruff clean (re-run by Claude).
+- Frontend (Antigravity F3 started it, Claude finished it): wake screen (also covers the login check), squashed-row fix, bell + list + "arrived" banner (only while the medicine waits at the PHC), offline test e2e/offline-asha.spec.ts, offline queue now drops only sent/refused ops and tells the user about refused ones.
+- Verified by Claude locally: lint 0, tsc ok, 11 unit tests, build ok, all 3 Playwright specs pass (voice through live Gemini); screenshots looked at by eye at 360/390 px.
+- Repo is PUBLIC now. Still to do: commit + push + deploy (needs Aditya's OK), re-run the 3 specs against live; D needs Aditya's 6 real recordings.
+
 ## NEXT CHAT STARTS HERE (29 Sep 2026 ~11 AM)
 1. **Prototype DONE and LIVE** (below). **PPT pack DONE**: ~/Desktop/Saathi-PPT-Pack (11 PDFs + screenshots + brand), source in docs/ppt-pack/ (Markdown + _build/diagrams.py, run_all.py, render_docs.py; render with a venv having pymupdf+markdown+pillow and Google Chrome).
 2. **First thing in the new chat: DISCUSS what to build next, then build.** Candidates (Aditya picks): (a) live-link reliability (Render free sleeps ~1 min; add a wake-up/loading screen, keep-alive), (b) more real-voice testing (only 1 real clip so far, not a refill report), (c) "medicine arrived" notifications (design screen exists), (d) ASHA offline demo tested in browser.

@@ -1,4 +1,4 @@
-"""Score synthetic and optional real recordings through the live voice API route.
+"""Score synthetic and labeled real recordings through the live voice API route.
 
 Run from backend/: PYTHONPATH=. .venv/bin/python -m eval.audio_eval
 No case is confirmed or saved. The only provider calls are the route's normal Gemini calls.
@@ -95,6 +95,14 @@ def _audio_bytes(path: Path) -> tuple[bytes, str]:
     raise ValueError(f"Unsupported audio extension: {path.suffix}")
 
 
+def _real_audio_files(directory: Path) -> tuple[list[Path], list[Path]]:
+    clips = sorted(path for path in directory.iterdir() if path.suffix.lower()
+                   in {".m4a", ".webm", ".wav", ".opus", ".ogg"})
+    labeled = [path for path in clips if path.with_suffix(".json").is_file()]
+    skipped = [path for path in clips if not path.with_suffix(".json").is_file()]
+    return labeled, skipped
+
+
 def _evaluate_one(client: TestClient, path: Path, metadata: dict | None,
                   default_user_id: str) -> dict:
     payload, mime_type = _audio_bytes(path)
@@ -171,8 +179,9 @@ def main() -> None:
     synthetic_files = sorted(SYNTHETIC.glob("*.wav"))
     if len(synthetic_files) != 12:
         raise RuntimeError(f"Expected 12 synthetic WAV clips; found {len(synthetic_files)}")
-    real_files = sorted(path for path in REAL.iterdir() if path.suffix.lower()
-                        in {".m4a", ".webm", ".wav", ".opus", ".ogg"})
+    real_files, skipped_unlabelled = _real_audio_files(REAL)
+    for path in skipped_unlabelled:
+        print(f"Skipping unlabelled real clip: {path.name}", flush=True)
     with TestClient(app) as client:
         synthetic_rows = []
         for path in synthetic_files:
@@ -188,8 +197,7 @@ def main() -> None:
         for path in real_files:
             if synthetic_rows or real_rows:
                 time.sleep(args.pause_seconds)
-            metadata_path = path.with_suffix(".json")
-            metadata = json.loads(metadata_path.read_text()) if metadata_path.exists() else None
+            metadata = json.loads(path.with_suffix(".json").read_text())
             row = _evaluate_one(client, path, metadata, args.real_user_id)
             real_rows.append(row)
             print(f"real {path.stem}: HTTP {row['http_status']}, {row['ai_source']} "
@@ -202,7 +210,8 @@ def main() -> None:
                               "Attempted date scores the UTC date, not exact time",
                               "Product schema has no refill outcome or facility field"],
               "synthetic": {"summary": _summarize(synthetic_rows), "clips": synthetic_rows},
-              "real": {"count": len(real_rows), "clips": real_rows}}
+              "real": {"count": len(real_rows), "clips": real_rows,
+                       "skipped_unlabelled": [path.name for path in skipped_unlabelled]}}
     RESULTS.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(f"Saved {RESULTS}", flush=True)
 

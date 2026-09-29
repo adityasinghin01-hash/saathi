@@ -3,7 +3,14 @@ import subprocess
 
 import pytest
 
-from eval.audio_eval import REAL, SYNTHETIC, _audio_bytes, _summarize, score_synthetic
+from eval.audio_eval import (
+    REAL,
+    SYNTHETIC,
+    _audio_bytes,
+    _real_audio_files,
+    _summarize,
+    score_synthetic,
+)
 
 
 def test_audio_score_reports_each_wrong_field_and_transcript_mismatch():
@@ -89,6 +96,16 @@ def test_real_whatsapp_opus_is_sent_as_ogg_without_conversion():
     audio, mime = _audio_bytes(REAL / "r01.opus")
     assert mime == "audio/ogg"
     assert audio.startswith(b"OggS")
+
+
+def test_real_audio_discovery_runs_only_labeled_clips_and_lists_skips(tmp_path):
+    for name in ("r01.opus", "r02.webm", "r03.wav"):
+        (tmp_path / name).write_bytes(b"audio fixture")
+    (tmp_path / "r01.json").write_text('{"expected_fields": {}}')
+    (tmp_path / "r03.json").write_text('{"expected_fields": {}}')
+    labeled, skipped = _real_audio_files(tmp_path)
+    assert [path.name for path in labeled] == ["r01.opus", "r03.wav"]
+    assert [path.name for path in skipped] == ["r02.webm"]
 
 
 @pytest.mark.skipif(shutil.which("afconvert") is None, reason="macOS audio converter unavailable")

@@ -1,6 +1,6 @@
 # CONTRACT — the shared rules between backend and frontend
 Owner: Claude (instructor). Only Claude edits this file. Backend and frontend both build against it.
-Version: 0.4 (29 Sep 2026) — see "v0.4" at the end. **docs/api-examples.md holds REAL responses for every endpoint: it is the source of truth for JSON shapes.**
+Version: 0.7 (29 Sep 2026) — see "v0.7" at the end. **docs/api-examples.md holds REAL responses for every endpoint: it is the source of truth for JSON shapes.**
 
 ## Product
 Refill-resolution loop for diabetes / hypertension patients at government health centres (PHCs):
@@ -50,6 +50,8 @@ Donor keeps safety stock = 14 days of its own combined estimate. Only batches ex
 | POST | /cases/voice/confirm | patient, asha | save confirmed fields as a case |
 | GET | /cases?status=&facility_id= | role-scoped | list |
 | GET | /cases/{id} | role-scoped | case + events + transfer |
+| GET | /notifications | patient, asha | medicine delivery and supply notices |
+| POST | /notifications/{id}/read | patient, asha | mark one visible notice read |
 | POST | /cases/{id}/verify | pharmacist | body `{result, on_hand}` |
 | POST | /cases/{id}/supply | pharmacist | mark supplied `{quantity}` |
 | POST | /cases/{id}/confirm-received-by-patient | patient, asha | → closed |
@@ -100,3 +102,9 @@ No blood-sugar numbers anywhere. No medical advice text generated for patients. 
 1. `POST /cases/voice` → `fields` values are `null` when the speaker did not say them (drug_id, requested_qty, household_supply_days, attempted_at). Never default. `patient_id` stays filled from the logged-in patient / chosen patient. Add `missing: [field names]`.
 2. `transcript` is in Devanagari when the speech is Hindi (English words may stay in Latin).
 3. If the speech is not a refill problem at all, return all fields null and `not_a_refill_report: true`.
+
+## v0.7 (29 Sep 2026) — medicine notifications
+
+- `GET /api/v1/notifications` uses the same `X-Demo-User` authentication as `/cases`. Patients see notices for their own cases; ASHAs see notices for cases of the patients they cover. Every other role receives `[]`. Results are newest first.
+- Each notice has exactly `{id, case_id, kind, drug_id, facility_id, at, read, hi, en}`. `id` is the case event ID; `at` is its ISO-8601 UTC time. `kind` maps `dispatched` → `on_the_way`, `received` → `arrived`, and `supplied` or `partially_supplied` → `given`. No other case events make notices. `hi` and `en` use the seeded drug and facility names. No invented quantities or medical advice.
+- `POST /api/v1/notifications/{id}/read` returns `{id, read: true}`. It returns 404 for an unknown notice or one the caller cannot see. Read state is stored separately per demo user in the database, and `/demo/reset` deletes it.

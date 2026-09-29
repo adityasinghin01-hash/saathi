@@ -116,7 +116,7 @@ function ReportFlow() {
     };
     setStep("sending");
     try {
-      if (isOffline) {
+      if (isOffline || (typeof navigator !== "undefined" && !navigator.onLine)) {
         await enqueue({ method: "POST", path: "/cases", body: { ...fields, channel: heard ? "voice" : "manual", transcript: heard?.transcript ?? (note || undefined) } });
         setOfflineSaved(true);
         setStep("check");
@@ -202,7 +202,7 @@ function ReportFlow() {
         )}
         {err ? <ErrorBox error={err} /> : null}
         {offlineSaved && (
-          <div className="sa-banner sa-banner--offline" role="status"><span className="sa-banner-ic"><Icon name="cloud-off" /></span>
+          <div className="sa-banner sa-banner--offline" data-testid="saved-offline" role="status"><span className="sa-banner-ic"><Icon name="cloud-off" /></span>
             <Bi hi="ऑफ़लाइन सहेजा गया — इंटरनेट आने पर भेजेंगे" en="Saved offline — will send when online" /></div>
         )}
         <div className="sa-rows" style={{ padding: "4px 0" }}>
@@ -280,13 +280,14 @@ function ReportFlow() {
           <>
             <button type="button" className={`sa-mic${recording ? " is-listening" : ""}`} aria-pressed={recording} data-testid="mic"
               aria-label={recording ? both("रोकें", "Stop") : both("बोलना शुरू करें", "Start speaking")}
+              disabled={isOffline}
               onClick={recording ? stopAndSend : startRec} style={{ width: 120, height: 120 }}>
               <Icon name="mic" size={48} />
             </button>
             <span style={{ display: "flex", gap: 8, alignItems: "center", font: "600 15px/22px var(--font-sans)" }}>
               {recording && <span className="rec-dot" />}
               {recording && <span className="num">{Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")}</span>}
-              <Bi inline hi={recording ? "सुन रहे हैं…" : "माइक दबाकर बोलिए"} en={recording ? "Listening…" : "Tap the mic and speak"} />
+              <Bi inline hi={recording ? "सुन रहे हैं…" : isOffline ? "आवाज़ के लिए इंटरनेट चाहिए — लिखकर बताएँ" : "माइक दबाकर बोलिए"} en={recording ? "Listening…" : isOffline ? "Voice needs internet — please type instead" : "Tap the mic and speak"} />
             </span>
           </>
         )}

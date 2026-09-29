@@ -207,15 +207,95 @@ async function call<T>(path: string, init: RequestInit & { asUser?: string } = {
 
 const post = <T,>(path: string, body: unknown = {}) => call<T>(path, { method: "POST", body: JSON.stringify(body), headers: { "Idempotency-Key": crypto.randomUUID() } });
 
+export type NotificationKind = "on_the_way" | "arrived" | "given";
+
+export interface AppNotification {
+  id: string;
+  case_id: string;
+  kind: NotificationKind;
+  drug_id: string;
+  facility_id: string;
+  at: string;
+  read: boolean;
+  hi: string;
+  en: string;
+}
+
 export const api = {
-  me: () => call<User>("/me"),
+  me: async () => {
+    try {
+      const data = await call<User>("/me");
+      try { localStorage.setItem("saathi_cache_me", JSON.stringify(data)); } catch {}
+      return data;
+    } catch (e) {
+      try {
+        const cached = localStorage.getItem("saathi_cache_me");
+        if (cached) return JSON.parse(cached) as User;
+      } catch {}
+      throw e;
+    }
+  },
   demoUsers: () => call<User[]>("/demo/users"),
   scenario: () => call<ScenarioIds>("/demo/scenario/ramesh", { asUser: "officer-1" }),
   resetDemo: () => call<{ ok: boolean; seeded_at: string }>("/demo/reset", { method: "POST", asUser: "officer-1" }),
-  facilities: () => call<Facility[]>("/facilities"),
-  drugs: () => call<Drug[]>("/drugs"),
-  patients: () => call<Patient[]>("/patients"),
-  patient: (id: string) => call<Patient>(`/patients/${id}`),
+  facilities: async () => {
+    try {
+      const data = await call<Facility[]>("/facilities");
+      try { localStorage.setItem("saathi_cache_facilities", JSON.stringify(data)); } catch {}
+      return data;
+    } catch (e) {
+      try {
+        const cached = localStorage.getItem("saathi_cache_facilities");
+        if (cached) return JSON.parse(cached) as Facility[];
+      } catch {}
+      throw e;
+    }
+  },
+  drugs: async () => {
+    try {
+      const data = await call<Drug[]>("/drugs");
+      try { localStorage.setItem("saathi_cache_drugs", JSON.stringify(data)); } catch {}
+      return data;
+    } catch (e) {
+      try {
+        const cached = localStorage.getItem("saathi_cache_drugs");
+        if (cached) return JSON.parse(cached) as Drug[];
+      } catch {}
+      throw e;
+    }
+  },
+  patients: async () => {
+    try {
+      const data = await call<Patient[]>("/patients");
+      try { localStorage.setItem("saathi_cache_patients", JSON.stringify(data)); } catch {}
+      return data;
+    } catch (e) {
+      try {
+        const cached = localStorage.getItem("saathi_cache_patients");
+        if (cached) return JSON.parse(cached) as Patient[];
+      } catch {}
+      throw e;
+    }
+  },
+  patient: async (id: string) => {
+    try {
+      const data = await call<Patient>(`/patients/${id}`);
+      try { localStorage.setItem(`saathi_cache_patient_${id}`, JSON.stringify(data)); } catch {}
+      return data;
+    } catch (e) {
+      try {
+        const cached = localStorage.getItem(`saathi_cache_patient_${id}`);
+        if (cached) return JSON.parse(cached) as Patient;
+        const allCached = localStorage.getItem("saathi_cache_patients");
+        if (allCached) {
+          const list = JSON.parse(allCached) as Patient[];
+          const found = list.find((p) => p.id === id);
+          if (found) return found;
+        }
+      } catch {}
+      throw e;
+    }
+  },
 
   cases: (params: { status?: string; facility_id?: string } = {}) => {
     const q = new URLSearchParams(Object.entries(params).filter(([, v]) => v) as [string, string][]).toString();
@@ -254,6 +334,8 @@ export const api = {
 
   syncBatch: (ops: QueuedOp[]) => call<{ results: { op_id: string; status: string }[] }>("/sync/batch", { method: "POST", body: JSON.stringify({ ops }) }),
   evaluation: () => call<Record<string, unknown>>("/evaluation/summary"),
+  notifications: () => call<AppNotification[]>("/notifications"),
+  markNotificationRead: (id: string) => post<{ id: string; read: true }>(`/notifications/${id}/read`),
 };
 
 export const isNoTransfer = (t: Transfer | NoTransfer): t is NoTransfer => t.status === "no_feasible_transfer";

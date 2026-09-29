@@ -7,6 +7,7 @@ import { Bi, DemoBadge, Icon, LangToggle, initials } from "./ui";
 import { useAuth } from "@/lib/AuthContext";
 import { useOfflineQueue } from "@/lib/OfflineQueueContext";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { useNotifications } from "@/lib/NotificationContext";
 import type { Role } from "@/lib/api";
 
 type Text = { hi: string; en: string };
@@ -32,7 +33,18 @@ const TABS: Record<"patient" | "asha" | "pharmacist", { href: string; icon: stri
 const AVATAR_CLASS: Record<Role, string> = { patient: "sa-avatar--sunk", asha: "sa-avatar--mari", pharmacist: "sa-avatar--leaf", district_officer: "" };
 
 function OfflineBanner() {
-  const { isOffline } = useOfflineQueue();
+  const { isOffline, failedCount, dismissFailed } = useOfflineQueue();
+  if (failedCount > 0) {
+    return (
+      <div className="sa-banner sa-banner--out" role="alert" data-testid="sync-failed">
+        <span className="sa-banner-ic"><Icon name="alert" /></span>
+        <span style={{ flex: 1 }}>
+          <Bi hi={`${failedCount} सहेजी रिपोर्ट नहीं भेजी जा सकी — कृपया दोबारा बताएँ`} en={`${failedCount} saved report could not be sent — please report it again`} />
+        </span>
+        <button type="button" className="sa-iconbtn" onClick={dismissFailed} data-testid="sync-failed-dismiss"><Icon name="close" /></button>
+      </div>
+    );
+  }
   if (!isOffline) return null;
   return (
     <div className="sa-banner sa-banner--offline" role="status">
@@ -46,6 +58,7 @@ function OfflineBanner() {
 export function PhoneShell({ title, back, children, foot, tabs = true }: { title: Text; back?: string; children: React.ReactNode; foot?: React.ReactNode; tabs?: boolean }) {
   const { user } = useAuth();
   const { both } = useLanguage();
+  const { unreadCount, openSheet } = useNotifications();
   const path = usePathname();
   const role = user?.role;
   const tabList = role && role !== "district_officer" ? TABS[role] : [];
@@ -61,6 +74,39 @@ export function PhoneShell({ title, back, children, foot, tabs = true }: { title
             </Link>
           )}
           <div className="sa-topbar-title"><Bi hi={title.hi} en={title.en} /></div>
+          {(role === "patient" || role === "asha") && (
+            <button
+              type="button"
+              className="sa-iconbtn"
+              data-testid="notif-bell"
+              onClick={openSheet}
+              aria-label={both("सूचनाएँ", "Notifications")}
+              style={{ position: "relative" }}
+            >
+              <Icon name="notifications" />
+              {unreadCount > 0 && (
+                <span
+                  className="sa-badge-count"
+                  data-testid="notif-count"
+                  style={{
+                    position: "absolute",
+                    top: 6,
+                    right: 6,
+                    minWidth: 18,
+                    height: 18,
+                    borderRadius: 9,
+                    background: "var(--clay-600)",
+                    color: "var(--on-clay)",
+                    font: "600 11px/18px var(--font-sans)",
+                    padding: "0 4px",
+                    textAlign: "center",
+                  }}
+                >
+                  {unreadCount}
+                </span>
+              )}
+            </button>
+          )}
           <LangToggle />
         </header>
         <OfflineBanner />

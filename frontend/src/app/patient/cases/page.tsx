@@ -18,12 +18,18 @@ export default function MyReports() {
         {cases.data?.map((c) => {
           const w = when(c.created_at);
           return (
-            <Link key={c.id} className="sa-row" href={`/patient/cases/${c.id}`} style={{ minHeight: 76 }}>
-              <span className="sa-row-main" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                <span style={{ font: "600 16px/22px var(--font-sans)" }}><DrugName d={ref.drug(c.drug_id)} id={c.drug_id} /></span>
+            <Link key={c.id} className="sa-row" href={`/patient/cases/${c.id}`} style={{ minHeight: 76, padding: "12px 14px", alignItems: "flex-start", gap: 12 }}>
+              <span className="sa-row-main" style={{ display: "flex", flexDirection: "column", gap: 4, flex: 1, minWidth: 0 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, flexWrap: "wrap" }}>
+                  <span style={{ font: "600 16px/22px var(--font-sans)", minWidth: 0, flex: "1 1 120px" }}>
+                    <DrugName d={ref.drug(c.drug_id)} id={c.drug_id} inline={false} />
+                  </span>
+                  <div style={{ flex: "none" }}>
+                    <CaseStatusChip status={c.status} />
+                  </div>
+                </div>
                 <span className="m-caption"><Bi inline hi={w.hi} en={w.en} /></span>
               </span>
-              <CaseStatusChip status={c.status} />
             </Link>
           );
         })}
