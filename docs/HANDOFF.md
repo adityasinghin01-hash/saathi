@@ -14,7 +14,14 @@ Brand/design system: **Saathi · साथी** (name may change) — https://cl
 - Codex gpt-6-sol (never Astra for build) = backend: `codex exec --skip-git-repo-check -m gpt-6-sol -s workspace-write -c sandbox_workspace_write.network_access=true -C ~/dev/refill-loop -o docs/out-codex-N.md - < docs/brief-codex-N.md`
 - Antigravity = frontend, **run by Aditya in the Antigravity app** (Claude writes the prompt, Aditya pastes, Claude cross-checks). Headless `agy` from Claude is blocked (per-command permissions; skip-permissions denied by the Claude safety classifier).
 
-## UPDATE 29 Sep 2026 ~3:40 AM (read this first)
+## LIVE (29 Sep 2026 ~10 AM)
+- Frontend: https://saathi-drab.vercel.app (Vercel project `saathi`, deployed with `vercel deploy --prod` from frontend/)
+- Backend: https://saathi-api-gm4i.onrender.com (Render `saathi-api`, srv-datje55g1s2s739kcleg, free plan, Singapore; sleeps after 15 min idle)
+- Repo: github.com/adityasinghin01-hash/saathi (private)
+- Both e2e tests pass against LIVE: `BASE_URL=https://saathi-drab.vercel.app API_BASE=https://saathi-api-gm4i.onrender.com npx playwright test e2e/ramesh.spec.ts e2e/voice-asha.spec.ts`
+- Live timings: overview ~0.4 s, AI transfer draft ~9 s (gemini-3.1-flash-lite), reset ~5.5 s.
+
+## UPDATE 29 Sep 2026 ~3:40 AM
 - **Claude took over and rebuilt the frontend** in the Saathi design (Antigravity's F2 failed twice with a rigged test). Both browser tests PASS: `frontend/e2e/ramesh.spec.ts` (full story, 8-event backend check) and `frontend/e2e/voice-asha.spec.ts` (ASHA + Hindi voice through Gemini). Screenshots reviewed in `frontend/e2e/shots/`.
 - Backend: CONTRACT up to v0.6; 100 tests; voice never invents fields; live Gemini works (gemini-3.1-flash-lite answers most calls, 5–15 s).
 - Codex completed R11 (overview cache, voice mime), R12 (varied patient names), and R13 (deploy docs, README, description, deck outline, video shot list, and this handoff). Briefs in docs/brief-codex-*.md, outputs docs/out-codex-*.md.

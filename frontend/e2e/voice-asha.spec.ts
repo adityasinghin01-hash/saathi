@@ -12,7 +12,7 @@ test("ASHA picks Ramesh, speaks the report, checks what was heard, sends it", as
   const browser = await chromium.launch({
     args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream", `--use-file-for-fake-audio-capture=${CLIP}%noloop`],
   });
-  const ctx = await browser.newContext({ baseURL: "http://localhost:3000", permissions: ["microphone"], viewport: { width: 420, height: 900 } });
+  const ctx = await browser.newContext({ baseURL: process.env.BASE_URL ?? "http://localhost:3000", permissions: ["microphone"], viewport: { width: 420, height: 900 } });
   const page = await ctx.newPage();
   const pageErrors: string[] = [];
   page.on("pageerror", (e) => pageErrors.push(e.message));
