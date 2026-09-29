@@ -31,3 +31,6 @@ frontend/e2e/zz-*.spec.ts
 design/old-frontend-f2/
 design/blobs/
 .DS_Store
+docs/ppt-pack/_build/_*
+docs/ppt-pack/_build/*.html
+docs/ppt-pack/_build/prev-*.png

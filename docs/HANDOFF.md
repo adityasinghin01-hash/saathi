@@ -14,6 +14,12 @@ Brand/design system: **Saathi · साथी** (name may change) — https://cl
 - Codex gpt-6-sol (never Astra for build) = backend: `codex exec --skip-git-repo-check -m gpt-6-sol -s workspace-write -c sandbox_workspace_write.network_access=true -C ~/dev/refill-loop -o docs/out-codex-N.md - < docs/brief-codex-N.md`
 - Antigravity = frontend, **run by Aditya in the Antigravity app** (Claude writes the prompt, Aditya pastes, Claude cross-checks). Headless `agy` from Claude is blocked (per-command permissions; skip-permissions denied by the Claude safety classifier).
 
+## NEXT CHAT STARTS HERE (29 Sep 2026 ~11 AM)
+1. **Prototype DONE and LIVE** (below). **PPT pack DONE**: ~/Desktop/Saathi-PPT-Pack (11 PDFs + screenshots + brand), source in docs/ppt-pack/ (Markdown + _build/diagrams.py, run_all.py, render_docs.py; render with a venv having pymupdf+markdown+pillow and Google Chrome).
+2. **First thing in the new chat: DISCUSS what to build next, then build.** Candidates (Aditya picks): (a) live-link reliability (Render free sleeps ~1 min; add a wake-up/loading screen, keep-alive), (b) more real-voice testing (only 1 real clip so far, not a refill report), (c) "medicine arrived" notifications (design screen exists), (d) ASHA offline demo tested in browser.
+3. **Known UI bug:** pharmacist home verify-queue row is squashed at 390 px width (screenshot docs/ppt-pack/screens/S08) — long bilingual drug name + patient wrap badly.
+4. Work split: Claude works until ~50–60% of its daily limit, then Codex executes and Claude verifies. Always re-run both e2e tests (locally and with BASE_URL/API_BASE for live) before calling anything done.
+
 ## LIVE (29 Sep 2026 ~10 AM)
 - Frontend: https://saathi-drab.vercel.app (Vercel project `saathi`, deployed with `vercel deploy --prod` from frontend/)
 - Backend: https://saathi-api-gm4i.onrender.com (Render `saathi-api`, srv-datje55g1s2s739kcleg, free plan, Singapore; sleeps after 15 min idle)
