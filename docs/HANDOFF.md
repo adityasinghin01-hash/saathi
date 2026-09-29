@@ -14,6 +14,13 @@ Brand/design system: **Saathi · साथी** (name may change) — https://cl
 - Codex gpt-6-sol (never Astra for build) = backend: `codex exec --skip-git-repo-check -m gpt-6-sol -s workspace-write -c sandbox_workspace_write.network_access=true -C ~/dev/refill-loop -o docs/out-codex-N.md - < docs/brief-codex-N.md`
 - Antigravity = frontend, **run by Aditya in the Antigravity app** (Claude writes the prompt, Aditya pastes, Claude cross-checks). Headless `agy` from Claude is blocked (per-command permissions; skip-permissions denied by the Claude safety classifier).
 
+## UPDATE 29 Sep 2026 ~8:30 PM — README/icon/pack done, LIVE (c63b8ea)
+- Codex R17: README for judges, description (+2 variants), icons + manifest. Claude: phone top-bar title fix, PPT pack retaken (S24–S28), single update PDF on Desktop (Saathi-Deck-Update-29Sep.pdf).
+- Live: Vercel NEXT_PUBLIC_API_BASE + DEMO_MODE now stored in the project; still pass --build-env to be safe. Keep-awake workflow is in the repo.
+- Live e2e 29 Sep evening: ramesh + voice-asha PASS; offline-asha FLAKY on live.
+- **TOP FIX FOR TOMORROW:** public/sw.js is an empty pass-through — nothing is cached offline. Offline reporting only works if the app is already open AND the report route's JS was already fetched. Needs real service-worker caching (app shell + route chunks + ref data) so an ASHA can open the app with no signal; then make offline-asha deterministic on live.
+- Demo video = tomorrow. D (real voice) parked.
+
 ## UPDATE 29 Sep 2026 ~12 PM — fixes A–E built and verified, UNCOMMITTED
 - Backend (Codex R16, brief-codex-16.md): /notifications + mark-read (CONTRACT v0.7), keep-awake GitHub workflow, real-audio eval harness + backend/eval/audio/real/RECORDING-GUIDE.md, sync/batch tests. 119 passed / 1 skipped, ruff clean (re-run by Claude).
 - Frontend (Antigravity F3 started it, Claude finished it): wake screen (also covers the login check), squashed-row fix, bell + list + "arrived" banner (only while the medicine waits at the PHC), offline test e2e/offline-asha.spec.ts, offline queue now drops only sent/refused ops and tells the user about refused ones.
