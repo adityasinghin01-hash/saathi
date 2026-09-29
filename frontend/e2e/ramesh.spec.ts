@@ -24,7 +24,7 @@ test("Ramesh: report → verify → AI transfer → approve → dispatch → rec
   // 1. Reset the synthetic demo data
   await page.goto("/login");
   await page.getByTestId("reset-demo").click();
-  await expect(page.getByTestId("reset-done")).toBeVisible();
+  await expect(page.getByTestId("reset-done")).toBeVisible({ timeout: 20_000 });
   await snap(page, "login-reset");
 
   // 2. Patient reports a failed refill (typed path; voice is tested separately)

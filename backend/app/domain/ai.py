@@ -14,9 +14,11 @@ from google import genai
 from google.genai import errors, types
 
 LABEL = "Synthetic demo data"
-DEFAULT_MODELS = ("gemini-3.8-flash", "gemini-3.1-flash-lite", "gemini-3.5-flash")
-REQUEST_TIMEOUT_MS = 20_000
-CALL_BUDGET_SECONDS = 40
+# flash-lite first: in live runs it answered 25 of 26 calls while 3.8-flash was mostly 503 "high demand".
+DEFAULT_MODELS = ("gemini-3.1-flash-lite", "gemini-3.8-flash", "gemini-3.5-flash")
+# A person is watching the screen: cap each model try and the whole call, then fall back to rules.
+REQUEST_TIMEOUT_MS = int(os.getenv("GEMINI_REQUEST_TIMEOUT_MS", "12000"))
+CALL_BUDGET_SECONDS = float(os.getenv("GEMINI_CALL_BUDGET_SECONDS", "25"))
 logger = logging.getLogger(__name__)
 
 
@@ -171,7 +173,7 @@ class GeminiDraftAI:
             raise ValueError("At least one Gemini model is required")
 
     def generate_structured(self, contents: list, schema: dict):
-        """Return the SDK response and answering model within one 40-second call budget."""
+        """Return the SDK response and answering model within one call budget (CALL_BUDGET_SECONDS)."""
         deadline = time.monotonic() + CALL_BUDGET_SECONDS
         for model in self.models:
             remaining_ms = int((deadline - time.monotonic()) * 1000)

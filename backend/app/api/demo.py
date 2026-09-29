@@ -17,6 +17,7 @@ def demo_reset(request: Request, user: dict = USER_DEP):
     store = store_for(request)
     store.reset()
     seed_if_empty(store)
+    store.prime_overview_forecasts()
     return {"ok": True, "seeded_at": now()}
 
 

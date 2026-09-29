@@ -17,19 +17,27 @@ Brand/design system: **Saathi · साथी** (name may change) — https://cl
 ## UPDATE 29 Sep 2026 ~3:40 AM (read this first)
 - **Claude took over and rebuilt the frontend** in the Saathi design (Antigravity's F2 failed twice with a rigged test). Both browser tests PASS: `frontend/e2e/ramesh.spec.ts` (full story, 8-event backend check) and `frontend/e2e/voice-asha.spec.ts` (ASHA + Hindi voice through Gemini). Screenshots reviewed in `frontend/e2e/shots/`.
 - Backend: CONTRACT up to v0.6; 100 tests; voice never invents fields; live Gemini works (gemini-3.1-flash-lite answers most calls, 5–15 s).
-- Codex queue: R11 (overview cache, voice mime) → R12 (varied patient names) → **R13 (owns the rest: deploy docs, README, description, deck outline, video shotlist, this file)**. Briefs in docs/brief-codex-*.md, outputs docs/out-codex-*.md.
-- **Waiting on Aditya:** yes for the first git commit + push (repo has no commits); then Render + Vercel deploy (he clicks, docs/DEPLOY.md guides); video; slides.
+- Codex completed R11 (overview cache, voice mime), R12 (varied patient names), and R13 (deploy docs, README, description, deck outline, video shot list, and this handoff). Briefs in docs/brief-codex-*.md, outputs docs/out-codex-*.md.
+- **Waiting on Aditya:** review the final docs and a browser rerun in an environment that permits Chromium; then explicitly authorize any commit/push and Render + Vercel deployment (docs/DEPLOY.md guides the clicks); record the video and build the slides.
 - Claude's limit is nearly used — Codex does the work; Claude only reviews when asked.
 
 ## State
-### Backend (backend/, FastAPI, Python 3.11 venv at backend/.venv)
+### Current submission state (29 Sep 2026)
+
+- Codex completed the deployment-ready documentation without deploying: [frontend environment guide](../frontend/README.md) for `NEXT_PUBLIC_API_BASE` and `NEXT_PUBLIC_DEMO_MODE`; [Render → Vercel click guide](DEPLOY.md), including `backend/render.yaml`, secret key entry, and the final `ALLOWED_ORIGINS` update.
+- Codex finalized [root README](../README.md), [2–3 line description](description-final.md), [11-slide outline](deck-outline.md), and [3:30 video shot list](video-shotlist.md). The README uses the latest [forecast](../backend/eval/results/forecast.md) and [audio](../backend/eval/results/audio.md) reports; it explicitly says the one real WhatsApp clip is a non-refill example and real refill speech is barely tested. The deck marks the separate project plan as roadmap, not shipped work.
+- Validation in this workspace: `npm run lint` exited 0; `npm test` reported **5 files, 10 tests passed**; `npm run build` exited 0. Those commands needed the installed arm64 Node at `/Users/aditya/.nvm/versions/node/v24.18.1/bin` first in `PATH`, because shell `npm` otherwise resolved an incompatible Node executable.
+- Both requested Playwright specs were invoked together while local frontend and backend health checks returned HTTP 200. **They did not reach browser assertions here:** Chromium headless shell exited at launch with `MachPortRendezvousServer … Permission denied (1100)`; final Playwright line was `2 failed`. They must be rerun in an environment that permits Chromium before claiming this round's browser verification. Claude's earlier successful runs and screenshots remain the last completed browser evidence.
+- Remaining release work for Aditya: review the documents and browser run, authorize commit/push, then follow `docs/DEPLOY.md` for Render and Vercel; record the video and build slides from the outlines. No commit, push, or deployment was performed in this round.
+
+### Earlier backend state (historical; superseded by the current state and notes-codex)
 - Verified by Claude: 56 passed, 1 skipped; ruff clean.
 - Done: seed (fictional Suryanagar district, 6 PHCs + store, 60 patients, 4 drugs, 90 days with stock-outs), case lifecycle + audit, district overview (cohort_need, TSB, combined, days_left), OR-Tools transfers, idempotency + /sync/batch, fake AI + real Gemini adapter, demo reset + /demo/scenario/ramesh + scripts/play_ramesh.py (full flow works, phc-2 donor), Dockerfile (not built: no Docker on Mac), CORS, /evaluation/summary, eval/ (forecast + Hindi extraction corpus of 30).
 - **Key finding (B10 honest eval):** prescription-based forecast over-forecasts (MAE ~24 vs 5/day, 1/3 false alerts) but cuts unmet patient-days ~99% (228 → 3, baseline). `max` rule copies cohort_need.
 - **Running at handoff:** Codex round 5 (docs/brief-codex-5.md): B14 adherence-calibrated cohort need (PDC with shrinkage) + new combination rule behind `DEMAND_RULE` (default `max` until Claude approves), overstock/stockout metrics; B15 Gemini retry/backoff → fallback fake with `ai_source`, load backend/.env. Output → docs/out-codex-5.md, docs/notes-codex.md. **Next chat: review it, re-run tests, approve or reject the proposed formula, update CONTRACT.**
 ### Gemini
 - backend/.env (git-ignored, chmod 600) holds a working AIza key from GCP project `saathi-demo-09282128` (created via gcloud as preetichauhan1977@gmail.com) + GEMINI_MODEL=gemini-3.8-flash (2.5-flash retired for new users). Access works (no 403) but every call so far returned 503 "high demand" — retry; try another model if it persists. Old "AQ." keys were project-denied; Aditya should delete them.
-### Frontend (frontend/, Next.js 16 + React 19 + Vitest)
+### Earlier frontend state (historical; superseded by the current state)
 - F1 foundation by Antigravity FAILED review (11 lint errors, tests don't start — ESM vitest config, build type error, ~15 hard-coded English strings). Fix prompt given to Aditya to paste in the Antigravity app. **Next chat: when he says "done", run `npm run lint`, `npm run build`, `npm test` yourself, grep for hard-coded JSX text, review against CONTRACT.**
 - F2 = apply the Saathi design (after Claude Design export).
 

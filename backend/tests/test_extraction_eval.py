@@ -64,7 +64,8 @@ def test_live_text_path_uses_schema_and_usage_for_cost(monkeypatch):
     result = evaluate_live("secret")
     assert result["failed_calls"] == 0
     assert result["successful_calls"] == 30
-    assert result["models_answered"] == {"gemini-3.8-flash": 30}
+    from app.domain.ai import DEFAULT_MODELS
+    assert result["models_answered"] == {DEFAULT_MODELS[0]: 30}
     assert result["input_tokens"] == 3000
     assert result["output_tokens"] == 600
     assert result["estimated_cost_usd"] == 0.0042

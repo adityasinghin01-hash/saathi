@@ -92,18 +92,26 @@ def list_stock(request: Request, facility_id: str | None = None, user: dict = US
     return rows
 
 
-def overview_row(store, facility: dict, drug: dict, horizon_days: int) -> dict:
-    snapshot = latest_snapshot(store, facility["id"], drug["id"])
-    cohort = cohort_need(store, facility["id"], drug["id"], horizon_days)
-    dispensing = dispensing_forecast(store, facility["id"], drug["id"], horizon_days)
-    components = forecast_components(store, facility["id"], drug["id"], horizon_days)
+def overview_row(store, facility: dict, drug: dict, horizon_days: int,
+                 current: dict | None = None) -> dict:
+    pair = (facility["id"], drug["id"])
+    if current is None:
+        snapshot = latest_snapshot(store, *pair)
+        cohort = cohort_need(store, *pair, horizon_days)
+        dispensing = dispensing_forecast(store, *pair, horizon_days)
+        components = forecast_components(store, *pair, horizon_days)
+        cases = [case for case in store.list("case") if case["facility_id"] == facility["id"]
+                 and case["drug_id"] == drug["id"] and case["status"] not in {"closed", "cancelled"}]
+        open_cases = len(cases)
+    else:
+        snapshot = current["snapshots"].get(pair)
+        cohort, dispensing, components = current["forecasts"][pair]
+        open_cases = current["open_cases"].get(pair, 0)
     rule = demand_rule()
     combined = (components["calibrated_combined"] if rule == "calibrated"
                 else combined_estimate(cohort, dispensing, drug.get("demand_rule", "max")))
     on_hand = snapshot["on_hand"] if snapshot else 0
     days_left = on_hand / max(combined / horizon_days, EPSILON)
-    cases = [case for case in store.list("case") if case["facility_id"] == facility["id"]
-             and case["drug_id"] == drug["id"] and case["status"] not in {"closed", "cancelled"}]
     return {"facility_id": facility["id"], "drug_id": drug["id"],
             "on_hand": on_hand, "recorded_at": snapshot["recorded_at"] if snapshot else None,
             "cohort_need": cohort, "dispensing_forecast": dispensing,
@@ -111,7 +119,7 @@ def overview_row(store, facility: dict, drug: dict, horizon_days: int) -> dict:
             "unenrolled_dispensing_forecast": components["unenrolled_dispensing_forecast"],
             "demand_rule": rule, "combined": combined, "horizon_days": horizon_days,
             "days_left": days_left, "warning": warning_level(days_left),
-            "open_cases": len(cases), "synthetic_label": LABEL}
+            "open_cases": open_cases, "synthetic_label": LABEL}
 
 
 @router.get("/district/overview")
@@ -123,13 +131,24 @@ def district_overview(request: Request, district: str | None = None,
     home = get_or_404(store, "facility", user["facility_id"])
     if district is not None and district != home["district"]:
         raise ApiError(403, "forbidden", "District is outside your scope")
-    key = (home["district"], horizon_days, demand_rule())
-    return store.cached_overview(
-        key,
-        lambda: [overview_row(store, facility, drug, horizon_days)
-                 for facility in store.list("facility") if facility["district"] == home["district"]
-                 for drug in store.list("drug")],
-    )
+    facilities = [facility for facility in store.list("facility")
+                  if facility["district"] == home["district"]]
+    drugs = store.list("drug")
+    snapshots = {}
+    for row in store.list("stock_snapshot"):
+        pair = (row["facility_id"], row["drug_id"])
+        if pair not in snapshots or row["recorded_at"] > snapshots[pair]["recorded_at"]:
+            snapshots[pair] = row
+    open_cases = {}
+    for case in store.list("case"):
+        if case["status"] not in {"closed", "cancelled"}:
+            pair = (case["facility_id"], case["drug_id"])
+            open_cases[pair] = open_cases.get(pair, 0) + 1
+    pairs = [(facility["id"], drug["id"]) for facility in facilities for drug in drugs]
+    current = {"snapshots": snapshots, "open_cases": open_cases,
+               "forecasts": store.overview_forecasts(pairs, horizon_days)}
+    return [overview_row(store, facility, drug, horizon_days, current)
+            for facility in facilities for drug in drugs]
 
 
 @router.get("/district/series")

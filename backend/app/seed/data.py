@@ -12,9 +12,10 @@ def seed_if_empty(store):
     if store.list("facility"):
         return
     rng = random.Random(42)
+    rows = []
 
     def add(kind, row):
-        store.put(kind, {**row, "synthetic_label": LABEL})
+        rows.append((kind, {**row, "synthetic_label": LABEL}))
 
     facilities = [
         ("phc-1", "Sundarpur PHC", "सुंदरपुर प्राथमिक स्वास्थ्य केंद्र", "PHC", "North", 28.95, 77.68),
@@ -198,3 +199,8 @@ def seed_if_empty(store):
                                        "facility_id": facility_id, "drug_id": drug_id, "patient_id": None,
                                        "quantity": 0 if censored else rng.choice([0, 1, 2, 3, 4]),
                                        "dispensed_at": f"{current.isoformat()}T12:00:00Z"})
+    if hasattr(store, "put_many"):
+        store.put_many(rows)
+    else:
+        for kind, row in rows:
+            store.put(kind, row)

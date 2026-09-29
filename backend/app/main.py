@@ -30,6 +30,7 @@ def create_app(db_url: str | None = None, ai: DraftAI | None = None) -> FastAPI:
     app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["GET", "POST"],
                        allow_headers=["X-Demo-User", "Idempotency-Key", "Content-Type"])
     seed_if_empty(app.state.store)
+    app.state.store.prime_overview_forecasts()
     app.include_router(router, prefix="/api/v1")
 
     @app.middleware("http")

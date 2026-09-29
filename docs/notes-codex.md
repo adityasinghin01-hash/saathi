@@ -1,5 +1,28 @@
 # Codex backend handoff
 
+## District overview cold path and reset speed (29 Sep 2026)
+
+- `cProfile` of the original 28-row overview showed 416 `SQLiteStore.list()` calls, 56 forecast calls, and repeated scans of 90-day dispensing and stock history. The direct row build took 6,890.6 ms under the profiler; 4,751 ms was in `list()`. The original reset made 5,009 separate `put()` calls and commits, taking 3,046.8 ms under the profiler.
+- Seed records now insert in one transaction. On startup and reset, the store primes the existing forecast calculations for each facility and drug at the default 30-day horizon. A dispensing or historical stock write discards only the affected facility/drug forecasts; patient, prescription, facility, or drug edits clear all forecasts. An overview request reads current snapshots and cases in bulk, joins them with the cached forecast parts, and computes `on_hand`, `open_cases`, `days_left`, and `warning` again. Other horizons are calculated on first use and then cached.
+- Same Mac, seeded SQLite through an in-process FastAPI `TestClient`, one request per measurement. The before run used in-memory SQLite; the after run below used a temporary SQLite file. Times are wall clock and include request handling. Startup is outside the request timer. Render FREE tier has not been measured.
+
+  | Request | Before | After | Target |
+  | --- | ---: | ---: | ---: |
+  | Overview first request | 4,817.5 ms | 11.8 ms | < 400 ms |
+  | Overview warm request | 2.6 ms | 3.1 ms | < 20 ms |
+  | Demo reset | 1,194.6 ms | 223.1 ms | < 800 ms |
+  | Overview after reset | cold forecast rebuild required | 3.2 ms | < 400 ms |
+  | Overview after full Ramesh flow | cold forecast rebuild required | 28.4 ms | < 400 ms |
+
+- After the change, direct `cProfile` measured the overview handler at 2.8 ms with four `list()` calls, and reset plus seed plus forecast priming at 502.4 ms under profiler overhead. A request after a case POST took 3.3 ms. A regression test compares every new row against the legacy row calculation for the seed and after report → verify → draft → approve → dispatch → receive → supply → close; it also checks that only the affected facility/drug forecast is recalculated after new dispensing. Other horizons and the calibrated demand rule match the legacy rows.
+- `.venv/bin/python -m ruff check app tests eval scripts`: `All checks passed!`. Full `.venv/bin/python -m pytest -q` final line: `113 passed, 1 skipped, 1 warning in 27.90s`. No commit, push, or deployment was performed.
+
+## Seeded patient roster polish (29 Sep 2026)
+
+- Replaced the repeated generated names and patterned ages with 60 fixed synthetic patient profiles. The roster has ordinary North-Indian Hindu and Muslim names, women and men under each ASHA, varied surnames, ages 35–75, and matching Devanagari `name_hi`. `patient-001` remains Ramesh, 54 (`रमेश`). Patient IDs, assignments, conditions, prescriptions, and stock data are unchanged; patient demo-user names mirror their patients. Existing populated databases retain their earlier seed until the demo is reset.
+- A focused regression test failed on the former `Asha Sharma` record, then passed after the roster change. The Ramesh donor, case-flow, demo, and patient API tests passed. `DEMO_MODE=1 DATABASE_URL=sqlite:////private/tmp/refill-loop-api-seed-polish.db .venv/bin/python scripts/dump_api_examples.py` regenerated `docs/api-examples.md` using a temporary database.
+- `.venv/bin/python -m ruff check app tests eval scripts`: `All checks passed!`. Full `.venv/bin/python -m pytest -q` final line: `120 passed, 1 skipped, 1 warning in 86.50s (0:01:26)`. I did not commit, push, or deploy. External commit `31585e3` appeared during this work; this handoff note remains uncommitted.
+
 ## District overview cache and browser audio types (29 Sep 2026)
 
 - `GET /api/v1/district/overview` caches computed rows in the SQLite store by district, horizon, and demand rule. Writes to facility, drug, patient, prescription, stock snapshot, daily stock, stockout day, dispensing, case, or transfer records clear the cache; demo reset clears it too. Authorization and district scope checks still run on every request. The cache is per app process, consistent with the local single-process SQLite demo.
