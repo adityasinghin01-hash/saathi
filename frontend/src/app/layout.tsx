@@ -14,8 +14,10 @@ export const metadata: Metadata = {
   title: "Saathi · साथी",
   description: "Every refill, reaching home — medicine supply loop for diabetes and BP patients at government health centres (synthetic demo).",
   manifest: "/manifest.json",
-  icons: { icon: "/art/logo.svg" },
+  icons: { icon: "/art/logo.svg", apple: "/apple-touch-icon.png" },
 };
+
+export const viewport = { themeColor: "#b04a24" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

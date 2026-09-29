@@ -76,9 +76,10 @@
 - **Reported:** Rekha checks the Hindi transcript and fields before sending.
 - **Verified:** Sunita enters the on-hand count at Sundarpur PHC.
 - **Draft → approved → dispatched → received:** Nayagaon is the eligible donor in this seed.
+- **Arrived:** Ramesh gets a "medicine arrived" alert — a bell and a green banner — so he knows when to go.
 - **Supplied → closed:** Sunita hands over; Ramesh confirms; the audit trail records each step.
 
-**Visual:** D5-RAMESH-SEQUENCE plus S23 → S09 → S13 → S17, or four crops with S18 as the ending inset. S23 shows a Hindi transcript in an English UI; do not call the whole screen Hindi-first.
+**Visual:** D5-RAMESH-SEQUENCE plus S23 → S09 → S13 → S24 → S17, or four crops with S18 as the ending inset. S23 shows a Hindi transcript in an English UI; do not call the whole screen Hindi-first.
 
 **Speaker notes:** Keep one case ID through the sequence; the screenshots are a synthetic run. The transfer engine checks donor reserve, matching medicine and unit, and batch expiry before a draft appears. Receiving medicine at a centre is distinct from handing it to the patient and closing the case. Sources: [video shot list](../video-shotlist.md), [contract](../CONTRACT.md#case-status-machine), [seed notes](../notes-codex.md#round-8-seed-realism-follow-up-29-sep-2026).
 
@@ -124,13 +125,14 @@
 **On-slide lines**
 - Phone/web PWA on **Vercel Next.js**; **Render FastAPI** with a **SQLite demo** store.
 - TSB forecast, OR-Tools transfer checks, Gemini voice/rationale with rules fallback.
-- Supported offline writes queue in IndexedDB and replay through `/api/v1/sync/batch`.
+- **Works with no internet:** a typed report is saved on the phone and sent once online — never twice (tested in a browser).
+- **"Medicine arrived" alerts** for the patient and ASHA; a **waking-up screen** covers the free server's ~1-minute start.
 - Case events form an audit trail; stock numbers show when they were recorded.
 - **Live demo:** https://saathi-drab.vercel.app
 
-**Visual:** D2-ARCHITECTURE plus S10 district view. Caption SQLite, demo role picker and browser queue as prototype choices.
+**Visual:** D2-ARCHITECTURE plus S10 district view; optional small insets S28 (saved offline) and S25 (alerts list). Caption SQLite, demo role picker and browser queue as prototype choices.
 
-**Speaker notes:** The public demo uses Vercel and Render; the Render free service may wake slowly after idle. The offline queue covers supported writes and sends them later; it does not make live stock or voice available without connectivity. The demo role picker has no secure authentication, and SQLite needs replacement or hardening before a field rollout. Sources: [README](../../README.md), [handoff live section](../HANDOFF.md#live-29-sep-2026-10-am), [contract](../CONTRACT.md#api-prefix-apiv1).
+**Speaker notes:** The public demo uses Vercel and Render; the Render free service may wake slowly after idle. The offline queue covers typed reports and stock entries and sends them later; a browser test proves the report arrives exactly once. If the server refuses a saved report, the phone says so instead of losing it silently. Voice and live stock still need internet. Alerts are in-app (bell, list, banner); SMS/WhatsApp alerts are roadmap. The demo role picker has no secure authentication, and SQLite needs replacement or hardening before a field rollout. Sources: [README](../../README.md), [handoff live section](../HANDOFF.md#live-29-sep-2026-10-am), [contract](../CONTRACT.md#api-prefix-apiv1).
 
 **Judging:** Deployability; Tech/AI.
 
@@ -198,6 +200,6 @@
 
 **Visual:** S17 closed case and Saathi logo. Add QR codes only after checking the URLs in the final exported deck.
 
-**Speaker notes:** The repo is private in the current handoff, so a judge may need access or a public release before the code link works. Do not invent teammates or institutional affiliations; fill those fields from the official entry. This is an invitation to test the workflow and its limits, not a claim of measured health impact. Sources: [handoff](../HANDOFF.md#live-29-sep-2026-10-am), [README](../../README.md).
+**Speaker notes:** The repo is public: https://github.com/adityasinghin01-hash/saathi Do not invent teammates or institutional affiliations; fill those fields from the official entry. This is an invitation to test the workflow and its limits, not a claim of measured health impact. Sources: [handoff](../HANDOFF.md#live-29-sep-2026-10-am), [README](../../README.md).
 
 **Judging:** Impact; Deployability; Scale across India.

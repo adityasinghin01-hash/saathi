@@ -36,7 +36,7 @@ We have no verified ₹ per-district figure. The demo uses Vercel, Render and SQ
 
 ## 9. Does it work offline?
 
-Supported writes can be stored in an IndexedDB queue and replayed through `/api/v1/sync/batch` when the connection returns, with operation IDs to avoid duplicate application. Voice extraction, fresh district stock and transfer drafting still need connectivity. We need a field test for long outages, shared phones, conflict handling and whether staff can trust the stock timestamp. [README](../../README.md#what-the-prototype-does); [contract](../CONTRACT.md#v02-decisions-answers-to-codex-questions).
+Yes, for typed reports and stock entries. With no internet, the report is saved on the phone and the screen says "Saved offline — will send when online". When the connection returns it is sent automatically, with an ID so it can never be counted twice; a browser test (`frontend/e2e/offline-asha.spec.ts`) proves this end to end. If the server refuses a saved report, the phone tells the user to report it again instead of losing it silently. Voice, fresh district stock and transfer drafting still need internet. Long outages and shared phones still need a field test. [README](../../README.md); [contract](../CONTRACT.md).
 
 ## 10. Who pays, and why would staff adopt another screen?
 
@@ -49,3 +49,11 @@ Yes, that is a key result. In the baseline synthetic simulation, prescription-on
 ## 12. Why not use WhatsApp and a spreadsheet?
 
 That may be the right front door for some sites, and WhatsApp/IVR is on the roadmap. The hard part is the shared case state: who verified the shortage, which stock record is current, whether the donor can spare the right batch, who approved, and whether the patient received it. Saathi demonstrates those gates and audit events in one synthetic workflow. A pilot should compare it with the site's existing messaging and ledger routine; no efficiency gain is claimed yet. [PLAN §0.4–§0.6](/Users/aditya/dev/c4c2-ideas/PLAN.md); [contract](../CONTRACT.md#case-status-machine).
+
+## 13. How does the patient know the medicine has arrived?
+
+The app tells them. When the transfer is dispatched, Ramesh gets an "on the way" alert; when the PHC marks it received, he gets "Your medicine has reached Sundarpur PHC — collect it today" and a green banner on his home screen. His ASHA sees the same alerts for her patients. Today these are in-app alerts (bell and banner); SMS, WhatsApp or a phone call is roadmap and needs a partner. [contract v0.7](../CONTRACT.md).
+
+## 14. Why did the live link take a minute to open?
+
+The demo runs on a free server that sleeps when unused and takes up to about a minute to wake. The app shows a "Waking up the server…" screen instead of a broken page, and a scheduled ping keeps it awake. A real deployment would use a paid, always-on server.

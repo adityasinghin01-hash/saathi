@@ -6,7 +6,7 @@
 |---|---|---|
 | Live demo | https://saathi-drab.vercel.app | Slides 8 and 12; test the final QR before export |
 | API | https://saathi-api-gm4i.onrender.com | Slide 12 small text or speaker notes; a sleeping free instance may need to wake |
-| Repository | https://github.com/adityasinghin01-hash/saathi | Slide 12; [HANDOFF](../HANDOFF.md#live-29-sep-2026-10-am) calls it private, so verify judge access before export |
+| Repository | https://github.com/adityasinghin01-hash/saathi | Slide 12; public since 29 Sep 2026 |
 | Saathi logo | [frontend/public/art/logo.svg](../../frontend/public/art/logo.svg) | Use the original SVG at its natural proportions |
 | Screenshot map | [03-SCREENSHOTS.md](03-SCREENSHOTS.md) | Use the supplied captures only; ignore S21 |
 | Diagram source | [_build/diagrams.py](_build/diagrams.py) | Claude will render D1–D6; do not present the PDF as a separate product |

@@ -120,3 +120,6 @@ a.story:hover{color:var(--clay-ink)}
 .wake-screen.is-fading{opacity:0;pointer-events:none}
 .sa-wake-bar{height:100%;width:40%;border-radius:3px;background:var(--clay-500);animation:sa-wake-slide 1.5s ease-in-out infinite}
 @keyframes sa-wake-slide{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+/* Phone top bar: with the alert bell there, long titles must stay on one line (cut with …) instead of spilling out */
+.sa-topbar:not(.sa-topbar--web) .sa-topbar-title{font-size:18px;line-height:24px}
+.sa-topbar:not(.sa-topbar--web) .sa-topbar-title .sa-bi>[lang]{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

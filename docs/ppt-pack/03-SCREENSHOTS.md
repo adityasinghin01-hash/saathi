@@ -11,7 +11,7 @@ These files are in `docs/ppt-pack/screens/`. They show **Synthetic demo data**. 
 | [S05-patient-voice.png](screens/S05-patient-voice.png) | Patient microphone screen and type-instead option | 6 voice entry |
 | [S06-patient-check-details.png](screens/S06-patient-check-details.png) | Extracted transcript and editable confirmation fields | 6 human read-back; 9 safety |
 | [S07-patient-case-reported.png](screens/S07-patient-case-reported.png) | Case after report, awaiting staff verification | 4 or 5; label **reported**, not confirmed stockout |
-| [S08-pharmacist-home.png](screens/S08-pharmacist-home.png) | Pharmacist's pending work and stock context | 2 small workflow context; 5 before verification |
+| [S08-pharmacist-home.png](screens/S08-pharmacist-home.png) | Pharmacist's verify queue with Ramesh's new report (phone layout fixed 29 Sep) | 2 small workflow context; 5 before verification |
 | [S09-pharmacist-verify.png](screens/S09-pharmacist-verify.png) | Sunita checks the on-hand count and confirms the stockout | 5 main sequence; 9 trust gate |
 | [S10-district-overview.png](screens/S10-district-overview.png) | District summary, warnings and Ramesh action | 8 architecture in use; 3 small context |
 | [S11-district-overview-full.png](screens/S11-district-overview-full.png) | Full district stock table and warnings | 8 or 3, crop table with stock age and both demand columns |
@@ -26,5 +26,10 @@ These files are in `docs/ppt-pack/screens/`. They show **Synthetic demo data**. 
 | [S20-asha-patients.png](screens/S20-asha-patients.png) | Rekha's assigned patient list and “Report for a patient” entry | 4 ASHA role; 10 assisted-use point |
 | [S22-asha-recording-voice.png](screens/S22-asha-recording-voice.png) | Rekha records for Ramesh; Hindi/English labels and recording state | 5 or 6 voice step |
 | [S23-asha-voice-heard-hindi.png](screens/S23-asha-voice-heard-hindi.png) | Hindi transcript, AI draft badge, editable check screen and “Confirm & send” | 5 or 6. It shows Hindi speech in an English UI, not a Hindi-first interface |
+| [S24-patient-arrived-alert.png](screens/S24-patient-arrived-alert.png) | **NEW** — Ramesh's home: green "Your medicine has arrived" banner + bell with 2 unread alerts | 5 between hand-over steps; 1 or 12 closing |
+| [S25-patient-alerts-list.png](screens/S25-patient-alerts-list.png) | **NEW** — alert list: "on the way" and "reached Sundarpur PHC, collect it today", Hindi + English | 5 inset; 8 inset |
+| [S26-wake-screen.png](screens/S26-wake-screen.png) | **NEW** — "Waking up the server…" screen shown while the free server starts | 8 only if asked about the live link; not a feature slide |
+| [S27-offline-voice-needs-internet.png](screens/S27-offline-voice-needs-internet.png) | **NEW** — no internet: mic is off, "Voice needs internet — please type instead" | 8 inset (offline) |
+| [S28-offline-saved-on-phone.png](screens/S28-offline-saved-on-phone.png) | **NEW** — ASHA's typed report "Saved offline — will send when online" | 8 main offline proof |
 
-**Preferred story strip for slide 5:** S23 → S09 → S13 → S16 → S17, with D5 as the status line. S18 is a close-up on slide 9. Use a visible “Synthetic demo data” label even when these mobile crops do not show the header badge.
+**Preferred story strip for slide 5:** S23 → S09 → S13 → S24 → S17, with D5 as the status line. S18 is a close-up on slide 9. Use a visible “Synthetic demo data” label even when these mobile crops do not show the header badge.
